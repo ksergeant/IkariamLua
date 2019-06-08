@@ -5,46 +5,60 @@ love.graphics.setDefaultFilter("nearest")
 
 json = require("json")
 
-
-file ='{"glossary": {"title": "example glossary","GlossDiv": {"title": "S","GlossList": {"GlossEntry": {"ID": "SGML","SortAs": "SGML","GlossTerm": "Standard Generalized Markup Language","Acronym": "SGML","Abbrev": "ISO 8879:1986","GlossDef": {"para": "A meta-markup language, used to create markup languages such as DocBook.","GlossSeeAlso": ["GML", "XML"]},"GlossSee": "markup"}}}}}'
-ville1Decode = json.decode(file)
 myIkariamManager = require("IkariamManager")
 myBackground = love.graphics.newImage("background.png")
---print(ville1Decode)
---print(ville1Decode['glossary']['GlossDiv']['title'])
 
-local f = assert(io.open("Villes/test.json", "r"))
-local t = f:read("*all")
-
---print(t)
-
-f:close()
-
-ville2Decode = json.decode(t)
---print(ville2Decode)
---print(ville2Decode['glossary']['GlossDiv']['GlossList']['GlossEntry'])
-
-local k = assert(io.open("Villes/Ville1.json", "r"))
+local k = assert(io.open("Villes/Ville6.json", "r"))
 local n = k:read("*all")
+
 --print(n)
 
-ville3Decode = json.decode(n)
---print(ville3Decode)
+ville1Decode = json.decode(n)
+--print(ville1Decode)
 
-local bois= ville3Decode[1][2]['headerData']['currentResources']['resource']
-local vin = ville3Decode[1][2]['headerData']['currentResources']['1']
-local marbre = ville3Decode[1][2]['headerData']['currentResources']['2']
-local cristal = ville3Decode[1][2]['headerData']['currentResources']['3']
-local souffre = ville3Decode[1][2]['headerData']['currentResources']['4']
+local bois= ville1Decode[1][2]['headerData']['currentResources']['resource']
+local vin = ville1Decode[1][2]['headerData']['currentResources']['1']
+local marbre = ville1Decode[1][2]['headerData']['currentResources']['2']
+local cristal = ville1Decode[1][2]['headerData']['currentResources']['3']
+local souffre = ville1Decode[1][2]['headerData']['currentResources']['4']
+local nomVille = ville1Decode[1][2]['backgroundData']['name']
+
+local nomJoueur = ville1Decode[1][2]['backgroundData']['ownerName']           
+local BateauMarchand = ville1Decode[1][2]['headerData']['freeTransporters']
+
+local entrepotMax = ville1Decode[1][2]['headerData']['maxResources']['resource']
+local LvlHotel = ville1Decode[1][2]['backgroundData']['position'][1]['level'] 
+local endUpdateTime = ville1Decode[1][2]['backgroundData']['endUpgradeTime']
+--local entrepotLvl = ville1Decode[1][2]['backgroundData']['position']['Entrep\\u00f4t']['level']
 
 
+local entrepotLvl = ville1Decode[1][2]['backgroundData']['position'][1].level
 
---print(ville3Decode[1][2]['headerData']['currentResources']['1'])
+for j = 1, #ville1Decode[1][2]['backgroundData']['position'] do
+  
+  print (ville1Decode[1][2]['backgroundData']['position'][j].name)
+
+end
+
+local nombreDeBatiment = #ville1Decode[1][2]['backgroundData']['position']
+
 print(bois)
 print(vin)
 print(marbre)
 print(cristal)
 print(souffre)
+print(nomVille)
+print(nomJoueur)
+print(BateauMarchand)
+print(entrepotMax)
+print(LvlHotel)
+print(endUpdateTime)
+print(nombreDeBatiment)
+
+if entrepotLvl == 'Hôtel de ville' then
+  print(entrepotLvl)
+end
+
 function love.load()
   
   myIkariamManager:Load()
