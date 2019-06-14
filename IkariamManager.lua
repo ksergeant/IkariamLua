@@ -1,27 +1,26 @@
 local IkariamManager = {}
 
 local FunctionButton = require("button")
-local FunctionPicture = require("picture")
 local FunctionEvent = require("event")
+
 local FunctionGroupeBox = require("groupeBox")
 
-IkariamManager.myGroupeBox1 = FunctionGroupeBox:Create("Ville1", 0, 0)
-IkariamManager.myGroupeBox2 = FunctionGroupeBox:Create("Ville2", 240, 0)
-IkariamManager.myGroupeBox3 = FunctionGroupeBox:Create("Ville3", 480, 0)
-IkariamManager.myGroupeBox4 = FunctionGroupeBox:Create("Ville4", 720, 0)
-IkariamManager.myGroupeBox5 = FunctionGroupeBox:Create("Ville5", 960, 0)
-IkariamManager.myGroupeBox6 = FunctionGroupeBox:Create("Ville6", 1200, 0)
+IkariamManager.myGroupeBox1 = FunctionGroupeBox:Create("Ville1", 1, 1)
+IkariamManager.myGroupeBox2 = FunctionGroupeBox:Create("Ville2", 240, 1)
+IkariamManager.myGroupeBox3 = FunctionGroupeBox:Create("Ville3", 480, 1)
+IkariamManager.myGroupeBox4 = FunctionGroupeBox:Create("Ville4", 720, 1)
+IkariamManager.myGroupeBox5 = FunctionGroupeBox:Create("Ville5", 960, 1)
+IkariamManager.myGroupeBox6 = FunctionGroupeBox:Create("Ville6", 1200, 1)
 
+IkariamManager.myGroupeBox7 = FunctionGroupeBox:Create("Ville7", 1, 241)
+IkariamManager.myGroupeBox8 = FunctionGroupeBox:Create("Ville8", 240, 241)
+IkariamManager.myGroupeBox9 = FunctionGroupeBox:Create("Ville9", 480, 241)
+IkariamManager.myGroupeBox10 = FunctionGroupeBox:Create("Ville10", 720, 241)
+IkariamManager.myGroupeBox11 = FunctionGroupeBox:Create("Ville11", 960, 241)
+IkariamManager.myGroupeBox12 = FunctionGroupeBox:Create("Ville12", 1200, 241)
 
 IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarer", 1200, 600, FunctionEvent.Demarrer, "adventure_pack/PNG/buttonLong_blue.png")
 IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1200, 700, FunctionEvent.Quitter, "adventure_pack/PNG/buttonLong_blue.png")
-
-IkariamManager.myImageBois = FunctionPicture:Create("Bois", 10, 10,  "Images/Bois.png")
-IkariamManager.myImageVin = FunctionPicture:Create("Vin", 10, 40,  "Images/Vin.png")
-IkariamManager.myImageMarbre = FunctionPicture:Create("Marbre", 10, 70,  "Images/Marbre.png")
-IkariamManager.myImageCristal = FunctionPicture:Create("Cristal", 10, 100,  "Images/Cristal.png")
-IkariamManager.myImageSouffre = FunctionPicture:Create("Souffre", 10, 130,  "Images/Souffre.png")
-IkariamManager.myImageUpdate = FunctionPicture:Create("Update", 10, 165,  "Images/Update.png")
 
 function IkariamManager:Load()
   
@@ -39,12 +38,7 @@ function IkariamManager:Draw()
   
  self.myButtonDemarrer:Draw()
  self.myButtonQuitter:Draw()
- self.myImageBois:Draw()
- self.myImageVin:Draw()
- self.myImageMarbre:Draw()
- self.myImageCristal:Draw()
- self.myImageSouffre:Draw()
- self.myImageUpdate:Draw()
+
  self.myGroupeBox1:Draw()
  self.myGroupeBox2:Draw()
  self.myGroupeBox3:Draw()
@@ -52,6 +46,12 @@ function IkariamManager:Draw()
  self.myGroupeBox5:Draw()
  self.myGroupeBox6:Draw()
 
+ self.myGroupeBox7:Draw()
+ self.myGroupeBox8:Draw()
+ self.myGroupeBox9:Draw()
+ self.myGroupeBox10:Draw()
+ self.myGroupeBox11:Draw()
+ self.myGroupeBox12:Draw()
 
 end
 
