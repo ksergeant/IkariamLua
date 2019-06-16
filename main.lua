@@ -95,31 +95,73 @@ end
 
 function love.mousepressed(x, y, button, istouch)
   
-  local bQuit = myIkariamManager.myButtonQuitter
   local bLaunch = myIkariamManager.myButtonDemarrer
+  local bQuit = myIkariamManager.myButtonQuitter
   local bRessources = myIkariamManager.myButtonRessources
-  
+  local bBatiments = myIkariamManager.myButtonBatiments
+  local bIles = myIkariamManager.myButtonIles
+  local bCachette = myIkariamManager.myButtonCachette
+  local bPlans = myIkariamManager.myButtonPlans
+
+    -- Bouton Demarrer
    if (button == 1) and 
        (x >= bLaunch.x) and (x <= bLaunch.x + bLaunch.width) and 
        (y >= bLaunch.y) and (y <= bLaunch.y + bLaunch.height) then
        bLaunch.Function()
-    print("Demarre")
+    
    end
   
+   -- Bouton Quitter
    if (button == 1) and 
        (x >= bQuit.x) and (x <= bQuit.x + bQuit.width) and 
        (y >= bQuit.y) and (y <= bQuit.y + bQuit.height) then 
      
      bQuit.Function()
-    print("quit")
+    
    end
 
+   -- Bouton Ressources
    if (button == 1) and 
        (x >= bRessources.x) and (x <= bRessources.x + bRessources.width) and 
        (y >= bRessources.y) and (y <= bRessources.y + bRessources.height) then 
      
         bRessources.Function()
     end
+
+  -- Bouton Batiments
+  if (button == 1) and 
+       (x >= bBatiments.x) and (x <= bBatiments.x + bBatiments.width) and 
+       (y >= bBatiments.y) and (y <= bBatiments.y + bBatiments.height) then 
+     
+        bBatiments.Function()
+    end
+
+  -- Bouton Iles
+  if (button == 1) and 
+       (x >= bIles.x) and (x <= bIles.x + bIles.width) and 
+       (y >= bIles.y) and (y <= bIles.y + bIles.height) then 
+     
+        bIles.Function()
+    end
+
+  -- Bouton Cachette
+  if (button == 1) and 
+       (x >= bCachette.x) and (x <= bCachette.x + bCachette.width) and 
+       (y >= bCachette.y) and (y <= bCachette.y + bCachette.height) then 
+     
+        bCachette.Function()
+    end
+
+  -- Bouton Plans
+  if (button == 1) and 
+       (x >= bPlans.x) and (x <= bPlans.x + bPlans.width) and 
+       (y >= bPlans.y) and (y <= bPlans.y + bPlans.height) then 
+     
+        bPlans.Function()
+    end
+
+  
+  
    
 end
 

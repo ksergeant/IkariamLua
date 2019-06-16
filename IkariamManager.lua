@@ -37,7 +37,7 @@ IkariamManager.myButtonIles = FunctionButton:Create("Îles", "buttonIles", 395, 
 IkariamManager.myButtonCachette = FunctionButton:Create("Cachette", "buttonCachette", 590, 5, FunctionEvent.Cachette, 
 "adventure_pack/PNG/buttonLong_beige.png", 71, 15)
 
-IkariamManager.myButtonPlan = FunctionButton:Create("Plans", "buttonPlan", 785, 5, FunctionEvent.Plan, 
+IkariamManager.myButtonPlans = FunctionButton:Create("Plans", "buttonPlans", 785, 5, FunctionEvent.Plans, 
 "adventure_pack/PNG/buttonLong_beige.png", 82, 15)
 
 function IkariamManager:Load()
@@ -60,7 +60,7 @@ function IkariamManager:Draw()
  self.myButtonBatiments:Draw()
  self.myButtonIles:Draw()
  self.myButtonCachette:Draw()
- self.myButtonPlan:Draw()
+ self.myButtonPlans:Draw()
  --self.myGroupeBox1:Draw()
  --self.myGroupeBox2:Draw()
  --self.myGroupeBox3:Draw()
