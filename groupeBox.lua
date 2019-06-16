@@ -23,7 +23,7 @@ function groupeBox:Create(pFichierJson, pX, pY)
         love.graphics.rectangle("line", self.x, self.y, self.width, self.height)
         
         love.graphics.setColor(1,0,0)
-        love.graphics.print(self.nom, self.x + 110, self.y )
+        love.graphics.print(self.nom, self.x + 110, self.y)
         love.graphics.setColor(r,g,b)
         
 

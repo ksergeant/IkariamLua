@@ -42,6 +42,7 @@ end
 
 local nombreDeBatiment = #ville1Decode[1][2]['backgroundData']['position']
 
+
 print(bois)
 print(vin)
 print(marbre)
@@ -54,6 +55,14 @@ print(entrepotMax)
 print(LvlHotel)
 print(endUpdateTime)
 print(nombreDeBatiment)
+
+
+--local b = assert(io.open("/Island1.json", "r"))
+--local j = b:read("*all")
+
+--island1Decode = json.decode(j)
+
+--print(j)
 
 if entrepotLvl == 'Hôtel de ville' then
   print(entrepotLvl)
