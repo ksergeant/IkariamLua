@@ -21,6 +21,7 @@ IkariamManager.myGroupeBox12 = FunctionGroupeBox:Create("Ville12", 1200, 241)
 
 IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarer", 1200, 600, FunctionEvent.Demarrer, "adventure_pack/PNG/buttonLong_blue.png")
 IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1200, 700, FunctionEvent.Quitter, "adventure_pack/PNG/buttonLong_blue.png")
+IkariamManager.myButtonRessources = FunctionButton:Create("Ressources", "buttonDemarer", 0, 481, FunctionEvent.Demarrer, "adventure_pack/PNG/buttonLong_beige.png")
 
 function IkariamManager:Load()
   
@@ -38,6 +39,7 @@ function IkariamManager:Draw()
   
  self.myButtonDemarrer:Draw()
  self.myButtonQuitter:Draw()
+ self.myButtonRessources:Draw()
 
  self.myGroupeBox1:Draw()
  self.myGroupeBox2:Draw()
