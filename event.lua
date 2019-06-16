@@ -8,17 +8,21 @@ event.Quitter = function()
     love.event.quit()
 end
 
-function eventDemarrer()
-  
-    os.execute("perl Ikariam.pl")
-    
+event.Ressources = function()
+    print("affiche les ressources")
 end
+
+--function eventDemarrer()
+  
+   -- os.execute("perl Ikariam.pl")
+    
+--end
   
   
-function eventQuitter()
+--function eventQuitter()
     
-    love.event.quit()
+   -- love.event.quit()
     
-end
+--end
 
 return event

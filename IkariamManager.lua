@@ -19,9 +19,26 @@ IkariamManager.myGroupeBox10 = FunctionGroupeBox:Create("Ville10", 720, 241)
 IkariamManager.myGroupeBox11 = FunctionGroupeBox:Create("Ville11", 960, 241)
 IkariamManager.myGroupeBox12 = FunctionGroupeBox:Create("Ville12", 1200, 241)
 
-IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarer", 1200, 600, FunctionEvent.Demarrer, "adventure_pack/PNG/buttonLong_blue.png")
-IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1200, 700, FunctionEvent.Quitter, "adventure_pack/PNG/buttonLong_blue.png")
-IkariamManager.myButtonRessources = FunctionButton:Create("Ressources", "buttonDemarer", 0, 481, FunctionEvent.Demarrer, "adventure_pack/PNG/buttonLong_beige.png")
+IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarrer", 1200, 600, FunctionEvent.Demarrer, 
+"adventure_pack/PNG/buttonLong_blue.png", 70, 15)
+
+IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1200, 700, FunctionEvent.Quitter,
+"adventure_pack/PNG/buttonLong_blue.png", 77, 15)
+
+IkariamManager.myButtonRessources = FunctionButton:Create("Ressources", "buttonRessources", 5, 5, FunctionEvent.Ressources, 
+"adventure_pack/PNG/buttonLong_beige.png", 62, 15)
+
+IkariamManager.myButtonBatiments = FunctionButton:Create("Batîments", "buttonBatiments", 200, 5, FunctionEvent.Batiments, 
+"adventure_pack/PNG/buttonLong_beige.png", 67, 15)
+
+IkariamManager.myButtonIles = FunctionButton:Create("Îles", "buttonIles", 395, 5, FunctionEvent.Iles, 
+"adventure_pack/PNG/buttonLong_beige.png", 86, 15)
+
+IkariamManager.myButtonCachette = FunctionButton:Create("Cachette", "buttonCachette", 590, 5, FunctionEvent.Cachette, 
+"adventure_pack/PNG/buttonLong_beige.png", 71, 15)
+
+IkariamManager.myButtonPlan = FunctionButton:Create("Plans", "buttonPlan", 785, 5, FunctionEvent.Plan, 
+"adventure_pack/PNG/buttonLong_beige.png", 82, 15)
 
 function IkariamManager:Load()
   
@@ -40,20 +57,23 @@ function IkariamManager:Draw()
  self.myButtonDemarrer:Draw()
  self.myButtonQuitter:Draw()
  self.myButtonRessources:Draw()
+ self.myButtonBatiments:Draw()
+ self.myButtonIles:Draw()
+ self.myButtonCachette:Draw()
+ self.myButtonPlan:Draw()
+ --self.myGroupeBox1:Draw()
+ --self.myGroupeBox2:Draw()
+ --self.myGroupeBox3:Draw()
+ --self.myGroupeBox4:Draw()
+ --self.myGroupeBox5:Draw()
+ --self.myGroupeBox6:Draw()
 
- self.myGroupeBox1:Draw()
- self.myGroupeBox2:Draw()
- self.myGroupeBox3:Draw()
- self.myGroupeBox4:Draw()
- self.myGroupeBox5:Draw()
- self.myGroupeBox6:Draw()
-
- self.myGroupeBox7:Draw()
- self.myGroupeBox8:Draw()
- self.myGroupeBox9:Draw()
- self.myGroupeBox10:Draw()
- self.myGroupeBox11:Draw()
- self.myGroupeBox12:Draw()
+ --self.myGroupeBox7:Draw()
+ --self.myGroupeBox8:Draw()
+ --self.myGroupeBox9:Draw()
+ --self.myGroupeBox10:Draw()
+ --self.myGroupeBox11:Draw()
+ --self.myGroupeBox12:Draw()
 
 end
 

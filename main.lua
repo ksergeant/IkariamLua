@@ -97,6 +97,7 @@ function love.mousepressed(x, y, button, istouch)
   
   local bQuit = myIkariamManager.myButtonQuitter
   local bLaunch = myIkariamManager.myButtonDemarrer
+  local bRessources = myIkariamManager.myButtonRessources
   
    if (button == 1) and 
        (x >= bLaunch.x) and (x <= bLaunch.x + bLaunch.width) and 
@@ -112,6 +113,13 @@ function love.mousepressed(x, y, button, istouch)
      bQuit.Function()
     print("quit")
    end
+
+   if (button == 1) and 
+       (x >= bRessources.x) and (x <= bRessources.x + bRessources.width) and 
+       (y >= bRessources.y) and (y <= bRessources.y + bRessources.height) then 
+     
+        bRessources.Function()
+    end
    
 end
 
