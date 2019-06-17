@@ -20,25 +20,25 @@ IkariamManager.myGroupeBox11 = FunctionGroupeBox:Create("Ville11", 960, 241)
 IkariamManager.myGroupeBox12 = FunctionGroupeBox:Create("Ville12", 1200, 241)
 
 IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarrer", 1200, 600, FunctionEvent.Demarrer, 
-"adventure_pack/PNG/buttonLong_blue.png", 70, 15)
+"adventure_pack/PNG/buttonLong_blue.png", "adventure_pack/PNG/buttonLong_blue_pressed.png", 70, 15)
 
 IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1200, 700, FunctionEvent.Quitter,
-"adventure_pack/PNG/buttonLong_blue.png", 77, 15)
+"adventure_pack/PNG/buttonLong_blue.png", "adventure_pack/PNG/buttonLong_blue_pressed.png", 77, 15)
 
 IkariamManager.myButtonRessources = FunctionButton:Create("Ressources", "buttonRessources", 5, 5, FunctionEvent.Ressources, 
-"adventure_pack/PNG/buttonLong_beige.png", 62, 15)
+"adventure_pack/PNG/buttonLong_beige.png", "adventure_pack/PNG/buttonLong_beige_pressed.png", 62, 15)
 
 IkariamManager.myButtonBatiments = FunctionButton:Create("Batîments", "buttonBatiments", 200, 5, FunctionEvent.Batiments, 
-"adventure_pack/PNG/buttonLong_beige.png", 67, 15)
+"adventure_pack/PNG/buttonLong_beige.png", "adventure_pack/PNG/buttonLong_beige_pressed.png", 67, 15)
 
 IkariamManager.myButtonIles = FunctionButton:Create("Îles", "buttonIles", 395, 5, FunctionEvent.Iles, 
-"adventure_pack/PNG/buttonLong_beige.png", 86, 15)
+"adventure_pack/PNG/buttonLong_beige.png", "adventure_pack/PNG/buttonLong_beige_pressed.png", 86, 15)
 
 IkariamManager.myButtonCachette = FunctionButton:Create("Cachette", "buttonCachette", 590, 5, FunctionEvent.Cachette, 
-"adventure_pack/PNG/buttonLong_beige.png", 71, 15)
+"adventure_pack/PNG/buttonLong_beige.png", "adventure_pack/PNG/buttonLong_beige_pressed.png", 71, 15)
 
 IkariamManager.myButtonPlans = FunctionButton:Create("Plans", "buttonPlans", 785, 5, FunctionEvent.Plans, 
-"adventure_pack/PNG/buttonLong_beige.png", 82, 15)
+"adventure_pack/PNG/buttonLong_beige.png", "adventure_pack/PNG/buttonLong_beige_pressed.png", 82, 15)
 
 function IkariamManager:Load()
   

@@ -108,6 +108,15 @@ function love.mousepressed(x, y, button, istouch)
        (x >= bLaunch.x) and (x <= bLaunch.x + bLaunch.width) and 
        (y >= bLaunch.y) and (y <= bLaunch.y + bLaunch.height) then
        bLaunch.Function()
+
+        myIkariamManager.myButtonDemarrer.pressed = true
+
+        myIkariamManager.myButtonQuitter.pressed = false
+        myIkariamManager.myButtonRessources.pressed = false
+        myIkariamManager.myButtonBatiments.pressed = false
+        myIkariamManager.myButtonIles.pressed = false
+        myIkariamManager.myButtonCachette.pressed = false
+        myIkariamManager.myButtonPlans.pressed = false
     
    end
   
@@ -115,6 +124,15 @@ function love.mousepressed(x, y, button, istouch)
    if (button == 1) and 
        (x >= bQuit.x) and (x <= bQuit.x + bQuit.width) and 
        (y >= bQuit.y) and (y <= bQuit.y + bQuit.height) then 
+
+        myIkariamManager.myButtonQuitter.pressed = true
+
+        myIkariamManager.myButtonDemarrer.pressed = false
+        myIkariamManager.myButtonRessources.pressed = false
+        myIkariamManager.myButtonBatiments.pressed = false
+        myIkariamManager.myButtonIles.pressed = false
+        myIkariamManager.myButtonCachette.pressed = false
+        myIkariamManager.myButtonPlans.pressed = false
      
      bQuit.Function()
     
@@ -124,7 +142,16 @@ function love.mousepressed(x, y, button, istouch)
    if (button == 1) and 
        (x >= bRessources.x) and (x <= bRessources.x + bRessources.width) and 
        (y >= bRessources.y) and (y <= bRessources.y + bRessources.height) then 
-     
+
+        myIkariamManager.myButtonRessources.pressed = true
+
+        myIkariamManager.myButtonDemarrer.pressed = false
+        myIkariamManager.myButtonQuitter.pressed = false
+        myIkariamManager.myButtonBatiments.pressed = false
+        myIkariamManager.myButtonIles.pressed = false
+        myIkariamManager.myButtonCachette.pressed = false
+        myIkariamManager.myButtonPlans.pressed = false
+
         bRessources.Function()
     end
 
@@ -132,7 +159,15 @@ function love.mousepressed(x, y, button, istouch)
   if (button == 1) and 
        (x >= bBatiments.x) and (x <= bBatiments.x + bBatiments.width) and 
        (y >= bBatiments.y) and (y <= bBatiments.y + bBatiments.height) then 
-     
+        
+        myIkariamManager.myButtonBatiments.pressed = true
+
+        myIkariamManager.myButtonDemarrer.pressed = false
+        myIkariamManager.myButtonQuitter.pressed = false
+        myIkariamManager.myButtonRessources.pressed = false
+        myIkariamManager.myButtonIles.pressed = false
+        myIkariamManager.myButtonCachette.pressed = false
+        myIkariamManager.myButtonPlans.pressed = false
         bBatiments.Function()
     end
 
@@ -140,6 +175,15 @@ function love.mousepressed(x, y, button, istouch)
   if (button == 1) and 
        (x >= bIles.x) and (x <= bIles.x + bIles.width) and 
        (y >= bIles.y) and (y <= bIles.y + bIles.height) then 
+
+        myIkariamManager.myButtonIles.pressed = true
+
+        myIkariamManager.myButtonDemarrer.pressed = false
+        myIkariamManager.myButtonQuitter.pressed = false
+        myIkariamManager.myButtonRessources.pressed = false
+        myIkariamManager.myButtonBatiments.pressed = false
+        myIkariamManager.myButtonCachette.pressed = false
+        myIkariamManager.myButtonPlans.pressed = false
      
         bIles.Function()
     end
@@ -149,6 +193,15 @@ function love.mousepressed(x, y, button, istouch)
        (x >= bCachette.x) and (x <= bCachette.x + bCachette.width) and 
        (y >= bCachette.y) and (y <= bCachette.y + bCachette.height) then 
      
+        myIkariamManager.myButtonCachette.pressed = true
+        
+
+        myIkariamManager.myButtonDemarrer.pressed = false
+        myIkariamManager.myButtonQuitter.pressed = false
+        myIkariamManager.myButtonRessources.pressed = false
+        myIkariamManager.myButtonIles.pressed = false
+        myIkariamManager.myButtonBatiments.pressed = false
+        myIkariamManager.myButtonPlans.pressed = false
         bCachette.Function()
     end
 
@@ -157,6 +210,15 @@ function love.mousepressed(x, y, button, istouch)
        (x >= bPlans.x) and (x <= bPlans.x + bPlans.width) and 
        (y >= bPlans.y) and (y <= bPlans.y + bPlans.height) then 
      
+        
+        myIkariamManager.myButtonPlans.pressed = true
+        myIkariamManager.myButtonDemarrer.pressed = false
+        myIkariamManager.myButtonQuitter.pressed = false
+        myIkariamManager.myButtonRessources.pressed = false
+        myIkariamManager.myButtonIles.pressed = false
+        myIkariamManager.myButtonCachette.pressed = false
+        myIkariamManager.myButtonBatiments.pressed = false
+        
         bPlans.Function()
     end
 
