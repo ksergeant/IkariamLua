@@ -84,13 +84,21 @@ function love.update(dt)
   
   myIkariamManager:Update(dt)
 
+   
+
+ 
 end
 
 function love.draw()
     
   love.graphics.draw(myBackground, 0, 0, 0)
   myIkariamManager:Draw()
+
   
+  
+  
+  
+
 end
 
 function love.mousepressed(x, y, button, istouch)

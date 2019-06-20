@@ -48,6 +48,13 @@ end
 
 function IkariamManager:Update(dt)
   
+  self.myButtonDemarrer:Update()
+  self.myButtonQuitter:Update()
+  self.myButtonRessources:Update()
+  self.myButtonBatiments:Update()
+  self.myButtonIles:Update()
+  self.myButtonCachette:Update()
+  self.myButtonPlans:Update()
   
   
 end
