@@ -2,6 +2,7 @@ local IkariamManager = {}
 
 local FunctionButton = require("button")
 local FunctionEvent = require("event")
+local FunctionPicture = require("picture")
 
 local FunctionGroupeBox = require("groupeBox")
 
@@ -40,6 +41,8 @@ IkariamManager.myButtonCachette = FunctionButton:Create("Cachette", "buttonCache
 IkariamManager.myButtonPlans = FunctionButton:Create("Plans", "buttonPlans", 785, 5, FunctionEvent.Plans, 
 "adventure_pack/PNG/buttonLong_beige.png", "adventure_pack/PNG/buttonLong_beige_pressed.png", 82, 15)
 
+IkariamManager.myCurseur = FunctionPicture:Create("Curseur",28,18,"adventure_pack/PNG/arrowSilver_right.png", 1, 1)
+
 function IkariamManager:Load()
   
   
@@ -68,6 +71,7 @@ function IkariamManager:Draw()
  self.myButtonIles:Draw()
  self.myButtonCachette:Draw()
  self.myButtonPlans:Draw()
+ self.myCurseur:Draw()
  --self.myGroupeBox1:Draw()
  --self.myGroupeBox2:Draw()
  --self.myGroupeBox3:Draw()

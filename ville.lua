@@ -14,12 +14,12 @@ function ville:Create(pFichierJson, pGroupeBoxX, pGroupeBoxY)
   villeTempo._nbSouffre = 0
   villeTempo._update = "Aucune"
 
-  villeTempo._ImageBois = FunctionPicture:Create("Bois", (10 + pGroupeBoxX), (10 + pGroupeBoxY),  "Images/Bois.png")
-  villeTempo._ImageVin = FunctionPicture:Create("Vin", (10 + pGroupeBoxX), (40 + pGroupeBoxY),  "Images/Vin.png")
-  villeTempo._ImageMarbre = FunctionPicture:Create("Marbre", (10 + pGroupeBoxX), (70 + pGroupeBoxY),  "Images/Marbre.png")
-  villeTempo._ImageCristal = FunctionPicture:Create("Cristal", (10 + pGroupeBoxX), (100 + pGroupeBoxY),  "Images/Cristal.png")
-  villeTempo._ImageSouffre = FunctionPicture:Create("Souffre", (10 + pGroupeBoxX), (130 + pGroupeBoxY),  "Images/Souffre.png")
-  villeTempo._ImageUpdate = FunctionPicture:Create("Update", (10 + pGroupeBoxX), (165 + pGroupeBoxY),  "Images/Update.png")
+  villeTempo._ImageBois = FunctionPicture:Create("Bois", (10 + pGroupeBoxX), (10 + pGroupeBoxY),  "Images/Bois.png", 1,1)
+  villeTempo._ImageVin = FunctionPicture:Create("Vin", (10 + pGroupeBoxX), (40 + pGroupeBoxY),  "Images/Vin.png",1,1)
+  villeTempo._ImageMarbre = FunctionPicture:Create("Marbre", (10 + pGroupeBoxX), (70 + pGroupeBoxY),  "Images/Marbre.png",1,1)
+  villeTempo._ImageCristal = FunctionPicture:Create("Cristal", (10 + pGroupeBoxX), (100 + pGroupeBoxY),  "Images/Cristal.png", 1,1)
+  villeTempo._ImageSouffre = FunctionPicture:Create("Souffre", (10 + pGroupeBoxX), (130 + pGroupeBoxY),  "Images/Souffre.png",1,1)
+  villeTempo._ImageUpdate = FunctionPicture:Create("Update", (10 + pGroupeBoxX), (165 + pGroupeBoxY),  "Images/Update.png",1,1)
 
   villeTempo._listeBatiments = {}
 
