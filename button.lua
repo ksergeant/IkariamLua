@@ -1,6 +1,7 @@
 local button = {}
+local FunctionPicture = require("picture")
 
-function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pLabelX, pLabelY)
+function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pImage3, pLabelX, pLabelY)
   
   local buttonTempo = {}
   buttonTempo.label = pLabel
@@ -10,10 +11,11 @@ function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pLabelX
   buttonTempo.labelX = pLabelX
   buttonTempo.labelY = pLabelY
   buttonTempo.Function = pFunction
-  buttonTempo.image = love.graphics.newImage(pImage)
-  buttonTempo.image2 = love.graphics.newImage(pImage2)
-  buttonTempo.width = buttonTempo.image:getWidth()
-  buttonTempo.height = buttonTempo.image:getHeight()
+  buttonTempo.imageIdle = love.graphics.newImage(pImage)
+  buttonTempo.imagePressed = love.graphics.newImage(pImage2)
+  buttonTempo.imageCurseur = FunctionPicture:Create("Curseur", buttonTempo.x +23 , buttonTempo.y +13, pImage3, 1, 1)
+  buttonTempo.width = buttonTempo.imageIdle:getWidth()
+  buttonTempo.height = buttonTempo.imageIdle:getHeight()
   buttonTempo.pressed = false
   buttonTempo.focus = false
   
@@ -22,9 +24,10 @@ function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pLabelX
     local r,g,b = love.graphics.getColor() 
 
     if (self.pressed == false) then
-      love.graphics.draw(self.image, self.x, self.y)
+      love.graphics.draw(self.imageIdle, self.x, self.y)
     else
-      love.graphics.draw(self.image2, self.x, self.y)
+      love.graphics.draw(self.imagePressed, self.x, self.y)
+      self.imageCurseur:Draw()
     end
 
     love.graphics.print(self.label, (self.x + self.labelX), (self.y + self.labelY))
@@ -40,6 +43,8 @@ function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pLabelX
       print("pressé")
 
     end
+
+    
    
   end
 
