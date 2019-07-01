@@ -3,7 +3,7 @@ local IkariamManager = {}
 local FunctionButton = require("button")
 local FunctionEvent = require("event")
 local FunctionPicture = require("picture")
-
+local FunctionVue = require("vue")
 local FunctionGroupeBox = require("groupeBox")
 
 local ImageButtonBlue = "adventure_pack/PNG/buttonLong_blue.png"
@@ -11,6 +11,15 @@ local ImageButtonBluePressed = "adventure_pack/PNG/buttonLong_blue_pressed.png"
 local ImageButtonBeige = "adventure_pack/PNG/buttonLong_beige.png"
 local ImageButtonBeigePressed = "adventure_pack/PNG/buttonLong_beige_pressed.png"
 local ImageCurseur = "adventure_pack/PNG/arrowSilver_right.png"
+
+IkariamManager.myVueCourante = ""
+IkariamManager.myVueAccueil = FunctionVue:Create("Accueil")
+IkariamManager.myVueDemarrer = FunctionVue:Create("Demarrer")
+IkariamManager.myVueRessources = FunctionVue:Create("Ressources")
+IkariamManager.myVueBatiments = FunctionVue:Create("Batiments") 
+IkariamManager.myVueIles = FunctionVue:Create("Iles")
+IkariamManager.myVueCachette = FunctionVue:Create("Cachette")
+IkariamManager.myVuePlans = FunctionVue:Create("Plans")
 
 IkariamManager.myGroupeBox1 = FunctionGroupeBox:Create("Ville1", 1, 1)
 IkariamManager.myGroupeBox2 = FunctionGroupeBox:Create("Ville2", 240, 1)
@@ -51,8 +60,8 @@ ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 
 function IkariamManager:Load()
   
-  
- 
+  self.myVueCourante = "Accueil"
+
 end
 
 function IkariamManager:Update(dt)
@@ -64,19 +73,32 @@ function IkariamManager:Update(dt)
   self.myButtonIles:Update()
   self.myButtonCachette:Update()
   self.myButtonPlans:Update()
-  
-  
+   
 end
 
 function IkariamManager:Draw()
   
- self.myButtonDemarrer:Draw()
- self.myButtonQuitter:Draw()
- self.myButtonRessources:Draw()
- self.myButtonBatiments:Draw()
- self.myButtonIles:Draw()
- self.myButtonCachette:Draw()
- self.myButtonPlans:Draw()
+  self.myButtonDemarrer:Draw()
+  self.myButtonQuitter:Draw()
+  self.myButtonRessources:Draw()
+  self.myButtonBatiments:Draw()
+  self.myButtonIles:Draw()
+  self.myButtonCachette:Draw()
+  self.myButtonPlans:Draw()
+
+ if (self.myVueCourante =="Accueil") then
+    self.myVueAccueil:Draw()
+ elseif (self.myVueCourante == "Ressources") then
+    FunctionVue:Ressources()
+ elseif (self.myVueCourante == "Batiments") then
+    self.myVueBatiments:Draw()
+ elseif (self.myVueCourante == "Iles") then
+    self.myVueIles:Draw()
+ elseif (self.myVueCourante == "Cachette") then
+    self.myVueCachette:Draw()
+ elseif (self.myVueCourante == "Plans") then
+    self.myVuePlans:Draw()
+ end
 
  --self.myGroupeBox1:Draw()
  --self.myGroupeBox2:Draw()

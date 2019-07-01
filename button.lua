@@ -31,16 +31,13 @@ function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pImage3
     end
 
     love.graphics.print(self.label, (self.x + self.labelX), (self.y + self.labelY))
-    
-    print(self.nom)
-    print(self.pressed)
-    print(self.focus)
+  
 
     if (self.focus == true ) then 
       love.graphics.setColor(1,0,0,0.2) -- rouge
       love.graphics.rectangle("fill", self.x+4, self.y+4, self.width-8, self.height-10)
       love.graphics.setColor(r,g,b) -- couleur précedente
-      print("pressé")
+      print("selection")
 
     end
 

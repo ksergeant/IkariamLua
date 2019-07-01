@@ -18,7 +18,6 @@ event.Batiments = function()
     print("affiche les Batiments")
 end
 
-
 event.Iles = function()
     print("affiche les iles")
 end
