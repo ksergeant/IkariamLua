@@ -1,7 +1,4 @@
 io.stdout:setvbuf('no')
--- Empèche Love de filtrer les contours des images quand elles sont redimentionnées
--- Indispensable pour du pixel art
-love.graphics.setDefaultFilter("nearest")
 
 myIkariamManager = require("IkariamManager")
 myBackground = love.graphics.newImage("background.png")

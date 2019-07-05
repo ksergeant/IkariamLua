@@ -1,46 +1,54 @@
 local traitement = {}
+local FunctionVille = require("ville")
+
+function traitement:Create(pListeJson)
 
 json = require("json") -- librairie qui lit le json
+local traitementTempo = {}
+traitementTempo.Villes = {}
+traitementTempo.Iles = {}
 
-local fichierVilleJson1 = assert(io.open("Villes/Ville1.json", "r"))
-local fichierVilleJson2 = assert(io.open("Villes/Ville2.json", "r"))
-local fichierVilleJson3 = assert(io.open("Villes/Ville3.json", "r"))
-local fichierVilleJson4 = assert(io.open("Villes/Ville4.json", "r"))
-local fichierVilleJson5 = assert(io.open("Villes/Ville5.json", "r"))
-local fichierVilleJson6 = assert(io.open("Villes/Ville6.json", "r"))
+local listeJson = pListeJson
 
-local fichierLireVilleJson1 = fichierVilleJson1:read("*all")
-local fichierLireVilleJson2 = fichierVilleJson2:read("*all")
-local fichierLireVilleJson3 = fichierVilleJson3:read("*all")
-local fichierLireVilleJson4 = fichierVilleJson4:read("*all")
-local fichierLireVilleJson5 = fichierVilleJson5:read("*all")
-local fichierLireVilleJson6 = fichierVilleJson6:read("*all")
+local nombreVilles = #listeJson.Villes
+local nombreIles = #listeJson.Iles
 
-local ville1Decode = json.decode(fichierLireVilleJson1)
-local ville2Decode = json.decode(fichierLireVilleJson2)
-local ville3Decode = json.decode(fichierLireVilleJson3)
-local ville4Decode = json.decode(fichierLireVilleJson4)
-local ville5Decode = json.decode(fichierLireVilleJson5)
-local ville6Decode = json.decode(fichierLireVilleJson6)
+for i = 1, nombreVilles do
 
--- Infos par ville 
-local bois= ville1Decode[1][2]['headerData']['currentResources']['resource']
-local vin = ville1Decode[1][2]['headerData']['currentResources']['1']
-local marbre = ville1Decode[1][2]['headerData']['currentResources']['2']
-local cristal = ville1Decode[1][2]['headerData']['currentResources']['3']
-local souffre = ville1Decode[1][2]['headerData']['currentResources']['4']
-local nomVille = ville1Decode[1][2]['backgroundData']['name']
+    local fichierVilleTempo = assert(io.open(listeJson.Villes[i],"r"))
+    local fichierLireVilleJsonTempo = fichierVilleTempo:read("*all")
+    local villeDecodeTempo = json.decode(fichierLireVilleJsonTempo)
+    local villeTempo = FunctionVille:Create()
 
-local entrepotMax = ville1Decode[1][2]['headerData']['maxResources']['resource']
-local LvlHotel = ville1Decode[1][2]['backgroundData']['position'][1]['level'] 
-local endUpdateTime = ville1Decode[1][2]['backgroundData']['endUpgradeTime']
---local entrepotLvl = ville1Decode[1][2]['backgroundData']['position']['Entrep\\u00f4t']['level']
-local entrepotLvl = ville1Decode[1][2]['backgroundData']['position'][1].level
+    -- Infos Global
+    villeTempo._nomJoueur = villeDecodeTempo[1][2]['backgroundData']['ownerName']
+    villeTempo._bateauMarchand = villeDecodeTempo[1][2]['headerData']['freeTransporters']
+
+     -- Infos par ville 
+    villeTempo._nom = villeDecodeTempo[1][2]['backgroundData']['name']
+    villeTempo._nbBois = villeDecodeTempo[1][2]['headerData']['currentResources']['resource']
+    villeTempo._nbVin = villeDecodeTempo[1][2]['headerData']['currentResources']['1']
+    villeTempo._nbMarbre = villeDecodeTempo[1][2]['headerData']['currentResources']['2']
+    villeTempo._nbCristal = villeDecodeTempo[1][2]['headerData']['currentResources']['3']
+    villeTempo._nbSouffre = villeDecodeTempo[1][2]['headerData']['currentResources']['4']
+    villeTempo._update = villeDecodeTempo[1][2]['backgroundData']['endUpgradeTime']
+    villeTempo._entrepotMax = villeDecodeTempo[1][2]['headerData']['maxResources']['resource']
+    villeTempo._listeBatiments = {}
+
+    traitementTempo.Villes[i] = villeTempo
+    
+    --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position']['Entrep\\u00f4t']['level']
+    --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position'][1].level
+    --local LvlHotel = villeDecodeTempo[1][2]['backgroundData']['position'][1]['level'] 
+
+end
+
+for i = 1, nombreIles do
+
+end
 
 
--- Infos Global
-local nomJoueur = ville1Decode[1][2]['backgroundData']['ownerName']           
-local bateauMarchand = ville1Decode[1][2]['headerData']['freeTransporters']
+--[[
 
 for j = 1, #ville1Decode[1][2]['backgroundData']['position'] do
   
@@ -53,6 +61,8 @@ local nombreDeBatiment = #ville1Decode[1][2]['backgroundData']['position']
 if entrepotLvl == 'Hôtel de ville' then
     print(entrepotLvl)
 end
+]]--
+
 
 --[[
 print(bois)
@@ -99,5 +109,9 @@ local numeroResourceLuxe = ile1Decode[1][2]['backgroundData']['tradegood']
 --print(lvlScierie)
 --print(lvlResourceLuxe)
 --print(numeroResourceLuxe)
+
+return traitementTempo
+
+end
 
 return traitement

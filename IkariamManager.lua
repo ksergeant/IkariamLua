@@ -4,13 +4,35 @@ local FunctionButton = require("button")
 local FunctionEvent = require("event")
 local FunctionPicture = require("picture")
 local FunctionVue = require("vue")
-local FunctionGroupeBox = require("groupeBox")
+local FunctionTraitement = require("traitement")
 
 local ImageButtonBlue = "adventure_pack/PNG/buttonLong_blue.png"
 local ImageButtonBluePressed = "adventure_pack/PNG/buttonLong_blue_pressed.png"
 local ImageButtonBeige = "adventure_pack/PNG/buttonLong_beige.png"
 local ImageButtonBeigePressed = "adventure_pack/PNG/buttonLong_beige_pressed.png"
 local ImageCurseur = "adventure_pack/PNG/arrowSilver_right.png"
+
+local listeJson = {}
+listeJson.Villes = {}
+listeJson.Iles = {}
+
+listeJson.Villes[1] = "Villes/Ville1.json"
+listeJson.Villes[2] = "Villes/Ville2.json"
+listeJson.Villes[3] = "Villes/Ville3.json"
+listeJson.Villes[4] = "Villes/Ville4.json"
+listeJson.Villes[5] = "Villes/Ville5.json"
+listeJson.Villes[6] = "Villes/Ville6.json"
+--listeJson.Villes[7] = "Villes/Ville7.json"
+
+listeJson.Iles[1] = "Island/Island1.json"
+listeJson.Iles[2] = "Island/Island2.json"
+listeJson.Iles[3] = "Island/Island3.json"
+listeJson.Iles[4] = "Island/Island4.json"
+listeJson.Iles[5] = "Island/Island5.json"
+listeJson.Iles[6] = "Island/Island6.json"
+--listeJson.Iles[7] = "Island/Island7.json"
+
+IkariamManager.myTraitement = FunctionTraitement:Create(listeJson)
 
 IkariamManager.myVueCourante = ""
 IkariamManager.myVueAccueil = FunctionVue:Create("Accueil")
@@ -20,20 +42,6 @@ IkariamManager.myVueBatiments = FunctionVue:Create("Batiments")
 IkariamManager.myVueIles = FunctionVue:Create("Iles")
 IkariamManager.myVueCachette = FunctionVue:Create("Cachette")
 IkariamManager.myVuePlans = FunctionVue:Create("Plans")
-
-IkariamManager.myGroupeBox1 = FunctionGroupeBox:Create("Ville1", 1, 1)
-IkariamManager.myGroupeBox2 = FunctionGroupeBox:Create("Ville2", 240, 1)
-IkariamManager.myGroupeBox3 = FunctionGroupeBox:Create("Ville3", 480, 1)
-IkariamManager.myGroupeBox4 = FunctionGroupeBox:Create("Ville4", 720, 1)
-IkariamManager.myGroupeBox5 = FunctionGroupeBox:Create("Ville5", 960, 1)
-IkariamManager.myGroupeBox6 = FunctionGroupeBox:Create("Ville6", 1200, 1)
-
-IkariamManager.myGroupeBox7 = FunctionGroupeBox:Create("Ville7", 1, 241)
-IkariamManager.myGroupeBox8 = FunctionGroupeBox:Create("Ville8", 240, 241)
-IkariamManager.myGroupeBox9 = FunctionGroupeBox:Create("Ville9", 480, 241)
-IkariamManager.myGroupeBox10 = FunctionGroupeBox:Create("Ville10", 720, 241)
-IkariamManager.myGroupeBox11 = FunctionGroupeBox:Create("Ville11", 960, 241)
-IkariamManager.myGroupeBox12 = FunctionGroupeBox:Create("Ville12", 1200, 241)
 
 IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarrer", 1200, 600, FunctionEvent.Demarrer, 
 ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 70, 15)
@@ -55,8 +63,6 @@ ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 71, 15)
 
 IkariamManager.myButtonPlans = FunctionButton:Create("Plans", "buttonPlans", 785, 5, FunctionEvent.Plans, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
-
---IkariamManager.myCurseur = FunctionPicture:Create("Curseur", 28, 18, ImageCurseur, 1, 1)
 
 function IkariamManager:Load()
   
@@ -89,7 +95,7 @@ function IkariamManager:Draw()
  if (self.myVueCourante =="Accueil") then
     self.myVueAccueil:Draw()
  elseif (self.myVueCourante == "Ressources") then
-    FunctionVue:Ressources()
+    FunctionVue:Ressources(self.myTraitement)
  elseif (self.myVueCourante == "Batiments") then
     self.myVueBatiments:Draw()
  elseif (self.myVueCourante == "Iles") then
@@ -99,20 +105,6 @@ function IkariamManager:Draw()
  elseif (self.myVueCourante == "Plans") then
     self.myVuePlans:Draw()
  end
-
- --self.myGroupeBox1:Draw()
- --self.myGroupeBox2:Draw()
- --self.myGroupeBox3:Draw()
- --self.myGroupeBox4:Draw()
- --self.myGroupeBox5:Draw()
- --self.myGroupeBox6:Draw()
-
- --self.myGroupeBox7:Draw()
- --self.myGroupeBox8:Draw()
- --self.myGroupeBox9:Draw()
- --self.myGroupeBox10:Draw()
- --self.myGroupeBox11:Draw()
- --self.myGroupeBox12:Draw()
 
 end
 
