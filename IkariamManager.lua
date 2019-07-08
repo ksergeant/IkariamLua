@@ -22,7 +22,7 @@ listeJson.Villes[3] = "Villes/Ville3.json"
 listeJson.Villes[4] = "Villes/Ville4.json"
 listeJson.Villes[5] = "Villes/Ville5.json"
 listeJson.Villes[6] = "Villes/Ville6.json"
---listeJson.Villes[7] = "Villes/Ville7.json"
+listeJson.Villes[7] = "Villes/Ville7.json"
 
 listeJson.Iles[1] = "Island/Island1.json"
 listeJson.Iles[2] = "Island/Island2.json"
@@ -32,7 +32,6 @@ listeJson.Iles[5] = "Island/Island5.json"
 listeJson.Iles[6] = "Island/Island6.json"
 --listeJson.Iles[7] = "Island/Island7.json"
 
-IkariamManager.myTraitement = FunctionTraitement:Create(listeJson)
 
 IkariamManager.myVueCourante = ""
 IkariamManager.myVueAccueil = FunctionVue:Create("Accueil")
@@ -95,6 +94,8 @@ function IkariamManager:Draw()
  if (self.myVueCourante =="Accueil") then
     self.myVueAccueil:Draw()
  elseif (self.myVueCourante == "Ressources") then
+
+  self.myTraitement = FunctionTraitement:Create(listeJson)
     FunctionVue:Ressources(self.myTraitement)
  elseif (self.myVueCourante == "Batiments") then
     self.myVueBatiments:Draw()

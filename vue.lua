@@ -34,7 +34,6 @@ function vue:Ressources(pListeData)
 
   local listeData = pListeData
   
-  print(listeData.Villes[1]._nom)
   imageBois:Draw()
   imageVin:Draw()
   imageMarbre:Draw()
@@ -42,6 +41,24 @@ function vue:Ressources(pListeData)
   imageSouffre:Draw()
   imageOr:Draw()
   imageUpdate:Draw()
+
+   local nombreVilles = #listeData.Villes
+   local decalage = 30
+
+   for i = 1, nombreVilles do 
+
+    love.graphics.print(listeData.Villes[i]._nom, 85, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._nbBois, 300, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._nbVin, 400, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._nbMarbre, 500, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._nbCristal, 600, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._nbSouffre, 700, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._update, 900, 79 + decalage)
+    
+    decalage = decalage+ 50
+
+   end
+
 end
 
 function vue:Batiments()
