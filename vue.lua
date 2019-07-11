@@ -1,6 +1,43 @@
 local vue = {}
 local FunctionPicture = require("picture")
 
+function separateurNombre(pNombre)
+
+  local nombreFormate = {}
+  nombreFormate.millions = 0
+  nombreFormate.milliers = 0
+  nombreFormate.unites = 0
+
+  local milliers = {}
+  local millions = {}
+  local unites = {}
+
+  a = tonumber(pNombre)
+
+  if (a >= 1000) then
+
+   milliers = math.floor (a / 1000)
+
+   unites = a - (milliers * 1000)
+
+   --print(pNombre)
+   --print(milliers)
+   --print(unites)
+   nombreFormate.milliers = milliers
+   nombreFormate.unites = unites
+
+  else 
+
+    nombreFormate.unites = pNombre
+
+  end
+  
+  
+
+  return nombreFormate
+
+end
+
 function vue:Create(pNom)
   
   local vueTempo = {}
@@ -32,17 +69,7 @@ function vue:Ressources(pListeData)
   love.graphics.line(0, 70, 980, 70)
   love.graphics.print("VILLES", 85, 79)
   love.graphics.line(0, 100, 980, 100)
-  
--- Dessine le Tableau
-  love.graphics.line(280, 70, 280, 800)
-  love.graphics.line(380, 70, 380, 800)
-  love.graphics.line(480, 70, 480, 800)
-  love.graphics.line(580, 70, 580, 800)
-  love.graphics.line(680, 70, 680, 800)
-  love.graphics.line(780, 70, 780, 800)
-  love.graphics.line(880, 70, 880, 800)
-  love.graphics.line(980, 70, 980, 800)
-
+ 
   love.graphics.setColor(r,g,b)
 
   local imageBois = FunctionPicture:Create("Bois", 313, 70,  "Images/Bois.png", 1,1)
@@ -87,7 +114,17 @@ function vue:Ressources(pListeData)
     love.graphics.print(listeData.Villes[i]._nbMarbre, 500, 79 + decalage)
     love.graphics.print(listeData.Villes[i]._nbCristal, 600, 79 + decalage)
     love.graphics.print(listeData.Villes[i]._nbSouffre, 700, 79 + decalage)
-    love.graphics.print(listeData.Villes[i]._update, 800, 79 + decalage)
+    --love.graphics.print(listeData.Villes[i]._update, 800, 79 + decalage)
+
+    if (listeData.Villes[i]._update > 0) then
+      local ts = os.time()
+      ts = listeData.Villes[i]._update - ts - 3600
+      love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+
+    else 
+      
+      love.graphics.print("Aucune", 800, 79 + decalage)
+    end
 
     TotalBois = TotalBois + listeData.Villes[i]._nbBois
     TotalVin = TotalVin + listeData.Villes[i]._nbVin
@@ -105,13 +142,31 @@ function vue:Ressources(pListeData)
    love.graphics.print("TOTAL", 85, decalage + 70)
    love.graphics.line(0, decalage + 50, 980, decalage + 50)
    love.graphics.line(0, decalage + 100, 980, decalage + 100)
+
+    -- Dessine le Tableau
+  love.graphics.line(280, 70, 280, decalage + 100)
+  love.graphics.line(380, 70, 380, decalage + 100)
+  love.graphics.line(480, 70, 480, decalage + 100)
+  love.graphics.line(580, 70, 580, decalage + 100)
+  love.graphics.line(680, 70, 680, decalage + 100)
+  love.graphics.line(780, 70, 780, decalage + 100)
+  love.graphics.line(880, 70, 880, decalage + 100)
+  love.graphics.line(980, 70, 980, decalage + 100)
+
    love.graphics.setColor(0.3,0,0) -- bleu foncé
 
-   love.graphics.print(TotalBois, 300, decalage + 70)
-   love.graphics.print(TotalVin, 400, decalage + 70)
-   love.graphics.print(TotalMarbre, 500, decalage + 70)
-   love.graphics.print(TotalCristal, 600, decalage + 70)
-   love.graphics.print(TotalSouffre, 700, decalage + 70)
+  --formatage des nombres
+   TotalBois = separateurNombre(TotalBois)
+   TotalVin = separateurNombre(TotalVin)
+   TotalMarbre = separateurNombre(TotalMarbre)
+   TotalCristal = separateurNombre(TotalCristal)
+   TotalSouffre = separateurNombre(TotalSouffre)
+
+   love.graphics.print(TotalBois.milliers ..tostring(" ") ..tostring(TotalBois.unites), 300, decalage + 70)
+   love.graphics.print(TotalVin.milliers ..tostring(" ") ..tostring(TotalVin.unites), 400, decalage + 70)
+   love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 500, decalage + 70)
+   love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 600, decalage + 70)
+   love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 700, decalage + 70)
 
    love.graphics.setColor(r,g,b)
 
