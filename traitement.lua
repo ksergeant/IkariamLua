@@ -13,6 +13,7 @@ local listeJson = pListeJson
 local nombreVilles = #listeJson.Villes
 local nombreIles = #listeJson.Iles
 
+-- Boucle qui crée les villes et qui ajoute les données de celle-ci dans un tableau villes
 for i = 1, nombreVilles do
 
     local fichierVilleTempo = assert(io.open(listeJson.Villes[i],"r"))
@@ -35,7 +36,21 @@ for i = 1, nombreVilles do
     villeTempo._entrepotMax = villeDecodeTempo[1][2]['headerData']['maxResources']['resource']
     villeTempo._listeBatiments = {}
 
+    -- Boucle qui ajoute tous les batiments à la ville
+    for j = 1, #villeDecodeTempo[1][2]['backgroundData']['position'] do
+  
+        local batimentTempo = {}
+        batimentTempo.name = {}
+        batimentTempo.level = {}
+
+        batimentTempo.name = villeDecodeTempo[1][2]['backgroundData']['position'][j].name
+        batimentTempo.level = villeDecodeTempo[1][2]['backgroundData']['position'][j].level
+        villeTempo._listeBatiments[j] = batimentTempo
+      
+      end
+
     traitementTempo.Villes[i] = villeTempo
+    
     
     --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position']['Entrep\\u00f4t']['level']
     --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position'][1].level
@@ -50,33 +65,11 @@ end
 
 --[[
 
-for j = 1, #ville1Decode[1][2]['backgroundData']['position'] do
-  
-  print (ville1Decode[1][2]['backgroundData']['position'][j].name)
-
-end
-
 local nombreDeBatiment = #ville1Decode[1][2]['backgroundData']['position']
 
 if entrepotLvl == 'Hôtel de ville' then
     print(entrepotLvl)
 end
-]]--
-
-
---[[
-print(bois)
-print(vin)
-print(marbre)
-print(cristal)
-print(souffre)
-print(nomVille)
-print(nomJoueur)
-print(BateauMarchand)
-print(entrepotMax)
-print(LvlHotel)
-print(endUpdateTime)
-print(nombreDeBatiment)
 ]]--
 
 

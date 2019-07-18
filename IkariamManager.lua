@@ -30,23 +30,12 @@ listeJson.Iles[3] = "Island/Island3.json"
 listeJson.Iles[4] = "Island/Island4.json"
 listeJson.Iles[5] = "Island/Island5.json"
 listeJson.Iles[6] = "Island/Island6.json"
---listeJson.Iles[7] = "Island/Island7.json"
-
+listeJson.Iles[7] = "Island/Island7.json"
 
 IkariamManager.myVueCourante = ""
-IkariamManager.myVueAccueil = FunctionVue:Create("Accueil")
-IkariamManager.myVueDemarrer = FunctionVue:Create("Demarrer")
-IkariamManager.myVueRessources = FunctionVue:Create("Ressources")
-IkariamManager.myVueBatiments = FunctionVue:Create("Batiments") 
-IkariamManager.myVueIles = FunctionVue:Create("Iles")
-IkariamManager.myVueCachette = FunctionVue:Create("Cachette")
-IkariamManager.myVuePlans = FunctionVue:Create("Plans")
 
-IkariamManager.myButtonDemarrer = FunctionButton:Create("Démarrer", "buttonDemarrer", 1200, 600, FunctionEvent.Demarrer, 
-ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 70, 15)
-
-IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1200, 700, FunctionEvent.Quitter,
-ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 77, 15)
+IkariamManager.myButtonDemarrer = FunctionButton:Create("Charger les Données", "buttonDemarrer", 1208, 5, FunctionEvent.Demarrer, 
+ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 34, 15)
 
 IkariamManager.myButtonRessources = FunctionButton:Create("Ressources", "buttonRessources", 5, 5, FunctionEvent.Ressources, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 62, 15)
@@ -63,6 +52,9 @@ ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 71, 15)
 IkariamManager.myButtonPlans = FunctionButton:Create("Plans", "buttonPlans", 785, 5, FunctionEvent.Plans, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 
+IkariamManager.myButtonIA = FunctionButton:Create("IA", "buttonIA", 980, 5, FunctionEvent.Plans, 
+ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
+
 function IkariamManager:Load()
   
   self.myVueCourante = "Accueil"
@@ -71,40 +63,51 @@ end
 
 function IkariamManager:Update(dt)
   
-  self.myButtonDemarrer:Update()
-  self.myButtonQuitter:Update()
-  self.myButtonRessources:Update()
-  self.myButtonBatiments:Update()
-  self.myButtonIles:Update()
-  self.myButtonCachette:Update()
-  self.myButtonPlans:Update()
-   
 end
 
 function IkariamManager:Draw()
   
   self.myButtonDemarrer:Draw()
-  self.myButtonQuitter:Draw()
   self.myButtonRessources:Draw()
   self.myButtonBatiments:Draw()
   self.myButtonIles:Draw()
   self.myButtonCachette:Draw()
   self.myButtonPlans:Draw()
+  self.myButtonIA:Draw()
 
  if (self.myVueCourante =="Accueil") then
-    self.myVueAccueil:Draw()
+    FunctionVue:Accueil()
+
  elseif (self.myVueCourante == "Ressources") then
 
   self.myTraitement = FunctionTraitement:Create(listeJson)
     FunctionVue:Ressources(self.myTraitement)
+
  elseif (self.myVueCourante == "Batiments") then
-    self.myVueBatiments:Draw()
+
+  self.myTraitement = FunctionTraitement:Create(listeJson)
+    FunctionVue:Batiments(self.myTraitement)
+
  elseif (self.myVueCourante == "Iles") then
-    self.myVueIles:Draw()
+
+  self.myTraitement = FunctionTraitement:Create(listeJson)
+    FunctionVue:Iles(self.myTraitement)
+  
  elseif (self.myVueCourante == "Cachette") then
-    self.myVueCachette:Draw()
+    
+  self.myTraitement = FunctionTraitement:Create(listeJson)
+    FunctionVue:Cachette(self.myTraitement)
+
  elseif (self.myVueCourante == "Plans") then
-    self.myVuePlans:Draw()
+    
+  self.myTraitement = FunctionTraitement:Create(listeJson)
+    FunctionVue:Plans(self.myTraitement)
+
+ elseif (self.myVueCourante == "IA") then
+
+  self.myTraitement = FunctionTraitement:Create(listeJson)
+    FunctionVue:IA(self.myTraitement)
+    
  end
 
 end

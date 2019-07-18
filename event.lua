@@ -30,4 +30,8 @@ event.Plans = function()
     print("affiche les Plans")
 end
 
+event.IA = function()
+    print("affiche l'IA")
+end
+
 return event

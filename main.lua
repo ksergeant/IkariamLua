@@ -25,12 +25,12 @@ end
 function love.mousepressed(x, y, button, istouch)
   
   local bLaunch = myIkariamManager.myButtonDemarrer
-  local bQuit = myIkariamManager.myButtonQuitter
   local bRessources = myIkariamManager.myButtonRessources
   local bBatiments = myIkariamManager.myButtonBatiments
   local bIles = myIkariamManager.myButtonIles
   local bCachette = myIkariamManager.myButtonCachette
   local bPlans = myIkariamManager.myButtonPlans
+  local bIA = myIkariamManager.myButtonIA
 
     -- Bouton Demarrer
    if (button == 1) and 
@@ -39,34 +39,15 @@ function love.mousepressed(x, y, button, istouch)
        bLaunch.Function()
        
         myIkariamManager.myButtonDemarrer.pressed = true
-
-        myIkariamManager.myButtonQuitter.pressed = false
         myIkariamManager.myButtonRessources.pressed = false
         myIkariamManager.myButtonBatiments.pressed = false
         myIkariamManager.myButtonIles.pressed = false
         myIkariamManager.myButtonCachette.pressed = false
         myIkariamManager.myButtonPlans.pressed = false
+        myIkariamManager.myButtonIA.pressed = false
     
    end
   
-   -- Bouton Quitter
-   if (button == 1) and 
-       (x >= bQuit.x) and (x <= bQuit.x + bQuit.width) and 
-       (y >= bQuit.y) and (y <= bQuit.y + bQuit.height) then 
-
-        myIkariamManager.myButtonQuitter.pressed = true
-
-        myIkariamManager.myButtonDemarrer.pressed = false
-        myIkariamManager.myButtonRessources.pressed = false
-        myIkariamManager.myButtonBatiments.pressed = false
-        myIkariamManager.myButtonIles.pressed = false
-        myIkariamManager.myButtonCachette.pressed = false
-        myIkariamManager.myButtonPlans.pressed = false
-     
-     bQuit.Function()
-    
-   end
-
    -- Bouton Ressources
    if (button == 1) and 
        (x >= bRessources.x) and (x <= bRessources.x + bRessources.width) and 
@@ -75,11 +56,11 @@ function love.mousepressed(x, y, button, istouch)
         myIkariamManager.myButtonRessources.pressed = true
 
         myIkariamManager.myButtonDemarrer.pressed = false
-        myIkariamManager.myButtonQuitter.pressed = false
         myIkariamManager.myButtonBatiments.pressed = false
         myIkariamManager.myButtonIles.pressed = false
         myIkariamManager.myButtonCachette.pressed = false
         myIkariamManager.myButtonPlans.pressed = false
+        myIkariamManager.myButtonIA.pressed = false
 
         bRessources.Function()
         myIkariamManager.myVueCourante = "Ressources"
@@ -94,11 +75,12 @@ function love.mousepressed(x, y, button, istouch)
         myIkariamManager.myButtonBatiments.pressed = true
 
         myIkariamManager.myButtonDemarrer.pressed = false
-        myIkariamManager.myButtonQuitter.pressed = false
         myIkariamManager.myButtonRessources.pressed = false
         myIkariamManager.myButtonIles.pressed = false
         myIkariamManager.myButtonCachette.pressed = false
         myIkariamManager.myButtonPlans.pressed = false
+        myIkariamManager.myButtonIA.pressed = false
+
         bBatiments.Function()
         myIkariamManager.myVueCourante = "Batiments"
 
@@ -112,11 +94,11 @@ function love.mousepressed(x, y, button, istouch)
         myIkariamManager.myButtonIles.pressed = true
 
         myIkariamManager.myButtonDemarrer.pressed = false
-        myIkariamManager.myButtonQuitter.pressed = false
         myIkariamManager.myButtonRessources.pressed = false
         myIkariamManager.myButtonBatiments.pressed = false
         myIkariamManager.myButtonCachette.pressed = false
         myIkariamManager.myButtonPlans.pressed = false
+        myIkariamManager.myButtonIA.pressed = false
      
         bIles.Function()
         myIkariamManager.myVueCourante = "Iles"
@@ -130,11 +112,11 @@ function love.mousepressed(x, y, button, istouch)
         myIkariamManager.myButtonCachette.pressed = true
         
         myIkariamManager.myButtonDemarrer.pressed = false
-        myIkariamManager.myButtonQuitter.pressed = false
         myIkariamManager.myButtonRessources.pressed = false
         myIkariamManager.myButtonIles.pressed = false
         myIkariamManager.myButtonBatiments.pressed = false
         myIkariamManager.myButtonPlans.pressed = false
+        myIkariamManager.myButtonIA.pressed = false
         bCachette.Function()
         myIkariamManager.myVueCourante = "Cachette"
         
@@ -147,15 +129,32 @@ function love.mousepressed(x, y, button, istouch)
      
         myIkariamManager.myButtonPlans.pressed = true
         myIkariamManager.myButtonDemarrer.pressed = false
-        myIkariamManager.myButtonQuitter.pressed = false
         myIkariamManager.myButtonRessources.pressed = false
         myIkariamManager.myButtonIles.pressed = false
         myIkariamManager.myButtonCachette.pressed = false
         myIkariamManager.myButtonBatiments.pressed = false
+        myIkariamManager.myButtonIA.pressed = false
         
         bPlans.Function()
         myIkariamManager.myVueCourante = "Plans"
-        
+         
     end
+
+    -- Bouton IA
+  if (button == 1) and 
+  (x >= bIA.x) and (x <= bIA.x + bIA.width) and 
+  (y >= bIA.y) and (y <= bIA.y + bIA.height) then 
+
+   myIkariamManager.myButtonIA.pressed = true
+   myIkariamManager.myButtonPlans.pressed = false
+   myIkariamManager.myButtonDemarrer.pressed = false
+   myIkariamManager.myButtonRessources.pressed = false
+   myIkariamManager.myButtonIles.pressed = false
+   myIkariamManager.myButtonCachette.pressed = false
+   myIkariamManager.myButtonBatiments.pressed = false
+   
+   bIA.Function()
+   myIkariamManager.myVueCourante = "IA"
+  end
 
 end
