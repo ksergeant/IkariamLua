@@ -1,5 +1,6 @@
 local traitement = {}
 local FunctionVille = require("ville")
+local FunctionIle = require("ile")
 
 function traitement:Create(pListeJson)
 
@@ -51,57 +52,40 @@ for i = 1, nombreVilles do
 
     traitementTempo.Villes[i] = villeTempo
     
-    
     --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position']['Entrep\\u00f4t']['level']
     --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position'][1].level
     --local LvlHotel = villeDecodeTempo[1][2]['backgroundData']['position'][1]['level'] 
 
 end
 
+-- ######### ILES #########
+
 for i = 1, nombreIles do
 
+    local fichierIleTempo = assert(io.open(listeJson.Iles[i],"r"))
+    local fichierLireIleJsonTempo = fichierIleTempo:read("*all")
+    local IleDecodeTempo = json.decode(fichierLireIleJsonTempo)
+    local IleTempo = FunctionIle:Create()
+
+    -- Infos Ile
+    IleTempo._nom = IleDecodeTempo[1][2]['backgroundData']['name']
+    IleTempo._lvlScierie = IleDecodeTempo[1][2]['backgroundData']['resourceLevel']  
+    IleTempo._lvlResourceLuxe = IleDecodeTempo[1][2]['backgroundData']['tradegoodLevel']  
+    IleTempo._numeroResourceLuxe = IleDecodeTempo[1][2]['backgroundData']['tradegood']  
+    
+    traitementTempo.Iles[i] = IleTempo
+
 end
-
-
---[[
-
-local nombreDeBatiment = #ville1Decode[1][2]['backgroundData']['position']
-
-if entrepotLvl == 'Hôtel de ville' then
-    print(entrepotLvl)
-end
-]]--
-
-
-local fichierIleJson1 = assert(io.open("Island/Island1.json", "r"))
-local fichierIleJson2 = assert(io.open("Island/Island2.json", "r"))
-local fichierIleJson3 = assert(io.open("Island/Island3.json", "r"))
-local fichierIleJson4 = assert(io.open("Island/Island4.json", "r"))
-local fichierIleJson5 = assert(io.open("Island/Island5.json", "r"))
-local fichierIleJson6 = assert(io.open("Island/Island6.json", "r"))
-
-local fichierLireIleJson1 = fichierIleJson1:read("*all")
-local fichierLireIleJson2 = fichierIleJson2:read("*all")
-local fichierLireIleJson3 = fichierIleJson3:read("*all")
-local fichierLireIleJson4 = fichierIleJson4:read("*all")
-local fichierLireIleJson5 = fichierIleJson5:read("*all")
-local fichierLireIleJson6 = fichierIleJson6:read("*all")
-
-local ile1Decode = json.decode(fichierLireIleJson1)
-local ile2Decode = json.decode(fichierLireIleJson2)
-local ile3Decode = json.decode(fichierLireIleJson3)
-local ile4Decode = json.decode(fichierLireIleJson4)
-local ile5Decode = json.decode(fichierLireIleJson5)
-local ile6Decode = json.decode(fichierLireIleJson6)
-
--- Infos Ile
-local lvlScierie = ile1Decode[1][2]['backgroundData']['resourceLevel']  
-local lvlResourceLuxe = ile1Decode[1][2]['backgroundData']['tradegoodLevel']  
-local numeroResourceLuxe = ile1Decode[1][2]['backgroundData']['tradegood']  
 
 --print(lvlScierie)
 --print(lvlResourceLuxe)
 --print(numeroResourceLuxe)
+
+--[[
+if entrepotLvl == 'Hôtel de ville' then
+    print(entrepotLvl)
+end
+]]--
 
 return traitementTempo
 

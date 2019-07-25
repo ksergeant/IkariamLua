@@ -1,5 +1,4 @@
 local ville = {}
-local FunctionPicture = require("picture")
 
 function ville:Create()
   
@@ -30,13 +29,6 @@ function ville:Create()
        love.graphics.print(self._update, self.x + 100, self.y + 173) 
 
        love.graphics.setColor(r,g,b)
-
-        self._ImageBois:Draw()
-        self._ImageVin:Draw()
-        self._ImageMarbre:Draw()
-        self._ImageCristal:Draw()
-        self._ImageSouffre:Draw()
-        self._ImageUpdate:Draw()
 
     end
   

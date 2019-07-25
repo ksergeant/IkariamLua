@@ -183,8 +183,6 @@ end
 -- ######## VUE BATIMENTS #########
 function vue:Batiments(pListeData)
 
-  local r,g,b = love.graphics.getColor() 
-
   local imageHDV = FunctionPicture:Create("HDV", 170, 70,  "Images/vueBatiments/Original/HDV.png", 1,1)
   local imageMenuisier = FunctionPicture:Create("Menuisier", 220, 70,  "Images/vueBatiments/Original/Menuisier.png",1,1)
   local imageArchitecte = FunctionPicture:Create("Architecte", 270, 70,  "Images/vueBatiments/Original/Architecte.png",1,1)
@@ -198,7 +196,7 @@ function vue:Batiments(pListeData)
   local imageAtelier= FunctionPicture:Create("Atelier", 670, 70,  "Images/vueBatiments/Original/Atelier.png",1,1)
   local imageCachette= FunctionPicture:Create("Cachette", 720, 70,  "Images/vueBatiments/Original/Cachette.png",1,1)
   local imageCaserne= FunctionPicture:Create("Caserne", 770, 70,  "Images/vueBatiments/Original/Caserne.png",1,1)
-  local imageCaveAVin= FunctionPicture:Create("CaveAVin", 820, 70,  "Images/vueBatiments/Original/CaveAVin.png",1,1)
+  local imagePressoirAVin= FunctionPicture:Create("PressoirAVin", 820, 70,  "Images/vueBatiments/Original/PressoirAVin.png",1,1)
   local imageChantier= FunctionPicture:Create("Chantier", 870, 70,  "Images/vueBatiments/Original/Chantier.png",1,1)
   local imageComptoir= FunctionPicture:Create("Comptoir", 920, 70,  "Images/vueBatiments/Original/Comptoir.png",1,1)
   local imageDepot= FunctionPicture:Create("Depot", 970, 70,  "Images/vueBatiments/Original/Depot.png",1,1)
@@ -224,7 +222,6 @@ function vue:Batiments(pListeData)
   imageAtelier:Draw()
   imageCachette:Draw()
   imageCaserne:Draw()
-  imageCaveAVin:Draw()
   imageChantier:Draw()
   imageComptoir:Draw()
   imageDepot:Draw()
@@ -235,17 +232,21 @@ function vue:Batiments(pListeData)
   imageResidence:Draw()
   imageTailleurDePierres:Draw()
   imageVerrier:Draw()
+  imagePressoirAVin:Draw()
+
+  local r,g,b = love.graphics.getColor() 
 
   love.graphics.setColor(0,0,0)
 
   love.graphics.line(0, 70, 1440, 70)
-  love.graphics.print("VILLES", 85, 79)
+  love.graphics.print("VILLES", 65, 79)
   love.graphics.line(0, 100, 1440, 100)
 
   -- Dessine le Tableau
   love.graphics.line(165, 70, 165, 800)
   love.graphics.line(212, 70, 212, 800)
- 
+  love.graphics.line(262, 70, 262, 800)
+
   love.graphics.setColor(r,g,b)
 
   local listeData = pListeData
@@ -258,12 +259,12 @@ function vue:Batiments(pListeData)
     local nombreBatiments = #listeData.Villes[i]._listeBatiments
     local r,g,b = love.graphics.getColor() 
     love.graphics.setColor(1,0,0)
-    love.graphics.print(listeData.Villes[i]._nom, 85, 79 + decalage)
+    love.graphics.print(listeData.Villes[i]._nom, 65, 79 + decalage)
 
-    print(listeData.Villes[i]._nom)
+   -- print(listeData.Villes[i]._nom)
     for j = 1, nombreBatiments do
-      print(listeData.Villes[i]._listeBatiments[j].name)
-      print(listeData.Villes[i]._listeBatiments[j].level)
+    --  print(listeData.Villes[i]._listeBatiments[j].name)
+    --  print(listeData.Villes[i]._listeBatiments[j].level)
     end
 
     love.graphics.setColor(r,g,b)
@@ -273,7 +274,60 @@ function vue:Batiments(pListeData)
 
 end
 
-function vue:Iles()
+function vue:Iles(pListeData)
+
+  local imageBois = FunctionPicture:Create("Bois", 173, 72,  "Images/Bois.png", 1,1)
+  local imageVin = FunctionPicture:Create("Vin", 220, 70,  "Images/Vin.png",1,1)
+  local imageMarbre = FunctionPicture:Create("Marbre", 250, 70,  "Images/Marbre.png",1,1)
+  local imageCristal = FunctionPicture:Create("Cristal", 280, 70,  "Images/Cristal.png", 1,1)
+  local imageSouffre = FunctionPicture:Create("Souffre", 310, 70,  "Images/Souffre.png",1,1)
+
+  imageBois:Draw()
+  imageVin:Draw()
+  imageMarbre:Draw()
+  imageCristal:Draw()
+  imageSouffre:Draw()
+
+  local r,g,b = love.graphics.getColor() 
+
+  local listeData = pListeData
+  
+   local nombreIles = #listeData.Iles
+   local decalage = 40
+
+   for i = 1, nombreIles do 
+
+    local r,g,b = love.graphics.getColor() 
+    love.graphics.setColor(1,0,0)
+
+    local typeRessources = tonumber(listeData.Iles[i]._numeroResourceLuxe)
+    love.graphics.print(listeData.Iles[i]._nom, 65, 79 + decalage)
+    love.graphics.print(listeData.Iles[i]._lvlScierie , 179, 79 + decalage)
+    love.graphics.print(listeData.Iles[i]._lvlResourceLuxe, 270, 79 + decalage)
+    love.graphics.setColor(r,g,b)
+
+    love.graphics.draw(listeData.Iles[i]._ListeImages[typeRessources], 25, 70 + decalage)
+
+    love.graphics.setColor(0,0,0)
+    love.graphics.line(0, decalage + 100, 350, decalage + 100)
+    love.graphics.setColor(r,g,b)
+   
+    decalage = decalage + 50
+
+   end
+
+   love.graphics.setColor(0,0,0)
+
+  love.graphics.line(0, 70, 350, 70)
+  love.graphics.print("ILES", 65, 79)
+  love.graphics.line(0, 100, 350, 100)
+
+  -- Dessine le Tableau
+  love.graphics.line(165, 70, 165, decalage + 50)
+  love.graphics.line(212, 70, 212, decalage + 50)
+  love.graphics.line(350, 70, 350, decalage + 50)
+  love.graphics.line(0, decalage + 50, 350, decalage + 50)
+  love.graphics.setColor(r,g,b)
 
 end
 

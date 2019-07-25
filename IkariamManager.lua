@@ -34,8 +34,8 @@ listeJson.Iles[7] = "Island/Island7.json"
 
 IkariamManager.myVueCourante = ""
 
-IkariamManager.myButtonDemarrer = FunctionButton:Create("Charger les Données", "buttonDemarrer", 1208, 5, FunctionEvent.Demarrer, 
-ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 34, 15)
+IkariamManager.myButtonDemarrer = FunctionButton:Create("Charger Données", "buttonDemarrer", 1208, 5, FunctionEvent.Demarrer, 
+ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 45, 15)
 
 IkariamManager.myButtonRessources = FunctionButton:Create("Ressources", "buttonRessources", 5, 5, FunctionEvent.Ressources, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 62, 15)
