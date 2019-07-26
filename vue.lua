@@ -238,14 +238,9 @@ function vue:Batiments(pListeData)
 
   love.graphics.setColor(0,0,0)
 
-  love.graphics.line(0, 70, 1440, 70)
+  love.graphics.line(0, 70, 1362, 70)
   love.graphics.print("VILLES", 65, 79)
-  love.graphics.line(0, 100, 1440, 100)
-
-  -- Dessine le Tableau
-  love.graphics.line(165, 70, 165, 800)
-  love.graphics.line(212, 70, 212, 800)
-  love.graphics.line(262, 70, 262, 800)
+  love.graphics.line(0, 100, 1362, 100)
 
   love.graphics.setColor(r,g,b)
 
@@ -261,16 +256,176 @@ function vue:Batiments(pListeData)
     love.graphics.setColor(1,0,0)
     love.graphics.print(listeData.Villes[i]._nom, 65, 79 + decalage)
 
-   -- print(listeData.Villes[i]._nom)
+    print(listeData.Villes[i]._nom)
+
+   -- Orbre affichage batiments 
+   -- hdv, menuisier, architecte, cave a vin , opticien, maison foret, taverne, académie, alchimiste, artificier, 
+   -- atelier, cachette, caserne, pressoir a vin, chantier naval, comptoir, depot, entrepôt, mur, musée, port commercial, 
+   -- RDV, tailleurPierre, Verrier
+
+   local nombreEntrepot = {}
+   nombreEntrepot.Level = {}
+   nombreEntrepot.Nombre = 0
+
+
+    -- Boucle qui traitement les données des batiments
     for j = 1, nombreBatiments do
-    --  print(listeData.Villes[i]._listeBatiments[j].name)
-    --  print(listeData.Villes[i]._listeBatiments[j].level)
+
+      --print(listeData.Villes[i]._listeBatiments[j].name)
+      --print(listeData.Villes[i]._listeBatiments[j].level)
+
+      if listeData.Villes[i]._listeBatiments[j].name == 'Hôtel de ville' then
+
+        love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 180, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Menuisier' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 230, 79 + decalage)
+      
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Bureau de l`architecte' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 280, 79 + decalage)
+      
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Cave à vin' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 330, 79 + decalage) 
+          
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Opticien' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 380, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Maison forestière' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 430, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Taverne' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 480, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Académie' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 530, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Tour des alchimistes' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 580, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Zone de test des artificiers' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 630, 79 + decalage)
+      
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Atelier' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 680, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Cachette' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 730, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Caserne' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 780, 79 + decalage)
+      
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Pressoir à vin' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 830, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Chantier naval' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 880, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Comptoir' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 930, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Dépôt' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 980, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Entrepôt' then
+
+        nombreEntrepot.Nombre = nombreEntrepot.Nombre + 1
+        print(nombreEntrepot.Nombre)
+        local pos = nombreEntrepot.Nombre
+        nombreEntrepot.Level[pos] = listeData.Villes[i]._listeBatiments[j].level
+        
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'mur d`enceinte' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1080, 79 + decalage)
+      
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Musée' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1130, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Port commercial' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1180, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Résidence du gouverneur' or listeData.Villes[i]._listeBatiments[j].name == 'Palais' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1230, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Tailleur de pierres' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1280, 79 + decalage)
+
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Verrier' then
+
+          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1330, 79 + decalage)
+
+      end
+
+
+    end
+    
+    local levelEntrepot = 0
+    for i = 1, nombreEntrepot.Nombre do
+
+     levelEntrepot = levelEntrepot + tonumber(nombreEntrepot.Level[i])
+
     end
 
+      love.graphics.print(tostring(levelEntrepot), 1030, 79 + decalage)
+
+    -- Dessine la ligne après la ville
+    love.graphics.setColor(0,0,0) -- noir
+    love.graphics.line(0, decalage + 100, 1362, decalage + 100)
     love.graphics.setColor(r,g,b)
     decalage = decalage+ 50
 
    end
+
+   
+    -- Dessine le Tableau
+    love.graphics.setColor(0,0,0) -- noir
+  love.graphics.line(165, 70, 165, decalage +50)
+  love.graphics.line(212, 70, 212, decalage +50)
+  love.graphics.line(262, 70, 262, decalage +50)
+  love.graphics.line(312, 70, 312, decalage +50)
+  love.graphics.line(362, 70, 362, decalage +50)
+  love.graphics.line(412, 70, 412, decalage +50)
+  love.graphics.line(462, 70, 462, decalage +50)
+  love.graphics.line(512, 70, 512, decalage +50)
+  love.graphics.line(562, 70, 562, decalage +50)
+  love.graphics.line(612, 70, 612, decalage +50)
+  love.graphics.line(662, 70, 662, decalage +50)
+  love.graphics.line(712, 70, 712, decalage +50)
+  love.graphics.line(762, 70, 762, decalage +50)
+  love.graphics.line(812, 70, 812, decalage +50)
+  love.graphics.line(862, 70, 862, decalage +50)
+  love.graphics.line(912, 70, 912, decalage +50)
+  love.graphics.line(962, 70, 962, decalage +50)
+  love.graphics.line(1012, 70, 1012, decalage +50)
+  love.graphics.line(1062, 70, 1062, decalage +50)
+  love.graphics.line(1112, 70, 1112, decalage +50)
+  love.graphics.line(1162, 70, 1162, decalage +50)
+  love.graphics.line(1212, 70, 1212, decalage +50)
+  love.graphics.line(1262, 70, 1262, decalage +50)
+  love.graphics.line(1312, 70, 1312, decalage +50)
+  love.graphics.line(1362, 70, 1362, decalage +50)
+
+  love.graphics.setColor(r,g,b)
 
 end
 
