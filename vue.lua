@@ -1,5 +1,6 @@
 local vue = {}
 local FunctionPicture = require("picture")
+local wiki = require("wiki")
 
 -- Fonction qui separe les nombres permettant les groupements suivants millions, milliers, unités
 function separateurNombre(pNombre)
@@ -58,8 +59,8 @@ end
 function vue:Accueil()
   local r,g,b = love.graphics.getColor() 
   love.graphics.setColor(0,0,0)
-  love.graphics.print("Appuyez sur le bouton Charger les données pour lancer le script. Il va se connecter au site et récupèrer les informations des villes et des îles", 10, 80)
-  love.graphics.print("La vue Ressources va être chargée automatiquement. Pour naviguer entre les différentes vues, appuyez sur les boutons correspondants à celle-ci.", 10, 150)
+  love.graphics.print("", 10, 80)
+  love.graphics.print("", 10, 150)
   
   love.graphics.setColor(r,g,b)
 end
@@ -270,21 +271,33 @@ function vue:Batiments(pListeData)
 
     -- Boucle qui traitement les données des batiments
     for j = 1, nombreBatiments do
-
+      love.graphics.setColor(0,0,0)
       --print(listeData.Villes[i]._listeBatiments[j].name)
       --print(listeData.Villes[i]._listeBatiments[j].level)
-
+      print(wiki.menuisier.levelMax)
       if listeData.Villes[i]._listeBatiments[j].name == 'Hôtel de ville' then
 
         love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 180, 79 + decalage)
+        
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Menuisier' then
 
+        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.menuisier.levelMax then
+          
+          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.print("Max", 225, 65 + decalage)
+        end
+
           love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 230, 79 + decalage)
-      
+          love.graphics.setColor(0,0,0)
+
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Bureau de l`architecte' then
 
+        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.architecte.levelMax then
+          love.graphics.setColor(0.2, 0.4, 0.8, 1) 
+        end
           love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 280, 79 + decalage)
+          love.graphics.setColor(0,0,0)
       
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Cave à vin' then
 

@@ -63,17 +63,25 @@ end
 
 function IkariamManager:Update(dt)
   
+  self.myButtonDemarrer:Update()
+  self.myButtonRessources:Update()
+  self.myButtonBatiments:Update()
+  self.myButtonIles:Update()
+  self.myButtonCachette:Update()
+  self.myButtonPlans:Update()
+  self.myButtonIA:Update()
+
 end
 
 function IkariamManager:Draw()
   
-  self.myButtonDemarrer:Draw()
+  --self.myButtonDemarrer:Draw()
   self.myButtonRessources:Draw()
   self.myButtonBatiments:Draw()
   self.myButtonIles:Draw()
-  self.myButtonCachette:Draw()
-  self.myButtonPlans:Draw()
-  self.myButtonIA:Draw()
+  --self.myButtonCachette:Draw()
+  --self.myButtonPlans:Draw()
+  --self.myButtonIA:Draw()
 
  if (self.myVueCourante =="Accueil") then
     FunctionVue:Accueil()

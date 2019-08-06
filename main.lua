@@ -12,7 +12,7 @@ end
 function love.update(dt)
   
   myIkariamManager:Update(dt)
-
+  love.timer.sleep(0.08)
 end
 
 function love.draw()
