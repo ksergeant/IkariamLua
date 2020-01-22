@@ -23,6 +23,8 @@ listeJson.Villes[4] = "Villes/Ville4.json"
 listeJson.Villes[5] = "Villes/Ville5.json"
 listeJson.Villes[6] = "Villes/Ville6.json"
 listeJson.Villes[7] = "Villes/Ville7.json"
+listeJson.Villes[8] = "Villes/Ville8.json"
+
 
 listeJson.Iles[1] = "Island/Island1.json"
 listeJson.Iles[2] = "Island/Island2.json"
@@ -31,6 +33,8 @@ listeJson.Iles[4] = "Island/Island4.json"
 listeJson.Iles[5] = "Island/Island5.json"
 listeJson.Iles[6] = "Island/Island6.json"
 listeJson.Iles[7] = "Island/Island7.json"
+listeJson.Iles[8] = "Island/Island8.json"
+
 
 IkariamManager.myVueCourante = ""
 
@@ -75,7 +79,7 @@ end
 
 function IkariamManager:Draw()
   
-  --self.myButtonDemarrer:Draw()
+  self.myButtonDemarrer:Draw()
   self.myButtonRessources:Draw()
   self.myButtonBatiments:Draw()
   self.myButtonIles:Draw()

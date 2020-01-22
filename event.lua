@@ -1,7 +1,7 @@
 local event = {}
 
 event.Demarrer = function()
-    os.execute("perl Ikariam.pl")
+    os.execute("python3 Connexion.py")
     print("Demarrer")
 end
 
