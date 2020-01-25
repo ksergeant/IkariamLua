@@ -13,7 +13,7 @@ function button:Create(pLabel, pNom, pX, pY, pFunction, pImage, pImage2, pImage3
   buttonTempo.Function = pFunction
   buttonTempo.imageIdle = love.graphics.newImage(pImage)
   buttonTempo.imagePressed = love.graphics.newImage(pImage2)
-  buttonTempo.imageCurseur = FunctionPicture:Create("Curseur", buttonTempo.x +23 , buttonTempo.y +13, pImage3, 1, 1)
+  buttonTempo.imageCurseur = FunctionPicture:Create("Curseur", buttonTempo.x +20 , buttonTempo.y +13, pImage3, 1, 1)
   buttonTempo.width = buttonTempo.imageIdle:getWidth()
   buttonTempo.height = buttonTempo.imageIdle:getHeight()
   buttonTempo.pressed = false

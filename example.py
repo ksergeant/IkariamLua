@@ -3,9 +3,7 @@ import time
 import requests
 import json
 
-chrome_path = "/Users/Kevin/Desktop/Creation Jeux/IkariamLua/chromedriver" # chemin du chromedriver
-
-driver = webdriver.Chrome(chrome_path)
+chrome_path = "/Users/Kevin/Desktop/Creation Jeux/IkariamLua/chromedriver"
 
 fichierVille1 = "Villes/Ville1.json"
 fichierVille2 = "Villes/Ville2.json"
@@ -43,6 +41,8 @@ urlIsland6 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgr
 urlIsland7 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=26371&ajax=1'
 urlIsland8 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=27167&ajax=1'
 
+driver = webdriver.Chrome(chrome_path)
+
 def Traitement(url, fichier):
     driver.get(url)
     time.sleep(2)
@@ -51,46 +51,55 @@ def Traitement(url, fichier):
     file.write(page)
     file.close()
 
-driver.get('https://lobby.ikariam.gameforge.com/fr_FR/')
+def Connexion():
+    
+    driver.get('https://lobby.ikariam.gameforge.com/fr_FR/')
 
-driver.find_element_by_xpath("""//*[@id="loginRegisterTabs"]/ul/li[1]/span""").click() # se connecter
+    driver.find_element_by_xpath("""//*[@id="loginRegisterTabs"]/ul/li[1]/span""").click() # se connecter
 
-search_box = driver.find_element_by_name('email')
-search_box.click()
-search_box.send_keys('monAdresseMail') # adresse mail
+    search_box = driver.find_element_by_name('email')
+    search_box.click()
+    search_box.send_keys('email')
 
-search_box = driver.find_element_by_name('password') # mdp
-search_box.click()
-search_box.send_keys('monMotDePasse') #mon mot de passe
-driver.find_element_by_xpath("""//*[@id="loginForm"]/p/button[1]/span""").click() #bouton connexion
-time.sleep(5) 
-driver.find_element_by_xpath("""//*[@id="joinGame"]/button/span[2]""").click()
-time.sleep(8)
+    search_box = driver.find_element_by_name('password') # mdp
+    search_box.click()
+    search_box.send_keys('motdepasse')
+    driver.find_element_by_xpath("""//*[@id="loginForm"]/p/button[1]/span""").click() #bouton connexion
+    time.sleep(5) 
+    driver.find_element_by_xpath("""//*[@id="joinGame"]/button/span[2]""").click()
+    time.sleep(8)
 
-Traitement(urlVille1, fichierVille1)
-Traitement(urlIsland1, fichierIsland1)
+    Traitement(urlVille1, fichierVille1)
+    Traitement(urlIsland1, fichierIsland1)
 
-Traitement(urlVille2, fichierVille2)
-Traitement(ulrIsland2, fichierIsland2)
+    Traitement(urlVille2, fichierVille2)
+    Traitement(ulrIsland2, fichierIsland2)
 
-Traitement(urlVille3, fichierVille3)
-Traitement(urlIsland3, fichierIsland3)
+    Traitement(urlVille3, fichierVille3)
+    Traitement(urlIsland3, fichierIsland3)
 
-Traitement(urlVille4, fichierVille4)
-Traitement(urlIsland4, fichierIsland4)
+    Traitement(urlVille4, fichierVille4)
+    Traitement(urlIsland4, fichierIsland4)
 
-Traitement(urlVille5, fichierVille5)
-Traitement(urlIsland5, fichierIsland5)
+    Traitement(urlVille5, fichierVille5)
+    Traitement(urlIsland5, fichierIsland5)
 
-Traitement(urlVille6, fichierVille6)
-Traitement(urlIsland6, fichierIsland6)
+    Traitement(urlVille6, fichierVille6)
+    Traitement(urlIsland6, fichierIsland6)
 
-Traitement(urlVille7, fichierVille7)
-Traitement(urlIsland7, fichierIsland7)
+    Traitement(urlVille7, fichierVille7)
+    Traitement(urlIsland7, fichierIsland7)
 
-Traitement(urlVille8, fichierVille8)
-Traitement(urlIsland8, fichierIsland8)
+    Traitement(urlVille8, fichierVille8)
+    Traitement(urlIsland8, fichierIsland8)
+    
 
+# Première connexion de purge
+Connexion()
+driver.quit()
+# Seconde connexion de purge
+driver = webdriver.Chrome(chrome_path)
+Connexion()
 driver.quit()
 
 print("Done Données")
