@@ -13,7 +13,7 @@ wiki.opticien = {}
 wiki.opticien.levelMax = 32
 
 wiki.taverne = {}
-wiki.taverne.levelMax = 32
+wiki.taverne.levelMax = 45
 
 wiki.hdv = {}
 wiki.hdv.levelMax = 40
@@ -61,7 +61,7 @@ wiki.residence = {}
 wiki.residence.levelMax = 12
 
 wiki.entrepot = {}
-wiki.entrepot.levelMax = 40
+wiki.entrepot.levelMax = 120
 
 wiki.tailleur = {}
 wiki.tailleur.levelMax = 32
