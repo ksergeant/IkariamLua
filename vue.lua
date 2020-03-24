@@ -1,6 +1,7 @@
 local vue = {}
 local FunctionPicture = require("picture")
 local wiki = require("wiki")
+local myTableauFunctions = require("tableau")
 
 function couleurMaxMin()
 
@@ -334,14 +335,11 @@ function vue:Batiments(pListeData)
     love.graphics.setColor(1,0,0)
     love.graphics.print(listeData.Villes[i]._nom, 65, 79 + decalage)
 
-    print(listeData.Villes[i]._nom)
-
    -- Orbre affichage batiments 
    -- hdv, menuisier, architecte, cave a vin , opticien, maison foret, taverne, académie, alchimiste, artificier, 
    -- atelier, cachette, caserne, pressoir a vin, chantier naval, comptoir, depot, entrepôt, mur, musée, port commercial, 
    -- RDV, tailleurPierre, Verrier
    
-
    local nombreEntrepot = {}
    nombreEntrepot.Level = {}
    nombreEntrepot.Nombre = 0
@@ -602,6 +600,11 @@ function vue:Batiments(pListeData)
   --love.graphics.line(1362, 70, 1362, decalage +50)
 
   love.graphics.setColor(r,g,b)
+
+  local dataTableau = {} 
+  dataTableau = myTableauFunctions:initVariable(50, 50, 5, 5, 50, 50)
+  local myTableau = myTableauFunctions:nouveauTableau(dataTableau)
+  myTableau:afficheValeur()
 
 end
 

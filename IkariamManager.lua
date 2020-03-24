@@ -57,6 +57,10 @@ ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 IkariamManager.myButtonIA = FunctionButton:Create("IA", "buttonIA", 980, 5, FunctionEvent.Plans, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 
+IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1208, 700, FunctionEvent.Quitter, 
+ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 72, 15)
+
+
 function IkariamManager:Load()
   
   self.myVueCourante = "Accueil"
@@ -72,6 +76,7 @@ function IkariamManager:Update(dt)
   self.myButtonCachette:Update()
   self.myButtonPlans:Update()
   self.myButtonIA:Update()
+  self.myButtonQuitter:Update()
 
 end
 
@@ -81,6 +86,7 @@ function IkariamManager:Draw()
   self.myButtonRessources:Draw()
   self.myButtonBatiments:Draw()
   self.myButtonIles:Draw()
+  self.myButtonQuitter:Draw()
   --self.myButtonCachette:Draw()
   --self.myButtonPlans:Draw()
   --self.myButtonIA:Draw()

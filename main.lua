@@ -31,6 +31,7 @@ function love.mousepressed(x, y, button, istouch)
   local bCachette = myIkariamManager.myButtonCachette
   local bPlans = myIkariamManager.myButtonPlans
   local bIA = myIkariamManager.myButtonIA
+  local bQuitter = myIkariamManager.myButtonQuitter
 
     -- Bouton Demarrer
    if (button == 1) and 
@@ -48,6 +49,23 @@ function love.mousepressed(x, y, button, istouch)
     
    end
   
+    -- Bouton Quitter
+    if (button == 1) and 
+    (x >= bQuitter.x) and (x <= bQuitter.x + bQuitter.width) and 
+    (y >= bQuitter.y) and (y <= bQuitter.y + bQuitter.height) then
+      bQuitter.Function()
+    
+     myIkariamManager.myButtonQuitter.pressed = true
+     myIkariamManager.myButtonDemarrer.pressed = false
+     myIkariamManager.myButtonRessources.pressed = false
+     myIkariamManager.myButtonBatiments.pressed = false
+     myIkariamManager.myButtonIles.pressed = false
+     myIkariamManager.myButtonCachette.pressed = false
+     myIkariamManager.myButtonPlans.pressed = false
+     myIkariamManager.myButtonIA.pressed = false
+ 
+end
+
    -- Bouton Ressources
    if (button == 1) and 
        (x >= bRessources.x) and (x <= bRessources.x + bRessources.width) and 
