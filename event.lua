@@ -1,7 +1,7 @@
 local event = {}
 
 event.Demarrer = function()
-    os.execute("python3 Connexion.py")
+    os.execute("py Connexion.py")
     print("Demarrer")
 end
 

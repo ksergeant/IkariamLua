@@ -158,7 +158,7 @@ function vue:Ressources(pListeData)
       local ts = os.time()
       ts = listeData.Villes[i]._update - ts - 3600
       
-      love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+     -- love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
 
     else 
       

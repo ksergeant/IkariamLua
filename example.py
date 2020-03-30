@@ -3,7 +3,8 @@ import time
 import requests
 import json
 
-chrome_path = "/Users/Kevin/Desktop/Creation Jeux/IkariamLua/chromedriver"
+from selenium.webdriver.chrome.options import Options
+chrome_path = "chromedriver"
 
 fichierVille1 = "Villes/Ville1.json"
 fichierVille2 = "Villes/Ville2.json"
@@ -41,7 +42,11 @@ urlIsland6 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgr
 urlIsland7 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=26371&ajax=1'
 urlIsland8 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=27167&ajax=1'
 
-driver = webdriver.Chrome(chrome_path)
+
+chrome_options = Options()
+chrome_options.add_argument("--window-size=1920,1080")
+#driver = Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome(chrome_path,chrome_options=chrome_options)
 
 def Traitement(url, fichier):
     driver.get(url)
@@ -97,8 +102,13 @@ def Connexion():
 # Première connexion de purge
 Connexion()
 driver.quit()
+
 # Seconde connexion de purge
-driver = webdriver.Chrome(chrome_path)
+chrome_options = Options()
+chrome_options.add_argument("--window-size=1920,1080")
+#driver = Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome(chrome_path,chrome_options=chrome_options)
+
 Connexion()
 driver.quit()
 
