@@ -158,10 +158,13 @@ function vue:Ressources(pListeData)
       local ts = os.time()
       ts = listeData.Villes[i]._update - ts - 3600
       
-      love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+      if (ts > 0) then
+        love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+      else
+        love.graphics.print("Aucune", 800, 79 + decalage)
+      end
 
-    else 
-      
+    else    
       love.graphics.print("Aucune", 800, 79 + decalage)
     end
 
@@ -600,11 +603,6 @@ function vue:Batiments(pListeData)
   --love.graphics.line(1362, 70, 1362, decalage +50)
 
   love.graphics.setColor(r,g,b)
-
-  local dataTableau = {} 
-  dataTableau = myTableauFunctions:initVariable(50, 50, 5, 5, 50, 50)
-  local myTableau = myTableauFunctions:nouveauTableau(dataTableau)
-  myTableau:afficheValeur()
 
 end
 
