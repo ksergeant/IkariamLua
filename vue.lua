@@ -3,19 +3,6 @@ local FunctionPicture = require("picture")
 local wiki = require("wiki")
 local myTableauFunctions = require("tableau")
 
-function couleurMaxMin()
-
-  local key, max = 1, t[1]
-  for k, v in ipairs(t) do
-    if t[k] > max then
-      key, max = k, v
-    end
-  end
-
-  print(key, max)
-
-end
-
 -- Fonction qui separe les nombres permettant les groupements suivants millions, milliers, unités
 function separateurNombre(pNombre)
 
@@ -134,7 +121,7 @@ function vue:Ressources(pListeData)
       love.graphics.draw(imageVilleMarbre, 80, 70 + decalage)
     end
 
-    if i == 3 or i == 8 then 
+    if i == 3 or i == 8 or i == 9 then 
       love.graphics.draw(imageVilleCristal, 80, 70 + decalage)
     end
 
@@ -158,10 +145,13 @@ function vue:Ressources(pListeData)
       local ts = os.time()
       ts = listeData.Villes[i]._update - ts - 3600
       
-     -- love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+      if (ts > 0) then
+        love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+      else
+        love.graphics.print("Aucune", 800, 79 + decalage)
+      end
 
     else 
-      
       love.graphics.print("Aucune", 800, 79 + decalage)
     end
 
@@ -224,28 +214,28 @@ function vue:Batiments(pListeData)
 
   
   local imageHDV = FunctionPicture:Create("HDV", 170, 70,  "Images/vueBatiments/Original/HDV.png", 1,1)
-  local imageResidence= FunctionPicture:Create("Residence", 220, 70,  "Images/vueBatiments/Original/Residence.png",1,1)
-  local imageMenuisier = FunctionPicture:Create("Menuisier", 270, 70,  "Images/vueBatiments/Original/Menuisier.png",1,1)
-  local imageArchitecte = FunctionPicture:Create("Architecte", 320, 70,  "Images/vueBatiments/Original/Architecte.png",1,1)
-  local imageCave = FunctionPicture:Create("Cave", 370, 70,  "Images/vueBatiments/Original/CaveAVin.png", 1,1)
-  local imageOpticien = FunctionPicture:Create("Opticien", 420, 70,  "Images/vueBatiments/Original/Opticien.png",1,1)
-  local imageArtificier= FunctionPicture:Create("Artificier", 470, 70,  "Images/vueBatiments/Original/Artificier.png",1,1)
-  local imageCachette= FunctionPicture:Create("Cachette", 520, 70,  "Images/vueBatiments/Original/Cachette.png",1,1)
-  local imageVerrier= FunctionPicture:Create("Verrier", 570, 70,  "Images/vueBatiments/Original/Verrier.png",1,1)
-  local imageForestiere = FunctionPicture:Create("Forestiere", 620, 70,  "Images/vueBatiments/Original/MaisonForestiere.png",1,1)
+  local imageResidence= FunctionPicture:Create("Residence", 220, 70,  "Images/Residence.png",1,1)
+  local imageMenuisier = FunctionPicture:Create("Menuisier", 270, 70,  "Images/Menuisier.png",1,1)
+  local imageArchitecte = FunctionPicture:Create("Architecte", 320, 70,  "Images/Architecte.png",1,1)
+  local imageCave = FunctionPicture:Create("Cave", 370, 70,  "Images/CaveAVin.png", 1,1)
+  local imageOpticien = FunctionPicture:Create("Opticien", 420, 70,  "Images/Opticien.png",1,1)
+  local imageArtificier= FunctionPicture:Create("Artificier", 470, 70,  "Images/Artificier.png",1,1)
+  local imageCachette= FunctionPicture:Create("Cachette", 520, 70,  "Images/Cachette.png",1,1)
+  local imageVerrier= FunctionPicture:Create("Verrier", 570, 70,  "Images/Verrier.png",1,1)
+  local imageForestiere = FunctionPicture:Create("Forestiere", 620, 70,  "Images/MaisonForestiere.png",1,1)
   --local imageAlchimiste= FunctionPicture:Create("Alchimiste", 620, 70,  "Images/vueBatiments/Original/Alchimiste.png",1,1)
   --local imageTailleurDePierres= FunctionPicture:Create("TailleurDePierres", 670, 70,  "Images/vueBatiments/Original/TailleurDePierres.png",1,1)
   --local imagePressoirAVin= FunctionPicture:Create("PressoirAVin", 770, 70,  "Images/vueBatiments/Original/PressoirAVin.png",1,1)
-  local imageTaverne= FunctionPicture:Create("Taverne", 670, 70,  "Images/vueBatiments/Original/Taverne.png",1,1)
-  local imageAcademie= FunctionPicture:Create("Academie", 720, 70,  "Images/vueBatiments/Original/Academie.png",1,1)
-  local imagePort= FunctionPicture:Create("Port", 770, 70,  "Images/vueBatiments/Original/Port.png",1,1)
-  local imageMur= FunctionPicture:Create("Mur", 820, 70,  "Images/vueBatiments/Original/Mur.png",1,1)
-  local imageEntrepot= FunctionPicture:Create("Entrepot", 870, 70,  "Images/vueBatiments/Original/Entrepot.png",1,1)
-  local imageCaserne= FunctionPicture:Create("Caserne", 920, 70,  "Images/vueBatiments/Original/Caserne.png",1,1)
-  local imageMusee= FunctionPicture:Create("Musee", 970, 70,  "Images/vueBatiments/Original/Musee.png",1,1)
-  local imageChantier= FunctionPicture:Create("Chantier", 1020, 70,  "Images/vueBatiments/Original/Chantier.png",1,1)
-  local imageComptoir= FunctionPicture:Create("Comptoir", 1070, 70,  "Images/vueBatiments/Original/Comptoir.png",1,1)
-  local imageAtelier= FunctionPicture:Create("Atelier", 1120, 70,  "Images/vueBatiments/Original/Atelier.png",1,1)
+  local imageTaverne= FunctionPicture:Create("Taverne", 670, 70,  "Images/Taverne.png",1,1)
+  local imageAcademie= FunctionPicture:Create("Academie", 720, 70,  "Images/Academie.png",1,1)
+  local imagePort= FunctionPicture:Create("Port", 770, 70,  "Images/Port.png",1,1)
+  local imageMur= FunctionPicture:Create("Mur", 820, 70,  "Images/Mur.png",1,1)
+  local imageEntrepot= FunctionPicture:Create("Entrepot", 870, 70,  "Images/Entrepot.png",1,1)
+  local imageCaserne= FunctionPicture:Create("Caserne", 920, 70,  "Images/Caserne.png",1,1)
+  local imageMusee= FunctionPicture:Create("Musee", 970, 70,  "Images/Musee.png",1,1)
+  local imageChantier= FunctionPicture:Create("Chantier", 1020, 70,  "Images/Chantier.png",1,1)
+  local imageComptoir= FunctionPicture:Create("Comptoir", 1070, 70,  "Images/Comptoir.png",1,1)
+  local imageAtelier= FunctionPicture:Create("Atelier", 1120, 70,  "Images/Atelier.png",1,1)
 
   -- Affichage des images
   imageHDV:Draw()
@@ -324,7 +314,7 @@ function vue:Batiments(pListeData)
       love.graphics.draw(imageVilleMarbre, 30, 70 + decalage)
     end
   
-    if i == 3 or i == 8 then 
+    if i == 3 or i == 8 or i == 9 then 
       love.graphics.draw(imageVilleCristal, 30, 70 + decalage)
     end
   
@@ -600,11 +590,6 @@ function vue:Batiments(pListeData)
   --love.graphics.line(1362, 70, 1362, decalage +50)
 
   love.graphics.setColor(r,g,b)
-
-  local dataTableau = {} 
-  dataTableau = myTableauFunctions:initVariable(50, 50, 5, 5, 50, 50)
-  local myTableau = myTableauFunctions:nouveauTableau(dataTableau)
-  myTableau:afficheValeur()
 
 end
 

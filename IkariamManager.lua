@@ -13,6 +13,43 @@ local ImageButtonBeigePressed = "adventure_pack/PNG/buttonLong_beige_pressed.png
 local ImageCurseur = "adventure_pack/PNG/arrowSilver_right.png"
 
 local listeJson = {}
+
+local infoScript = {}
+
+function IkariamManager:getLastReloadScript()
+  
+  local info = love.filesystem.getInfo("Villes/Ville1.json")
+  
+  local temp = os.date("*t", info.modtime)
+  
+  local valueVueDay = tostring(temp.day)
+  local valueVueMonth = tostring(temp.month)
+  local valueVueHour = tostring(temp.hour)
+  local valueVueYear = tostring(temp.year)
+  
+  local allValueScript = {}
+  
+  if (temp.day <10) then
+    valueVueDay = "0"..tostring(valueVueDay)
+  end
+
+  if (temp.month <10) then
+    valueVueMonth = "0"..tostring(valueVueMonth)
+  end
+
+  if (temp.hour <10) then
+    valueVueHour ="0"..tostring(valueVueHour)
+  end
+  
+  allValueScript.valueDay = valueVueDay
+  allValueScript.valueMonth = valueVueMonth
+  allValueScript.valueHour = valueVueHour
+  allValueScript.valueYear = valueVueYear
+  
+  return allValueScript
+  
+end
+
 listeJson.Villes = {}
 listeJson.Iles = {}
 
@@ -24,6 +61,7 @@ listeJson.Villes[5] = "Villes/Ville5.json"
 listeJson.Villes[6] = "Villes/Ville6.json"
 listeJson.Villes[7] = "Villes/Ville7.json"
 listeJson.Villes[8] = "Villes/Ville8.json"
+listeJson.Villes[9] = "Villes/Ville9.json"
 
 listeJson.Iles[1] = "Island/Island1.json"
 listeJson.Iles[2] = "Island/Island2.json"
@@ -33,6 +71,7 @@ listeJson.Iles[5] = "Island/Island5.json"
 listeJson.Iles[6] = "Island/Island6.json"
 listeJson.Iles[7] = "Island/Island7.json"
 listeJson.Iles[8] = "Island/Island8.json"
+listeJson.Iles[9] = "Island/Island9.json"
 
 IkariamManager.myVueCourante = ""
 
@@ -54,7 +93,7 @@ ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 71, 15)
 IkariamManager.myButtonPlans = FunctionButton:Create("Plans", "buttonPlans", 785, 5, FunctionEvent.Plans, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 
-IkariamManager.myButtonIA = FunctionButton:Create("IA", "buttonIA", 980, 5, FunctionEvent.Plans, 
+IkariamManager.myButtonIA = FunctionButton:Create("IA", "buttonIA", 980, 5, FunctionEvent.IA, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 
 IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1208, 700, FunctionEvent.Quitter, 
@@ -77,6 +116,7 @@ function IkariamManager:Update(dt)
   self.myButtonPlans:Update()
   self.myButtonIA:Update()
   self.myButtonQuitter:Update()
+  infoScript = self:getLastReloadScript()
 
 end
 
@@ -87,10 +127,22 @@ function IkariamManager:Draw()
   self.myButtonBatiments:Draw()
   self.myButtonIles:Draw()
   self.myButtonQuitter:Draw()
-  --self.myButtonCachette:Draw()
-  --self.myButtonPlans:Draw()
-  --self.myButtonIA:Draw()
+  self.myButtonCachette:Draw()
+  self.myButtonPlans:Draw()
+  self.myButtonIA:Draw()
+  
+  local r,g,b = love.graphics.getColor() 
+  love.graphics.setColor(0,0,0) -- noir
+  love.graphics.rectangle("fill", 1210, 70, 186, 615)
+  love.graphics.setColor(0.5, 1, 0) -- vert slime
+  love.graphics.print("Dernière exécution : ", 1210, 70)
+  love.graphics.print(infoScript.valueDay.."/"..infoScript.valueMonth.."/"..infoScript.valueYear
+  .." à "..infoScript.valueHour.."h", 1210, 85)
 
+  love.graphics.setColor(r,g,b)
+  
+  love.graphics.print("by Moks", 1300, 770)
+  
  if (self.myVueCourante =="Accueil") then
     FunctionVue:Accueil()
 

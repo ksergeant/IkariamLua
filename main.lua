@@ -1,7 +1,7 @@
 io.stdout:setvbuf('no')
 
 myIkariamManager = require("IkariamManager")
-myBackground = love.graphics.newImage("background.png")
+myBackground = love.graphics.newImage("backgroung2.jpg")
 
 function love.load()
   
@@ -13,13 +13,14 @@ function love.update(dt)
   
   myIkariamManager:Update(dt)
   love.timer.sleep(0.07)
+  
 end
 
 function love.draw()
     
   love.graphics.draw(myBackground, 0, 0, 0)
   myIkariamManager:Draw()
-
+  
 end
 
 function love.mousepressed(x, y, button, istouch)

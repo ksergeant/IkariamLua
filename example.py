@@ -14,6 +14,7 @@ fichierVille5 = "Villes/Ville5.json"
 fichierVille6 = "Villes/Ville6.json"
 fichierVille7 = "Villes/Ville7.json"
 fichierVille8 = "Villes/Ville8.json"
+fichierVille9 = "Villes/Ville9.json"
 
 fichierIsland1 = "Island/Island1.json"
 fichierIsland2 = "Island/Island2.json"
@@ -23,6 +24,7 @@ fichierIsland5 = "Island/Island5.json"
 fichierIsland6 = "Island/Island6.json"
 fichierIsland7 = "Island/Island7.json"
 fichierIsland8 = "Island/Island8.json"
+fichierIsland9 = "Island/Island9.json"
 
 urlVille1 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=2558&ajax=1'     #Souffre
 urlVille2 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=3638&ajax=1'     #Marbre
@@ -32,6 +34,7 @@ urlVille5 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgro
 urlVille6 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=26121&ajax=1'    #Marbre3
 urlVille7 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=26371&ajax=1'    #Vin2
 urlVille8 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=27167&ajax=1'    #Cristal2
+urlVille9 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=29036&ajax=1'    #Cristal3
 
 urlIsland1 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=2558&ajax=1'
 ulrIsland2 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=3638&ajax=1'
@@ -41,6 +44,7 @@ urlIsland5 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgr
 urlIsland6 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=26121&ajax=1'
 urlIsland7 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=26371&ajax=1'
 urlIsland8 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=27167&ajax=1'
+urlIsland9 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=29036&ajax=1'
 
 
 chrome_options = Options()
@@ -97,6 +101,9 @@ def Connexion():
 
     Traitement(urlVille8, fichierVille8)
     Traitement(urlIsland8, fichierIsland8)
+
+    Traitement(urlVille9, fichierVille9)
+    Traitement(urlIsland9, fichierIsland9)
     
 
 # Première connexion de purge
@@ -162,6 +169,7 @@ FiltreFichier(fichierVille5, rechercheSupprimer, rechercheVille, baliseFin)
 FiltreFichier(fichierVille6, rechercheSupprimer, rechercheVille, baliseFin)
 FiltreFichier(fichierVille7, rechercheSupprimer, rechercheVille, baliseFin)
 FiltreFichier(fichierVille8, rechercheSupprimer, rechercheVille, baliseFin)
+FiltreFichier(fichierVille9, rechercheSupprimer, rechercheVille, baliseFin)
 
 FiltreFichier(fichierIsland1, rechercheSupprimer, rechercheIsland, baliseFin)
 FiltreFichier(fichierIsland2, rechercheSupprimer, rechercheIsland, baliseFin)
@@ -171,5 +179,6 @@ FiltreFichier(fichierIsland5, rechercheSupprimer, rechercheIsland, baliseFin)
 FiltreFichier(fichierIsland6, rechercheSupprimer, rechercheIsland, baliseFin)
 FiltreFichier(fichierIsland7, rechercheSupprimer, rechercheIsland, baliseFin)
 FiltreFichier(fichierIsland8, rechercheSupprimer, rechercheIsland, baliseFin)
+FiltreFichier(fichierIsland9, rechercheSupprimer, rechercheIsland, baliseFin)
 
 print("Done Formatage fichier")
