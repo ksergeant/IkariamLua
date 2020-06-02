@@ -808,6 +808,9 @@ function vue:Iles(pListeData)
   imageMarbre:Draw()
   imageCristal:Draw()
   imageSouffre:Draw()
+  
+  local listeLvlScierie = {}
+  local listeLvlLuxe = {}
 
   local r,g,b = love.graphics.getColor() 
 
@@ -825,20 +828,28 @@ function vue:Iles(pListeData)
     love.graphics.print(listeData.Iles[i]._nom, 65, 79 + decalage)
     
     love.graphics.setColor(0,0,0)
-    love.graphics.print(listeData.Iles[i]._lvlScierie , 179, 79 + decalage)
-    love.graphics.print(listeData.Iles[i]._lvlResourceLuxe, 270, 79 + decalage)
+    
+    local valeurScierieTempo = {}
+      valeurScierieTempo.level = tonumber(listeData.Iles[i]._lvlScierie)
+      valeurScierieTempo.idVille = i
+      table.insert(listeLvlScierie, valeurScierieTempo)
+          
+    local valeurLuxeTempo = {}
+      valeurLuxeTempo.level = tonumber(listeData.Iles[i]._lvlResourceLuxe )
+      valeurLuxeTempo.idVille = i 
+      table.insert(listeLvlLuxe, valeurLuxeTempo)
+    --love.graphics.print(listeData.Iles[i]._lvlScierie , 179, 79 + decalage)
+    --love.graphics.print(listeData.Iles[i]._lvlResourceLuxe, 270, 79 + decalage)
 
     love.graphics.line(0, decalage + 100, 350, decalage + 100)
     love.graphics.setColor(r,g,b)
     love.graphics.draw(listeData.Iles[i]._ListeImages[typeRessources], 25, 70 + decalage)
     
-    
-   
     decalage = decalage + 50
 
    end
 
-   love.graphics.setColor(0,0,0)
+  love.graphics.setColor(0,0,0)
 
   love.graphics.line(0, 70, 350, 70)
   love.graphics.print("ILES", 65, 79)
@@ -850,6 +861,22 @@ function vue:Iles(pListeData)
   love.graphics.line(350, 70, 350, decalage + 50)
   love.graphics.line(0, decalage + 50, 350, decalage + 50)
   love.graphics.setColor(r,g,b)
+  
+  local tabListe = {}
+  local finalDataTableau ={}
+  local parametesTableau = {}
+  
+  tabListe[1] = listeLvlScierie
+  tabListe[2] = listeLvlLuxe
+  
+  finalDataTableau = myTableauFunctions:fusionListe(tabListe)
+   
+   parametesTableau = myTableauFunctions:initVariable(180, 120, 2, nombreIles, 100, 100)
+   
+   myTableau = myTableauFunctions:nouveauTableau(parametesTableau, finalDataTableau)
+  
+   myTableau:SearchValueMaxMinColoum()
+   myTableau:draw()
 
 end
 
