@@ -69,4 +69,8 @@ wiki.tailleur.levelMax = 32
 wiki.verrier = {}
 wiki.verrier.levelMax = 32
 
+wiki.depot = {}
+wiki.depot.levelMax = 32
+
+
 return wiki

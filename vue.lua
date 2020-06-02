@@ -11,24 +11,37 @@ function separateurNombre(pNombre)
   nombreFormate.milliers = 0
   nombreFormate.unites = 0
 
-  local milliers = {}
-  local millions = {}
-  local unites = {}
+  local millionTempo = 0
+  local millierTempo = 0
+  local milliers = 0
+  local millions = 0
+  local unites = 0
 
   a = tonumber(pNombre)
 
-  if (a >= 1000) then
+  if a >= 1000 then
 
-   milliers = math.floor (a / 1000)
+   millierTempo = math.floor (a / 1000) -- 2394
 
-   unites = a - (milliers * 1000)
-
-   --print(pNombre)
-   --print(milliers)
-   --print(unites)
-   nombreFormate.milliers = milliers
-   nombreFormate.unites = unites
-
+    if millierTempo >= 1000 then
+    
+      millions = math.floor(millierTempo /1000) -- 2
+  
+      millionTempo = millions * 1000 -- 2000
+  
+      milliers = millierTempo - millionTempo -- 2394 - 2000
+    
+      unites = a - (millierTempo * 1000) 
+      nombreFormate.millions = millions
+      nombreFormate.unites = unites
+      nombreFormate.milliers = milliers
+    else 
+      unites = a - (millierTempo * 1000)
+      nombreFormate.millions =""
+      nombreFormate.unites = unites
+      nombreFormate.milliers = millierTempo
+    end
+   
   else 
 
     nombreFormate.unites = pNombre
@@ -38,7 +51,6 @@ function separateurNombre(pNombre)
   return nombreFormate
 
 end
-
 
 function affichageDesZeros(pData)
 
@@ -134,12 +146,58 @@ function vue:Ressources(pListeData)
     love.graphics.print(listeData.Villes[i]._nom, 115, 79 + decalage)
 
     love.graphics.setColor(0.3,0,0)
-    love.graphics.print(listeData.Villes[i]._nbBois, 300, 79 + decalage)
-    love.graphics.print(listeData.Villes[i]._nbVin, 400, 79 + decalage)
-    love.graphics.print(listeData.Villes[i]._nbMarbre, 500, 79 + decalage)
-    love.graphics.print(listeData.Villes[i]._nbCristal, 600, 79 + decalage)
-    love.graphics.print(listeData.Villes[i]._nbSouffre, 700, 79 + decalage)
-    --love.graphics.print(listeData.Villes[i]._update, 800, 79 + decalage)
+    
+    nbrBois = separateurNombre(listeData.Villes[i]._nbBois)
+    nbrVin = separateurNombre(listeData.Villes[i]._nbVin)
+    nbrMarbre = separateurNombre(listeData.Villes[i]._nbMarbre)
+    nbrCristal = separateurNombre(listeData.Villes[i]._nbCristal)
+    nbrSouffre = separateurNombre(listeData.Villes[i]._nbSouffre)
+    
+    
+    if (nbrBois.unites < 100) then
+      love.graphics.print(nbrBois.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrBois.unites), 300, 79 + decalage)
+      
+    else
+      love.graphics.print(nbrBois.milliers ..tostring(" ") ..tostring(nbrBois.unites), 300, 79 + decalage)
+    end
+    
+    if (nbrVin.unites < 100) then
+      love.graphics.print(nbrVin.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrVin.unites), 400, 79 + decalage)
+      
+    else
+      love.graphics.print(nbrVin.milliers ..tostring(" ") ..tostring(nbrVin.unites), 400, 79 + decalage)
+    end
+    
+    if (nbrMarbre.unites < 100) then
+      love.graphics.print(nbrMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrMarbre.unites), 500, 79 + decalage)
+      
+    else
+      love.graphics.print(nbrMarbre.milliers ..tostring(" ") ..tostring(nbrMarbre.unites), 500, 79 + decalage)
+    end
+    
+    if (nbrCristal.unites < 100 ) then
+      love.graphics.print(nbrCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrCristal.unites), 600, 79 + decalage)
+      
+    else
+      if (nbrCristal.milliers < 1) then
+      love.graphics.print(tostring(nbrCristal.unites), 600, 79 + decalage)
+      
+      else
+      love.graphics.print(nbrCristal.milliers ..tostring(" ") ..tostring(nbrCristal.unites), 600, 79 + decalage)
+      end
+    end
+    
+    if (nbrSouffre.unites < 100) then
+      love.graphics.print(nbrSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrSouffre.unites), 700, 79 + decalage)
+      
+    else
+      love.graphics.print(nbrSouffre.milliers ..tostring(" ") ..tostring(nbrSouffre.unites), 700, 79 + decalage)
+    end
+    
+    --love.graphics.print(listeData.Villes[i]._nbVin, 400, 79 + decalage)
+    --love.graphics.print(listeData.Villes[i]._nbMarbre, 500, 79 + decalage)
+    --love.graphics.print(listeData.Villes[i]._nbCristal, 600, 79 + decalage)
+    --love.graphics.print(listeData.Villes[i]._nbSouffre, 700, 79 + decalage)
 
     if (listeData.Villes[i]._update > 0) then
       local ts = os.time()
@@ -192,18 +250,47 @@ function vue:Ressources(pListeData)
    TotalCristal = separateurNombre(TotalCristal)
    TotalSouffre = separateurNombre(TotalSouffre)
 
-   love.graphics.print(TotalBois.milliers ..tostring(" ") ..tostring(TotalBois.unites), 300, decalage + 70)
+
+  
+  if TotalBois.unites <100 then
+    love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring("0") ..tostring(TotalBois.unites) , 300, decalage + 70)
+  else
+    love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring(TotalBois.unites) , 300, decalage + 70)
+  end
+  
+  if TotalVin.unites <100 then
+    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 70)
+  elseif TotalVin.milliers < 100 then
+     love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 70)
+  else
+    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 70)
+  end
+  --[[
    if (TotalVin.unites <100) then
-
     love.graphics.print(TotalVin.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalVin.unites), 400, decalage + 70)
-
    else
     love.graphics.print(TotalVin.milliers ..tostring(" ") ..tostring(TotalVin.unites), 400, decalage + 70)
    end
-
-   love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 500, decalage + 70)
-   love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 600, decalage + 70)
-   love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 700, decalage + 70)
+   ]]--
+   
+   if (TotalMarbre.unites < 100) then
+    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.unites), 500, decalage + 70)
+  else
+    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 500, decalage + 70)
+  end
+  
+  
+  if (TotalCristal.unites < 100) then
+    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 600, decalage + 70)
+  else
+    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 600, decalage + 70)
+  end
+  
+  if (TotalSouffre.unites < 100) then
+    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 700, decalage + 70)
+  else
+    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 700, decalage + 70)
+  end
 
    love.graphics.setColor(r,g,b)
 
@@ -212,7 +299,7 @@ end
 -- ######## VUE BATIMENTS #########
 function vue:Batiments(pListeData)
 
-  
+  local myTableau = {}
   local imageHDV = FunctionPicture:Create("HDV", 170, 70,  "Images/vueBatiments/Original/HDV.png", 1,1)
   local imageResidence= FunctionPicture:Create("Residence", 220, 70,  "Images/Residence.png",1,1)
   local imageMenuisier = FunctionPicture:Create("Menuisier", 270, 70,  "Images/Menuisier.png",1,1)
@@ -234,8 +321,9 @@ function vue:Batiments(pListeData)
   local imageCaserne= FunctionPicture:Create("Caserne", 920, 70,  "Images/Caserne.png",1,1)
   local imageMusee= FunctionPicture:Create("Musee", 970, 70,  "Images/Musee.png",1,1)
   local imageChantier= FunctionPicture:Create("Chantier", 1020, 70,  "Images/Chantier.png",1,1)
-  local imageComptoir= FunctionPicture:Create("Comptoir", 1070, 70,  "Images/Comptoir.png",1,1)
-  local imageAtelier= FunctionPicture:Create("Atelier", 1120, 70,  "Images/Atelier.png",1,1)
+  --local imageComptoir= FunctionPicture:Create("Comptoir", 1070, 70,  "Images/Comptoir.png",1,1)
+  --local imageAtelier= FunctionPicture:Create("Atelier", 1120, 70,  "Images/Atelier.png",1,1)
+  local imageDepot= FunctionPicture:Create("Depot", 1070, 70, "Images/Depot.png", 1,1)
 
   -- Affichage des images
   imageHDV:Draw()
@@ -248,11 +336,11 @@ function vue:Batiments(pListeData)
   imageAcademie:Draw()
   --imageAlchimiste:Draw()
   imageArtificier:Draw()
-  imageAtelier:Draw()
+ -- imageAtelier:Draw()
   imageCachette:Draw()
   imageCaserne:Draw()
   imageChantier:Draw()
-  imageComptoir:Draw()
+ -- imageComptoir:Draw()
   imageEntrepot:Draw()
   imageMur:Draw()
   imageMusee:Draw()
@@ -260,6 +348,7 @@ function vue:Batiments(pListeData)
   imageResidence:Draw()
   --imageTailleurDePierres:Draw()
   imageVerrier:Draw()
+  imageDepot:Draw()
   --imagePressoirAVin:Draw()
 
   local imageVilleSouffre = love.graphics.newImage("Images/Souffre.png")
@@ -271,9 +360,9 @@ function vue:Batiments(pListeData)
 
   love.graphics.setColor(0,0,0)
   
-  love.graphics.line(0, 70, 1162, 70)
+  love.graphics.line(0, 70, 1112, 70)
   love.graphics.print("VILLES", 65, 79)
-  love.graphics.line(0, 100, 1162, 100)
+  love.graphics.line(0, 100, 1112, 100)
   love.graphics.setColor(r,g,b)
   local listeData = pListeData
   
@@ -300,6 +389,7 @@ function vue:Batiments(pListeData)
    local listeLvlChantier = {}
    local listeLvlComptoir = {}
    local listeLvlAtelier = {}
+   local listeLvlDepot = {}
    
    for i = 1, nombreVilles do 
     
@@ -342,81 +432,111 @@ function vue:Batiments(pListeData)
       
       if listeData.Villes[i]._listeBatiments[j].name == 'Hôtel de ville' then
 
-        love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 180, 79 + decalage)
-        local lvlTempo = tonumber(listeData.Villes[i]._listeBatiments[j].level)
-        table.insert(listeLvlHdv, lvlTempo)
+        --love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 180, 79 + decalage)
+        local valeurHdvTempo = {}
+        valeurHdvTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+        valeurHdvTempo.idVille = i
+        table.insert(listeLvlHdv, valeurHdvTempo)
         
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Résidence du gouverneur' or 
              listeData.Villes[i]._listeBatiments[j].name == 'Palais' 
       then
 
-      if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.residence.levelMax then
-        love.graphics.setColor(0.9, 0.5, 0, 0.7) 
-        love.graphics.print("Max", 225, 65 + decalage)
-      end
-        table.insert(listeLvlResidence,listeData.Villes[i]._listeBatiments[j].level)
-        love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 230, 79 + decalage)
+        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.residence.levelMax then
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
+          love.graphics.print("Max", 225, 65 + decalage)
+        end
+      
+        local valeurRDGTempo = {}
+        valeurRDGTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+        valeurRDGTempo.idVille = i 
+        table.insert(listeLvlResidence, valeurRDGTempo)
+       -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 230, 79 + decalage)
         love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Menuisier' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.menuisier.levelMax then
           
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 275, 65 + decalage)
         end
-          table.insert(listeLvlMenuisier,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 280, 79 + decalage)
+        
+          local valeurMenuisierTempo = {}
+          valeurMenuisierTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurMenuisierTempo.idVille = i
+          table.insert(listeLvlMenuisier, valeurMenuisierTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 280, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Bureau de l`architecte' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.architecte.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 325, 65 + decalage)
         end
-          table.insert(listeLvlBureau,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 330, 79 + decalage)
+        
+          local valeurBureauTempo = {}
+          valeurBureauTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurBureauTempo.idVille = i
+          table.insert(listeLvlBureau, valeurBureauTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 330, 79 + decalage)
           love.graphics.setColor(0,0,0)
       
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Cave à vin' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.cave.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 375, 65 + decalage)
         end
-          table.insert(listeLvlCave,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 380, 79 + decalage) 
+        
+          local valeurCaveTempo = {}
+          valeurCaveTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurCaveTempo.idVille = i
+          table.insert(listeLvlCave, valeurCaveTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 380, 79 + decalage) 
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Opticien' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.opticien.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 425, 65 + decalage)
         end
-          table.insert(listeLvlOpticien,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 430, 79 + decalage)
+        
+          local valeurOpticienTempo = {}
+          valeurOpticienTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurOpticienTempo.idVille = i
+          table.insert(listeLvlOpticien, valeurOpticienTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 430, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Zone de test des artificiers' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.artificier.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 475, 65 + decalage)
         end
-          table.insert(listeLvlArtificiers,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 480, 79 + decalage)
+        
+          local valeurArtificierTempo = {}
+          valeurArtificierTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurArtificierTempo.idVille = i
+          table.insert(listeLvlArtificiers, valeurArtificierTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 480, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Cachette' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.cachette.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 525, 65 + decalage)
         end
-          table.insert(listeLvlCachette,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 530, 79 + decalage)
+        
+          local valeurCachetteTempo = {}
+          valeurCachetteTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurCachetteTempo.idVille = i
+          table.insert(listeLvlCachette, valeurCachetteTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 530, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Tour des alchimistes' or 
@@ -426,61 +546,84 @@ function vue:Batiments(pListeData)
       then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.alchimiste.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 575, 65 + decalage)
         end
-          table.insert(listeLvlVerrier,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 580, 79 + decalage)
+        
+          local valeurVerrierTempo = {}
+          valeurVerrierTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurVerrierTempo.idVille = i 
+          table.insert(listeLvlVerrier, valeurVerrierTempo)
+          --love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 580, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Maison forestière' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.forestiere.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 625, 65 + decalage)
         end
-        table.insert(listeLvlMaison,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 630, 79 + decalage)
+        
+          local valeurMaisonTempo = {}
+          valeurMaisonTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurMaisonTempo.idVille = i
+          table.insert(listeLvlMaison, valeurMaisonTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 630, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Taverne' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.taverne.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 675, 65 + decalage)
         end
-        table.insert(listeLvlTaverne,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 680, 79 + decalage)
+          local valeurTaverneTempo = {}
+          valeurTaverneTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurTaverneTempo.idVille = i
+          table.insert(listeLvlTaverne, valeurTaverneTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 680, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Académie' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.academie.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 725, 65 + decalage)
         end
-          table.insert(listeLvlAcademie,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 730, 79 + decalage)
+        
+          local valeurAcademieTempo = {}
+          valeurAcademieTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurAcademieTempo.idVille = i 
+          table.insert(listeLvlAcademie, valeurAcademieTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 730, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Port commercial' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.port.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 775, 65 + decalage)
         end
-          table.insert(listeLvlPort,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 780, 79 + decalage)
+        
+          local valeurPortTempo = {}
+          valeurPortTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurPortTempo.idVille = i 
+          table.insert(listeLvlPort, valeurPortTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 780, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'mur d`enceinte' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.mur.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 825, 65 + decalage)
         end
-          table.insert(listeLvlMur,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 830, 79 + decalage)
+          
+          local valeurMurTempo = {}
+          valeurMurTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurMurTempo.idVille = i
+          table.insert(listeLvlMur, valeurMurTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 830, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Entrepôt' then
@@ -489,79 +632,143 @@ function vue:Batiments(pListeData)
        -- print(nombreEntrepot.Nombre)
         local pos = nombreEntrepot.Nombre
         nombreEntrepot.Level[pos] = listeData.Villes[i]._listeBatiments[j].level
-        table.insert(listeLvlEntrepot,listeData.Villes[i]._listeBatiments[j].level)
+        
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Caserne' then
 
         if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.caserne.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+          love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 925, 65 + decalage)
         end
-          table.insert(listeLvlCaserne,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 930, 79 + decalage)
+        
+          local valeurCaserneTempo = {}
+          valeurCaserneTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurCaserneTempo.idVille = i
+          table.insert(listeLvlCaserne, valeurCaserneTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 930, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
         elseif listeData.Villes[i]._listeBatiments[j].name == 'Musée' then
 
           if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.musee.levelMax then
-            love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+            love.graphics.setColor(0, 0.5, 0, 0.7)  
             love.graphics.print("Max", 975, 65 + decalage)
           end
-            table.insert(listeLvlMusee,listeData.Villes[i]._listeBatiments[j].level)
-            love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 980, 79 + decalage)
+          
+            local valeurMuseeTempo = {}
+            valeurMuseeTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+            valeurMuseeTempo.idVille = i
+            table.insert(listeLvlMusee, valeurMuseeTempo)
+           -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 980, 79 + decalage)
             love.graphics.setColor(0,0,0)
 
         elseif listeData.Villes[i]._listeBatiments[j].name == 'Chantier naval' then
           if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.chantier.levelMax then
-            love.graphics.setColor(0.9, 0.5, 0, 0.7) 
+            love.graphics.setColor(0, 0.5, 0, 0.7) 
             love.graphics.print("Max", 1025, 65 + decalage)
           end
-            table.insert(listeLvlChantier,listeData.Villes[i]._listeBatiments[j].level)
-            love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1030, 79 + decalage)
+          
+            local valeurChantierTempo = {}
+            valeurChantierTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+            valeurChantierTempo.idVille = i
+            table.insert(listeLvlChantier, valeurChantierTempo)
+          --  love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1030, 79 + decalage)
             love.graphics.setColor(0,0,0)
+            
+        elseif listeData.Villes[i]._listeBatiments[j].name == 'Dépôt' then
 
-        elseif listeData.Villes[i]._listeBatiments[j].name == 'Comptoir' then
-          if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.comptoir.levelMax then
-            love.graphics.setColor(0.9, 0.5, 0, 0.7) 
-            love.graphics.print("Max", 1075, 65 + decalage)
-          end
-            table.insert(listeLvlComptoir,listeData.Villes[i]._listeBatiments[j].level)
-            love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1080, 79 + decalage)
-            love.graphics.setColor(0,0,0)
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Atelier' then
-
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.atelier.levelMax then
-          love.graphics.setColor(0.9, 0.5, 0, 0.7) 
-          love.graphics.print("Max", 1125, 65 + decalage)
+        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.depot.levelMax then
+          love.graphics.setColor(0, 0.5, 0, 0.7)  
+          love.graphics.print("Max", 1075, 65 + decalage)
         end
-          table.insert(listeLvlAtelier,listeData.Villes[i]._listeBatiments[j].level)
-          love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1130, 79 + decalage)
+        
+          local valeurDepotTempo = {}
+          valeurDepotTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
+          valeurDepotTempo.idVille = i
+          table.insert(listeLvlDepot, valeurDepotTempo)
+         -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 1080, 79 + decalage)
           love.graphics.setColor(0,0,0)
        
       end
 
-
     end
     
-  local levelEntrepot = 0
-  for i = 1, nombreEntrepot.Nombre do
+    local levelEntrepot = 0
+    for i = 1, nombreEntrepot.Nombre do
 
-    levelEntrepot = levelEntrepot + tonumber(nombreEntrepot.Level[i])
+      levelEntrepot = levelEntrepot + tonumber(nombreEntrepot.Level[i])
 
-  end
-
-
-    love.graphics.print(tostring(levelEntrepot), 875, 79 + decalage)
+    end
+  
+    local valeurEntreTempo = {}
+    
+    valeurEntreTempo.level = levelEntrepot
+    valeurEntreTempo.idVille = i
+   -- love.graphics.print(tostring(levelEntrepot), 875, 79 + decalage)
+    
+    table.insert(listeLvlEntrepot, valeurEntreTempo)
 
     -- Dessine la ligne après la ville
     love.graphics.setColor(0,0,0) -- noir
-    love.graphics.line(0, decalage + 100, 1162, decalage + 100)
+    love.graphics.line(0, decalage + 100, 1112, decalage + 100)
     love.graphics.setColor(r,g,b)
-    decalage = decalage+ 50
+    decalage = decalage + 50
 
    end
 
+   listeLvlHdv =          myTableauFunctions:OrdonnerListe(listeLvlHdv)
+   listeLvlResidence =    myTableauFunctions:OrdonnerListe(listeLvlResidence)
+   listeLvlMenuisier =    myTableauFunctions:OrdonnerListe(listeLvlMenuisier)
+   listeLvlBureau =       myTableauFunctions:OrdonnerListe(listeLvlBureau)
+   listeLvlCave =         myTableauFunctions:OrdonnerListe(listeLvlCave)
+   listeLvlOpticien =     myTableauFunctions:OrdonnerListe(listeLvlOpticien)
+   listeLvlArtificiers =  myTableauFunctions:OrdonnerListe(listeLvlArtificiers)
+   listeLvlCachette =     myTableauFunctions:OrdonnerListe(listeLvlCachette)
+   listeLvlVerrier =      myTableauFunctions:OrdonnerListe(listeLvlVerrier)
+   listeLvlMaison =       myTableauFunctions:OrdonnerListe(listeLvlMaison)
+   listeLvlTaverne =      myTableauFunctions:OrdonnerListe(listeLvlTaverne)
+   listeLvlAcademie =     myTableauFunctions:OrdonnerListe(listeLvlAcademie)
+   listeLvlPort =         myTableauFunctions:OrdonnerListe(listeLvlPort)
+   listeLvlMur =          myTableauFunctions:OrdonnerListe(listeLvlMur)
+   listeLvlEntrepot =     myTableauFunctions:OrdonnerListe(listeLvlEntrepot)
+   listeLvlCaserne =      myTableauFunctions:OrdonnerListe(listeLvlCaserne)
+   listeLvlMusee =        myTableauFunctions:OrdonnerListe(listeLvlMusee)
+   listeLvlChantier =     myTableauFunctions:OrdonnerListe(listeLvlChantier)
+   listeLvlDepot =        myTableauFunctions:OrdonnerListe(listeLvlDepot)
    
-    -- Dessine le Tableau
+   local tabListe = {}
+   local finalDataTableau ={}
+   local parametesTableau = {}
+   
+   tabListe[1] = listeLvlHdv
+   tabListe[2] = listeLvlResidence
+   tabListe[3] = listeLvlMenuisier
+   tabListe[4] = listeLvlBureau
+   tabListe[5] = listeLvlCave
+   tabListe[6] = listeLvlOpticien
+   tabListe[7] = listeLvlArtificiers
+   tabListe[8] = listeLvlCachette
+   tabListe[9] = listeLvlVerrier
+   tabListe[10] = listeLvlMaison
+   tabListe[11] = listeLvlTaverne
+   tabListe[12] = listeLvlAcademie
+   tabListe[13] = listeLvlPort
+   tabListe[14] = listeLvlMur
+   tabListe[15] = listeLvlEntrepot
+   tabListe[16] = listeLvlCaserne
+   tabListe[17] = listeLvlMusee
+   tabListe[18] = listeLvlChantier
+   tabListe[19] = listeLvlDepot
+   
+   finalDataTableau = myTableauFunctions:fusionListe(tabListe)
+   
+   parametesTableau = myTableauFunctions:initVariable(180, 120, 19, nombreVilles, 100, 100)
+   
+   myTableau = myTableauFunctions:nouveauTableau(parametesTableau, finalDataTableau)
+  
+   myTableau:SearchValueMaxMinColoum()
+   myTableau:draw()
+   
+  -- Dessine le Tableau
   love.graphics.setColor(0,0,0) -- noir
   love.graphics.line(165, 70, 165, decalage +50)
   love.graphics.line(212, 70, 212, decalage +50)
@@ -583,11 +790,6 @@ function vue:Batiments(pListeData)
   love.graphics.line(1012, 70, 1012, decalage +50)
   love.graphics.line(1062, 70, 1062, decalage +50)
   love.graphics.line(1112, 70, 1112, decalage +50)
-  love.graphics.line(1162, 70, 1162, decalage +50)
-  --love.graphics.line(1212, 70, 1212, decalage +50)
-  --love.graphics.line(1262, 70, 1262, decalage +50)
-  --love.graphics.line(1312, 70, 1312, decalage +50)
-  --love.graphics.line(1362, 70, 1362, decalage +50)
 
   love.graphics.setColor(r,g,b)
 

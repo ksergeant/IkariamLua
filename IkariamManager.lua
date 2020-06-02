@@ -112,9 +112,9 @@ function IkariamManager:Update(dt)
   self.myButtonRessources:Update()
   self.myButtonBatiments:Update()
   self.myButtonIles:Update()
-  self.myButtonCachette:Update()
-  self.myButtonPlans:Update()
-  self.myButtonIA:Update()
+ -- self.myButtonCachette:Update()
+ -- self.myButtonPlans:Update()
+--  self.myButtonIA:Update()
   self.myButtonQuitter:Update()
   infoScript = self:getLastReloadScript()
 
@@ -127,17 +127,18 @@ function IkariamManager:Draw()
   self.myButtonBatiments:Draw()
   self.myButtonIles:Draw()
   self.myButtonQuitter:Draw()
-  self.myButtonCachette:Draw()
-  self.myButtonPlans:Draw()
-  self.myButtonIA:Draw()
+ -- self.myButtonCachette:Draw()
+ -- self.myButtonPlans:Draw()
+ -- self.myButtonIA:Draw()
   
   local r,g,b = love.graphics.getColor() 
   love.graphics.setColor(0,0,0) -- noir
-  love.graphics.rectangle("fill", 1210, 70, 186, 615)
+ -- love.graphics.rectangle("fill", 1210, 70, 186, 615)
+  love.graphics.rectangle("fill", 1210, 70, 186, 45)
   love.graphics.setColor(0.5, 1, 0) -- vert slime
-  love.graphics.print("Dernière exécution : ", 1210, 70)
+  love.graphics.print("Dernière exécution : ", 1245, 75)
   love.graphics.print(infoScript.valueDay.."/"..infoScript.valueMonth.."/"..infoScript.valueYear
-  .." à "..infoScript.valueHour.."h", 1210, 85)
+  .." à "..infoScript.valueHour.."h", 1245, 93)
 
   love.graphics.setColor(r,g,b)
   
