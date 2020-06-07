@@ -71,17 +71,17 @@ function tableau:nouveauTableau(pParaTableau, pDataTableau)
         end
     
         decalageTempo.y = decalageTempo.y + pParaTableau[3].y
-        print("fin boucle2")
+       -- print("fin boucle2")
 
     end
 
     function tableauTempo:afficheValeur()
         for i = 1, #self.listeCases do
         
-            print("Case N°"..tostring(i))
-            print("Value:"..tostring(self.listeCases[i].value))
-            print("X:"..tostring(self.listeCases[i].x))
-            print("Y:"..tostring(self.listeCases[i].y).."\n")
+           -- print("Case N°"..tostring(i))
+          --  print("Value:"..tostring(self.listeCases[i].value))
+          --  print("X:"..tostring(self.listeCases[i].x))
+           -- print("Y:"..tostring(self.listeCases[i].y).."\n")
         
          end
     end
@@ -93,11 +93,11 @@ function tableau:nouveauTableau(pParaTableau, pDataTableau)
         for i = 1, #self.listeCases do
         
             if self.listeCases[i].max == true then
-                love.graphics.setColor(0, 0.5, 0)              
+                love.graphics.setColor(0, 0.5, 0)   -- vert           
             elseif self.listeCases[i].min == true then
-                love.graphics.setColor(1,0,0)  
+                love.graphics.setColor(1,0,0)  -- rouge
             else              
-                love.graphics.setColor(0,0,0)
+                love.graphics.setColor(0,0,0) -- noir
             end
 
             love.graphics.print(self.listeCases[i].value, self.listeCases[i].x, self.listeCases[i].y)
@@ -108,8 +108,8 @@ function tableau:nouveauTableau(pParaTableau, pDataTableau)
 
     function tableauTempo:SearchValueMaxMinColoum()
         
-        print("Nombre de Colonnes :"..tostring(self.dimensions.nbrCol))
-        print("Nombre de lignes:"..tostring(self.dimensions.nbrLig))
+       -- print("Nombre de Colonnes :"..tostring(self.dimensions.nbrCol))
+        --print("Nombre de lignes:"..tostring(self.dimensions.nbrLig))
         
         local max = 0
         local min = {}
@@ -127,8 +127,8 @@ function tableau:nouveauTableau(pParaTableau, pDataTableau)
             -- Boucle qui recherche dans la colonne
             for i2 = 1, self.dimensions.nbrLig do
 
-                print("posCase :"..tostring(posCase))
-                print("Nombre de Tour :"..tostring(nbrTour))
+               -- print("posCase :"..tostring(posCase))
+              --  print("Nombre de Tour :"..tostring(nbrTour))
                 if i2 == 1 then 
                     min = self.listeCases[posCase].value
                 end
@@ -202,7 +202,7 @@ function tableau:OrdonnerListe(plisteDesordonne)
 
   if #listeRepereVille ~=nil then
     for i = 1, #listeRepereVille do
-      print("Aucun Repere à été trouvé pour cette ville : " ..tostring(listeRepereVille[i]))
+     -- print("Aucun Repere à été trouvé pour cette ville : " ..tostring(listeRepereVille[i]))
       local miseAZero = {}
       miseAZero.level = 0
       miseAZero.idVille = listeRepereVille[i]
@@ -212,17 +212,17 @@ function tableau:OrdonnerListe(plisteDesordonne)
   
   if #listeInvalide ~=nil then
     for i = 1, #listeInvalide do
-      print("cette info est en position : " ..tostring(listeInvalide[i].anciennePos).." Hors son id de ville est "..tostring(listeInvalide[i].idVille))
+      --print("cette info est en position : " ..tostring(listeInvalide[i].anciennePos).." Hors son id de ville est "..tostring(listeInvalide[i].idVille))
       local infoValideTempo = {}
       infoValideTempo = listeInvalide[i]
       listeValideFinal[infoValideTempo.idVille] = infoValideTempo
     end
   end
   
-  print("\n--- Affichage de la liste Valide Après Formatage ---")
+  --print("\n--- Affichage de la liste Valide Après Formatage ---")
   for i = 1, #listeValideFinal do
     
-    print("cette info est en position : " ..tostring(i).." ID de la ville "..tostring(listeValideFinal[i].idVille) .." son level " ..tostring(listeValideFinal[i].level)  )
+   -- print("cette info est en position : " ..tostring(i).." ID de la ville "..tostring(listeValideFinal[i].idVille) .." son level " ..tostring(listeValideFinal[i].level)  )
   end
   
   return listeValideFinal
@@ -246,10 +246,10 @@ function tableau:fusionListe(pTabListe)
   
   end
   
-  print("\n--- Affichage de la liste Fusion Après Formatage ---")
+ -- print("\n--- Affichage de la liste Fusion Après Formatage ---")
   for i = 1, #listeDataFusionFinal do
     
-    print("level " ..tostring(listeDataFusionFinal[i]) )
+   -- print("level " ..tostring(listeDataFusionFinal[i]) )
   end
   return listeDataFusionFinal
 end

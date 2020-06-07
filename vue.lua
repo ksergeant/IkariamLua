@@ -115,11 +115,19 @@ function vue:Ressources(pListeData)
 
    local nombreVilles = #listeData.Villes
    local decalage = 40
+   
    local TotalBois = 0
    local TotalVin = 0
    local TotalMarbre = 0
    local TotalCristal = 0
    local TotalSouffre = 0
+   
+   local TotalBoisProduction = 0
+   local TotalVinProduction = 0
+   local TotalMarbreProduction = 0
+   local TotalCristalProduction = 0
+   local TotalSouffreProduction = 0
+   local TotalVinConso = 0
 
    for i = 1, nombreVilles do 
 
@@ -153,6 +161,79 @@ function vue:Ressources(pListeData)
     nbrCristal = separateurNombre(listeData.Villes[i]._nbCristal)
     nbrSouffre = separateurNombre(listeData.Villes[i]._nbSouffre)
     
+    --print("affiche luxe id : "..listeData.Villes[i]._luxeId)
+    
+    local luxeId = tonumber(listeData.Villes[i]._luxeId)
+    if luxeId == 1 then -- Ville vin
+      
+      local r,g,b = love.graphics.getColor() 
+      local productionVin = math.floor(listeData.Villes[i]._productionLuxe * 3600) - listeData.Villes[i]._consoVin
+      
+      love.graphics.setColor(0, 0.5, 0) -- vert
+      love.graphics.print("+ "..tostring(productionVin).."/h", 400, 60 + decalage)
+      love.graphics.setColor(r,g,b)
+      
+      TotalVinProduction = TotalVinProduction + productionVin
+      
+    elseif luxeId == 2 then -- Ville marbre
+      
+      local r,g,b = love.graphics.getColor() 
+      local productionMarbre = math.floor(listeData.Villes[i]._productionLuxe * 3600)
+      
+      love.graphics.setColor(0, 0.5, 0) -- vert
+      love.graphics.print("+ "..tostring(productionMarbre).."/h", 500, 60 + decalage)
+      TotalMarbreProduction = TotalMarbreProduction + productionMarbre
+      
+      local consoVin = listeData.Villes[i]._consoVin
+      
+      TotalVinConso = TotalVinConso + consoVin
+      love.graphics.setColor(1,0,0) -- rouge
+      love.graphics.print("- "..tostring(consoVin).."/h", 400, 60 + decalage)
+      love.graphics.setColor(r,g,b)
+    
+    elseif luxeId == 3 then -- Ville Cristal
+      
+      local r,g,b = love.graphics.getColor() 
+      local productionCristal = math.floor(listeData.Villes[i]._productionLuxe * 3600)
+      
+      love.graphics.setColor(0, 0.5, 0) -- vert
+      love.graphics.print("+ "..tostring(productionCristal).."/h", 600, 60 + decalage)
+      TotalCristalProduction = TotalCristalProduction + productionCristal
+      
+      local consoVin = listeData.Villes[i]._consoVin
+      TotalVinConso = TotalVinConso + consoVin
+      
+      love.graphics.setColor(1,0,0) -- rouge
+      love.graphics.print("- "..tostring(consoVin).."/h", 400, 60 + decalage)
+      love.graphics.setColor(r,g,b)
+      
+    elseif luxeId == 4 then-- Ville souffre
+      
+      local r,g,b = love.graphics.getColor() 
+      local productionSouffre = math.floor(listeData.Villes[i]._productionLuxe * 3600)
+      
+      love.graphics.setColor(0, 0.5, 0) -- vert
+      love.graphics.print("+ "..tostring(productionSouffre).."/h", 700, 60 + decalage)
+      TotalSouffreProduction = TotalSouffreProduction + productionSouffre
+      
+      local consoVin = listeData.Villes[i]._consoVin
+      TotalVinConso = TotalVinConso + consoVin
+      
+      love.graphics.setColor(1,0,0) -- rouge
+      love.graphics.print("- "..tostring(consoVin).."/h", 400, 60 + decalage)
+      love.graphics.setColor(r,g,b)
+      
+    end
+  
+  -- Affichage des données de production des villes 
+  local r2,g2,b2 = love.graphics.getColor() 
+  local productionBois = math.floor(listeData.Villes[i]._productionBois * 3600)
+  love.graphics.setColor(0, 0.5, 0) -- vert
+  love.graphics.print("+ "..tostring(productionBois).."/h", 300, 60 + decalage)
+  
+  TotalBoisProduction = TotalBoisProduction + productionBois
+  
+  love.graphics.setColor(r2,g2,b2)
     
     if (nbrBois.unites < 100) then
       love.graphics.print(nbrBois.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrBois.unites), 300, 79 + decalage)
@@ -222,7 +303,7 @@ function vue:Ressources(pListeData)
     love.graphics.line(0, decalage + 110, 980, decalage + 110)
 
     love.graphics.setColor(r,g,b)
-    decalage = decalage+ 50
+    decalage = decalage + 50
 
    end
 
@@ -250,20 +331,40 @@ function vue:Ressources(pListeData)
    TotalCristal = separateurNombre(TotalCristal)
    TotalSouffre = separateurNombre(TotalSouffre)
 
-
+ -- Affichage de production total
+  local r3,g3,b3 = love.graphics.getColor() 
+  
+  love.graphics.setColor(0, 0.5, 0) -- vert
+  love.graphics.print("+ "..tostring(TotalBoisProduction).. "/h", 300, decalage + 60)
+  love.graphics.print("+ "..tostring(TotalMarbreProduction).. "/h", 500, decalage + 60)
+  love.graphics.print("+ "..tostring(TotalCristalProduction).. "/h", 600, decalage + 60)
+  love.graphics.print("+ "..tostring(TotalSouffreProduction).. "/h", 700, decalage + 60)
+  
+  local ValeurFinalProductionVin = TotalVinProduction - TotalVinConso
+  
+  print(TotalVinProduction)
+  print(TotalVinConso)
+  print(ValeurFinalProductionVin)
+  if ValeurFinalProductionVin > 0 then
+    love.graphics.print("+ "..tostring(ValeurFinalProductionVin).. "/h", 400, decalage + 60)
+  else
+    love.graphics.setColor(1,0,0)  -- rouge
+    love.graphics.print(""..tostring(ValeurFinalProductionVin).. "/h", 400, decalage + 60)
+  end
+  love.graphics.setColor(r3,g3,b3)
   
   if TotalBois.unites <100 then
-    love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring("0") ..tostring(TotalBois.unites) , 300, decalage + 70)
+    love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring("0") ..tostring(TotalBois.unites) , 300, decalage + 79)
   else
-    love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring(TotalBois.unites) , 300, decalage + 70)
+    love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring(TotalBois.unites) , 300, decalage + 79)
   end
   
   if TotalVin.unites <100 then
-    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 70)
+    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 79)
   elseif TotalVin.milliers < 100 then
-     love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 70)
+     love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 79)
   else
-    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 70)
+    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 79)
   end
   --[[
    if (TotalVin.unites <100) then
@@ -274,22 +375,22 @@ function vue:Ressources(pListeData)
    ]]--
    
    if (TotalMarbre.unites < 100) then
-    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.unites), 500, decalage + 70)
+    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.unites), 500, decalage + 79)
   else
-    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 500, decalage + 70)
+    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 500, decalage + 79)
   end
   
   
   if (TotalCristal.unites < 100) then
-    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 600, decalage + 70)
+    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 600, decalage + 79)
   else
-    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 600, decalage + 70)
+    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 600, decalage + 79)
   end
   
   if (TotalSouffre.unites < 100) then
-    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 700, decalage + 70)
+    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 700, decalage + 79)
   else
-    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 700, decalage + 70)
+    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 700, decalage + 79)
   end
 
    love.graphics.setColor(r,g,b)

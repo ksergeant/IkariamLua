@@ -16,6 +16,9 @@ local listeJson = {}
 
 local infoScript = {}
 
+fontClassique = love.graphics.getFont()
+fontCopy = love.graphics.setNewFont("KenPixelNova.ttf",40)
+
 function IkariamManager:getLastReloadScript()
   
   local info = love.filesystem.getInfo("Villes/Ville1.json")
@@ -96,9 +99,8 @@ ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 IkariamManager.myButtonIA = FunctionButton:Create("IA", "buttonIA", 980, 5, FunctionEvent.IA, 
 ImageButtonBeige, ImageButtonBeigePressed, ImageCurseur, 82, 15)
 
-IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1208, 700, FunctionEvent.Quitter, 
+IkariamManager.myButtonQuitter = FunctionButton:Create("Quitter", "buttonQuitter", 1208, 130, FunctionEvent.Quitter, 
 ImageButtonBlue, ImageButtonBluePressed, ImageCurseur, 72, 15)
-
 
 function IkariamManager:Load()
   
@@ -122,6 +124,9 @@ end
 
 function IkariamManager:Draw()
   
+  love.graphics.setFont(fontCopy)
+  love.graphics.print("by   Moks", 1330, 770)
+  love.graphics.setFont(fontClassique)
   self.myButtonDemarrer:Draw()
   self.myButtonRessources:Draw()
   self.myButtonBatiments:Draw()
@@ -142,8 +147,8 @@ function IkariamManager:Draw()
 
   love.graphics.setColor(r,g,b)
   
-  love.graphics.print("by Moks", 1300, 770)
   
+   
  if (self.myVueCourante =="Accueil") then
     FunctionVue:Accueil()
 
@@ -178,7 +183,7 @@ function IkariamManager:Draw()
     FunctionVue:IA(self.myTraitement)
     
  end
-
+  
 end
 
 return IkariamManager
