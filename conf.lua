@@ -7,7 +7,6 @@ function love.conf(t)
     t.window.y = 0
     t.window.display = 1
     t.window.resizable = false
-    t.window.icon = "Images/Cristal.png"
     t.window.title = "IkariamLua by Moks"
   end
 

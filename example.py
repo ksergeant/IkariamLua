@@ -63,7 +63,7 @@ def Traitement(url, fichier):
 def Connexion():
     
     driver.get('https://lobby.ikariam.gameforge.com/fr_FR/')
-
+    time.sleep(2)
     driver.find_element_by_xpath("""//*[@id="loginRegisterTabs"]/ul/li[1]/span""").click() # se connecter
 
     search_box = driver.find_element_by_name('email')
