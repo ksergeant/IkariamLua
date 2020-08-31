@@ -40,7 +40,7 @@ for i = 1, nombreVilles do
     villeTempo._productionLuxe = villeDecodeTempo[1][2]['headerData']['tradegoodProduction']
     villeTempo._luxeId = villeDecodeTempo[1][2]['headerData']['producedTradegood']
     villeTempo._consoVin = villeDecodeTempo[1][2]['headerData']['wineSpendings']
-
+  
     -- Boucle qui ajoute tous les batiments à la ville
     for j = 1, #villeDecodeTempo[1][2]['backgroundData']['position'] do
   

@@ -85,19 +85,21 @@ function vue:Ressources(pListeData)
   local r,g,b = love.graphics.getColor() 
   love.graphics.setColor(0,0,0)
 
-  love.graphics.line(0, 70, 980, 70)
+  love.graphics.line(0, 70, 1165, 70)
   love.graphics.print("VILLES", 115, 78)
-  love.graphics.line(0, 100, 980, 100)
+  love.graphics.line(0, 100, 1165, 100)
  
   love.graphics.setColor(r,g,b)
 
   local imageBois = FunctionPicture:Create("Bois", 313, 70,  "Images/Bois.png", 1,1)
-  local imageVin = FunctionPicture:Create("Vin", 413, 70,  "Images/Vin.png",1,1)
-  local imageMarbre = FunctionPicture:Create("Marbre", 513, 70,  "Images/Marbre.png",1,1)
-  local imageCristal = FunctionPicture:Create("Cristal", 613, 70,  "Images/Cristal.png", 1,1)
-  local imageSouffre = FunctionPicture:Create("Souffre", 713, 70,  "Images/Souffre.png",1,1)
-  local imageUpdate = FunctionPicture:Create("Update", 813, 70,  "Images/Update.png",1,1)
-  local imageOr = FunctionPicture:Create("Or", 913, 70,  "Images/Or.png",1,1)
+  local imageEntrepotBois= FunctionPicture:Create("Entrepot", 356, 70,  "Images/Entrepot.png",1,1)
+  local imageVin = FunctionPicture:Create("Vin", 713, 70,  "Images/Vin.png",1,1)
+  local imageMarbre = FunctionPicture:Create("Marbre", 813, 70,  "Images/Marbre.png",1,1)
+  local imageCristal = FunctionPicture:Create("Cristal", 913, 70,  "Images/Cristal.png", 1,1)
+  local imageSouffre = FunctionPicture:Create("Souffre", 1013, 70,  "Images/Souffre.png",1,1)
+  local imageUpdate = FunctionPicture:Create("Update", 1113, 72,  "Images/Update.png",1,1)
+  
+  
   local listeData = pListeData
 
   local imageVilleSouffre = love.graphics.newImage("Images/Souffre.png")
@@ -106,12 +108,14 @@ function vue:Ressources(pListeData)
   local imageVilleVin = love.graphics.newImage("Images/Vin.png")
 
   imageBois:Draw()
+  imageEntrepotBois:Draw()
+  
   imageVin:Draw()
   imageMarbre:Draw()
   imageCristal:Draw()
   imageSouffre:Draw()
-  imageOr:Draw()
   imageUpdate:Draw()
+  
 
    local nombreVilles = #listeData.Villes
    local decalage = 40
@@ -130,6 +134,7 @@ function vue:Ressources(pListeData)
    local TotalVinConso = 0
 
    for i = 1, nombreVilles do 
+
 
     local r,g,b = love.graphics.getColor() 
 
@@ -161,6 +166,24 @@ function vue:Ressources(pListeData)
     nbrCristal = separateurNombre(listeData.Villes[i]._nbCristal)
     nbrSouffre = separateurNombre(listeData.Villes[i]._nbSouffre)
     
+    -- Calcul pourcentage
+    
+    maxRessource = tonumber(listeData.Villes[i]._entrepotMax)
+    pourcentageBois = math.floor((tonumber(listeData.Villes[i]._nbBois) / maxRessource)*100)
+    ManqueBois= maxRessource - tonumber(listeData.Villes[i]._nbBois)
+    
+    pourcentageVin = math.floor((tonumber(listeData.Villes[i]._nbVin) / maxRessource)*100)
+    ManqueVin= maxRessource - tonumber(listeData.Villes[i]._nbVin)
+    
+    pourcentageMarbre = math.floor((tonumber(listeData.Villes[i]._nbMarbre) / maxRessource)*100)
+    ManqueMarbre= maxRessource - tonumber(listeData.Villes[i]._nbMarbre)
+    
+    pourcentageCristal = math.floor((tonumber(listeData.Villes[i]._nbCristal) / maxRessource)*100)
+    ManqueCristal= maxRessource - tonumber(listeData.Villes[i]._nbCristal)
+    
+    pourcentageSouffre = math.floor((tonumber(listeData.Villes[i]._nbSouffre) / maxRessource)*100)
+    ManqueSouffre= maxRessource - tonumber(listeData.Villes[i]._nbSouffre)
+    
     --print("affiche luxe id : "..listeData.Villes[i]._luxeId)
     
     local luxeId = tonumber(listeData.Villes[i]._luxeId)
@@ -170,7 +193,7 @@ function vue:Ressources(pListeData)
       local productionVin = math.floor(listeData.Villes[i]._productionLuxe * 3600) - listeData.Villes[i]._consoVin
       
       love.graphics.setColor(0, 0.5, 0) -- vert
-      love.graphics.print("+ "..tostring(productionVin).."/h", 400, 60 + decalage)
+      love.graphics.print("+ "..tostring(productionVin).."/h", 800, 60 + decalage)
       love.graphics.setColor(r,g,b)
       
       TotalVinProduction = TotalVinProduction + productionVin
@@ -181,14 +204,14 @@ function vue:Ressources(pListeData)
       local productionMarbre = math.floor(listeData.Villes[i]._productionLuxe * 3600)
       
       love.graphics.setColor(0, 0.5, 0) -- vert
-      love.graphics.print("+ "..tostring(productionMarbre).."/h", 500, 60 + decalage)
+      love.graphics.print("+ "..tostring(productionMarbre).."/h", 900, 60 + decalage)
       TotalMarbreProduction = TotalMarbreProduction + productionMarbre
       
       local consoVin = listeData.Villes[i]._consoVin
       
       TotalVinConso = TotalVinConso + consoVin
       love.graphics.setColor(1,0,0) -- rouge
-      love.graphics.print("- "..tostring(consoVin).."/h", 400, 60 + decalage)
+      love.graphics.print("- "..tostring(consoVin).."/h", 800, 60 + decalage)
       love.graphics.setColor(r,g,b)
     
     elseif luxeId == 3 then -- Ville Cristal
@@ -197,14 +220,14 @@ function vue:Ressources(pListeData)
       local productionCristal = math.floor(listeData.Villes[i]._productionLuxe * 3600)
       
       love.graphics.setColor(0, 0.5, 0) -- vert
-      love.graphics.print("+ "..tostring(productionCristal).."/h", 600, 60 + decalage)
+      love.graphics.print("+ "..tostring(productionCristal).."/h", 1000, 60 + decalage)
       TotalCristalProduction = TotalCristalProduction + productionCristal
       
       local consoVin = listeData.Villes[i]._consoVin
       TotalVinConso = TotalVinConso + consoVin
       
       love.graphics.setColor(1,0,0) -- rouge
-      love.graphics.print("- "..tostring(consoVin).."/h", 400, 60 + decalage)
+      love.graphics.print("- "..tostring(consoVin).."/h", 800, 60 + decalage)
       love.graphics.setColor(r,g,b)
       
     elseif luxeId == 4 then-- Ville souffre
@@ -213,14 +236,14 @@ function vue:Ressources(pListeData)
       local productionSouffre = math.floor(listeData.Villes[i]._productionLuxe * 3600)
       
       love.graphics.setColor(0, 0.5, 0) -- vert
-      love.graphics.print("+ "..tostring(productionSouffre).."/h", 700, 60 + decalage)
+      love.graphics.print("+ "..tostring(productionSouffre).."/h", 1100, 60 + decalage)
       TotalSouffreProduction = TotalSouffreProduction + productionSouffre
       
       local consoVin = listeData.Villes[i]._consoVin
       TotalVinConso = TotalVinConso + consoVin
       
       love.graphics.setColor(1,0,0) -- rouge
-      love.graphics.print("- "..tostring(consoVin).."/h", 400, 60 + decalage)
+      love.graphics.print("- "..tostring(consoVin).."/h", 800, 60 + decalage)
       love.graphics.setColor(r,g,b)
       
     end
@@ -234,7 +257,10 @@ function vue:Ressources(pListeData)
   TotalBoisProduction = TotalBoisProduction + productionBois
   
   love.graphics.setColor(r2,g2,b2)
-    
+  
+  love.graphics.print(pourcentageBois ..tostring("%"), 385, 62 + decalage)
+  
+  love.graphics.print(tostring("-")..tostring(ManqueBois), 380, 95 +decalage)
     if (nbrBois.unites < 100) then
       love.graphics.print(nbrBois.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrBois.unites), 300, 79 + decalage)
       
@@ -243,36 +269,36 @@ function vue:Ressources(pListeData)
     end
     
     if (nbrVin.unites < 100) then
-      love.graphics.print(nbrVin.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrVin.unites), 400, 79 + decalage)
+      love.graphics.print(nbrVin.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrVin.unites), 700, 79 + decalage)
       
     else
-      love.graphics.print(nbrVin.milliers ..tostring(" ") ..tostring(nbrVin.unites), 400, 79 + decalage)
+      love.graphics.print(nbrVin.milliers ..tostring(" ") ..tostring(nbrVin.unites), 700, 79 + decalage)
     end
     
     if (nbrMarbre.unites < 100) then
-      love.graphics.print(nbrMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrMarbre.unites), 500, 79 + decalage)
+      love.graphics.print(nbrMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrMarbre.unites), 800, 79 + decalage)
       
     else
-      love.graphics.print(nbrMarbre.milliers ..tostring(" ") ..tostring(nbrMarbre.unites), 500, 79 + decalage)
+      love.graphics.print(nbrMarbre.milliers ..tostring(" ") ..tostring(nbrMarbre.unites), 800, 79 + decalage)
     end
     
     if (nbrCristal.unites < 100 ) then
-      love.graphics.print(nbrCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrCristal.unites), 600, 79 + decalage)
+      love.graphics.print(nbrCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrCristal.unites), 900, 79 + decalage)
       
     else
       if (nbrCristal.milliers < 1) then
-      love.graphics.print(tostring(nbrCristal.unites), 600, 79 + decalage)
+      love.graphics.print(tostring(nbrCristal.unites), 900, 79 + decalage)
       
       else
-      love.graphics.print(nbrCristal.milliers ..tostring(" ") ..tostring(nbrCristal.unites), 600, 79 + decalage)
+      love.graphics.print(nbrCristal.milliers ..tostring(" ") ..tostring(nbrCristal.unites), 900, 79 + decalage)
       end
     end
     
     if (nbrSouffre.unites < 100) then
-      love.graphics.print(nbrSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrSouffre.unites), 700, 79 + decalage)
+      love.graphics.print(nbrSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(nbrSouffre.unites), 1000, 79 + decalage)
       
     else
-      love.graphics.print(nbrSouffre.milliers ..tostring(" ") ..tostring(nbrSouffre.unites), 700, 79 + decalage)
+      love.graphics.print(nbrSouffre.milliers ..tostring(" ") ..tostring(nbrSouffre.unites), 1000, 79 + decalage)
     end
     
     --love.graphics.print(listeData.Villes[i]._nbVin, 400, 79 + decalage)
@@ -285,13 +311,13 @@ function vue:Ressources(pListeData)
       ts = listeData.Villes[i]._update - ts - 3600
       
       if (ts > 0) then
-        love.graphics.print(os.date('%H:%M:%S', ts), 800, 79 + decalage)
+        love.graphics.print(os.date('%H:%M:%S', ts), 1100, 79 + decalage)
       else
-        love.graphics.print("Aucune", 800, 79 + decalage)
+        love.graphics.print("Aucune", 1100, 79 + decalage)
       end
 
     else 
-      love.graphics.print("Aucune", 800, 79 + decalage)
+      love.graphics.print("Aucune", 1100, 79 + decalage)
     end
 
     TotalBois = TotalBois + listeData.Villes[i]._nbBois
@@ -300,9 +326,251 @@ function vue:Ressources(pListeData)
     TotalCristal = TotalCristal + listeData.Villes[i]._nbCristal
     TotalSouffre = TotalSouffre + listeData.Villes[i]._nbSouffre
     
-    love.graphics.line(0, decalage + 110, 980, decalage + 110)
+    love.graphics.line(0, decalage + 110, 1113, decalage + 110)
 
     love.graphics.setColor(r,g,b)
+    
+   
+   -- GESTION JAUGE 
+   
+    local imageJaugeVideBasBois = love.graphics.newImage("adventure_pack/PNG/barBack_verticalBottom.png")
+    local imageJaugeVideMidBois = love.graphics.newImage("adventure_pack/PNG/barBack_verticalMid.png")
+    local imageJaugeVideTopBois = love.graphics.newImage("adventure_pack/PNG/barBack_verticalTop.png")
+  
+    love.graphics.draw(imageJaugeVideTopBois, 360, 61 + decalage, 0)
+    love.graphics.draw(imageJaugeVideMidBois, 360, 70 + decalage, 0, 1, 1.639, 0)
+    love.graphics.draw(imageJaugeVideBasBois, 360, 100 + decalage,0)
+    
+   local pourcentageJaugeBois = tonumber(pourcentageBois)
+   --local pourcentageTest = 100
+   local pourcentageQuad = pourcentageJaugeBois * 0.36
+   
+   local posXDepartQuad = 0
+   local posYDepartQuad = 36 - pourcentageQuad -- Max 36
+  
+   local largeurQuad = 18
+   local hauteurQuad = pourcentageQuad -- Max 36
+   
+  if(pourcentageJaugeBois >= 50) then 
+       imageJaugeFullBois = love.graphics.newImage("adventure_pack/modif/FullJaugeVert.png")
+  elseif(pourcentageJaugeBois >= 20) then
+       imageJaugeFullBois = love.graphics.newImage("adventure_pack/modif/FullJaugeJaune.png")
+  else
+       imageJaugeFullBois = love.graphics.newImage("adventure_pack/modif/FullJaugeRouge.png")
+  end
+   
+   local quadJauge = love.graphics.newQuad(posXDepartQuad, posYDepartQuad, largeurQuad, hauteurQuad, imageJaugeFullBois:getDimensions())
+   
+   if (pourcentageJaugeBois == 1) then
+      posJauge = 48
+   elseif(pourcentageJaugeBois == 2)then
+       posJauge = 48
+   elseif(pourcentageJaugeBois == 3)then
+       posJauge = 48
+   elseif(pourcentageJaugeBois == 4)then
+       posJauge = 48
+   elseif(pourcentageJaugeBois == 5)then
+       posJauge = 47
+     elseif(pourcentageJaugeBois == 6)then
+       posJauge = 47
+     elseif(pourcentageJaugeBois == 7)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 8)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 9)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 10)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 11)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 12)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 13)then
+       posJauge = 47
+        elseif(pourcentageJaugeBois == 14)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 15)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 16)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 17)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 18)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 19)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 20)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 21)then
+       posJauge = 46
+        elseif(pourcentageJaugeBois == 22)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 23)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 24)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 25)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 26)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 27)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 28)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 29)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 30)then
+       posJauge = 45
+        elseif(pourcentageJaugeBois == 31)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 32)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 33)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 34)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 35)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 36)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 37)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 38)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 39)then
+       posJauge = 44
+        elseif(pourcentageJaugeBois == 40)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 41)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 42)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 43)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 44)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 45)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 46)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 47)then
+       posJauge = 43
+        elseif(pourcentageJaugeBois == 48)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 49)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 50)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 51)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 52)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 53)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 54)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 55)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 56)then
+       posJauge = 42
+        elseif(pourcentageJaugeBois == 57)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 58)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 59)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 60)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 61)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 62)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 63)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 64)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 65)then
+       posJauge = 41
+        elseif(pourcentageJaugeBois == 66)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 67)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 68)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 69)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 70)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 71)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 72)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 73)then
+       posJauge = 40
+        elseif(pourcentageJaugeBois == 74)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 75)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 76)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 77)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 78)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 79)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 80)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 81)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 82)then
+       posJauge = 39
+        elseif(pourcentageJaugeBois == 83)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 84)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 85)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 86)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 87)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 88)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 89)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 90)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 91)then
+       posJauge = 38
+        elseif(pourcentageJaugeBois == 92)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 93)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 94)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 95)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 96)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 97)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 98)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 99)then
+       posJauge = 37
+        elseif(pourcentageJaugeBois == 100)then
+       posJauge = 36
+       
+     else 
+       posJauge = 36
+   end
+   
+   local maxPosJauge = posJauge - pourcentageQuad
+   love.graphics.draw(imageJaugeFullBois, quadJauge, 360, 61 + decalage + maxPosJauge, 0, 1, 1.32)
+    
+    
+    
     decalage = decalage + 50
 
    end
@@ -314,13 +582,13 @@ function vue:Ressources(pListeData)
 
     -- Dessine le Tableau
   love.graphics.line(280, 70, 280, decalage + 100)
-  love.graphics.line(380, 70, 380, decalage + 100)
-  love.graphics.line(480, 70, 480, decalage + 100)
-  love.graphics.line(580, 70, 580, decalage + 100)
-  love.graphics.line(680, 70, 680, decalage + 100)
-  love.graphics.line(780, 70, 780, decalage + 100)
-  love.graphics.line(880, 70, 880, decalage + 100)
-  love.graphics.line(980, 70, 980, decalage + 100)
+  --love.graphics.line(380, 70, 380, decalage + 100)
+  --love.graphics.line(480, 70, 480, decalage + 100)
+  --love.graphics.line(580, 70, 580, decalage + 100)
+  --love.graphics.line(680, 70, 680, decalage + 100)
+  --love.graphics.line(780, 70, 780, decalage + 100)
+  --love.graphics.line(880, 70, 880, decalage + 100)
+  --love.graphics.line(980, 70, 980, decalage + 100)
 
    love.graphics.setColor(0.3,0,0) -- bleu foncé
 
@@ -336,9 +604,9 @@ function vue:Ressources(pListeData)
   
   love.graphics.setColor(0, 0.5, 0) -- vert
   love.graphics.print("+ "..tostring(TotalBoisProduction).. "/h", 300, decalage + 60)
-  love.graphics.print("+ "..tostring(TotalMarbreProduction).. "/h", 500, decalage + 60)
-  love.graphics.print("+ "..tostring(TotalCristalProduction).. "/h", 600, decalage + 60)
-  love.graphics.print("+ "..tostring(TotalSouffreProduction).. "/h", 700, decalage + 60)
+  love.graphics.print("+ "..tostring(TotalMarbreProduction).. "/h", 900, decalage + 60)
+  love.graphics.print("+ "..tostring(TotalCristalProduction).. "/h", 1000, decalage + 60)
+  love.graphics.print("+ "..tostring(TotalSouffreProduction).. "/h", 1100, decalage + 60)
   
   local ValeurFinalProductionVin = TotalVinProduction - TotalVinConso
   
@@ -346,10 +614,10 @@ function vue:Ressources(pListeData)
   print(TotalVinConso)
   print(ValeurFinalProductionVin)
   if ValeurFinalProductionVin > 0 then
-    love.graphics.print("+ "..tostring(ValeurFinalProductionVin).. "/h", 400, decalage + 60)
+    love.graphics.print("+ "..tostring(ValeurFinalProductionVin).. "/h", 800, decalage + 60)
   else
     love.graphics.setColor(1,0,0)  -- rouge
-    love.graphics.print(""..tostring(ValeurFinalProductionVin).. "/h", 400, decalage + 60)
+    love.graphics.print(""..tostring(ValeurFinalProductionVin).. "/h", 800, decalage + 60)
   end
   love.graphics.setColor(r3,g3,b3)
   
@@ -360,11 +628,11 @@ function vue:Ressources(pListeData)
   end
   
   if TotalVin.unites <100 then
-    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 79)
+    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 800, decalage + 79)
   elseif TotalVin.milliers < 100 then
-     love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 79)
+     love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 800, decalage + 79)
   else
-    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 400, decalage + 79)
+    love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 800, decalage + 79)
   end
   --[[
    if (TotalVin.unites <100) then
@@ -375,22 +643,22 @@ function vue:Ressources(pListeData)
    ]]--
    
    if (TotalMarbre.unites < 100) then
-    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.unites), 500, decalage + 79)
+    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.unites), 900, decalage + 79)
   else
-    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 500, decalage + 79)
+    love.graphics.print(TotalMarbre.milliers ..tostring(" ") ..tostring(TotalMarbre.unites), 900, decalage + 79)
   end
   
   
   if (TotalCristal.unites < 100) then
-    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 600, decalage + 79)
+    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 1000, decalage + 79)
   else
-    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 600, decalage + 79)
+    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 1000, decalage + 79)
   end
   
   if (TotalSouffre.unites < 100) then
-    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 700, decalage + 79)
+    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 1100, decalage + 79)
   else
-    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 700, decalage + 79)
+    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 1100, decalage + 79)
   end
 
    love.graphics.setColor(r,g,b)
