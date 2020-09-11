@@ -22,32 +22,36 @@ fontCopy = love.graphics.setNewFont("KenPixelNova.ttf",40)
 function IkariamManager:getLastReloadScript()
   
   local info = love.filesystem.getInfo("Villes/Ville1.json")
-  
-  local temp = os.date("*t", info.modtime)
-  
-  local valueVueDay = tostring(temp.day)
-  local valueVueMonth = tostring(temp.month)
-  local valueVueHour = tostring(temp.hour)
-  local valueVueYear = tostring(temp.year)
-  
   local allValueScript = {}
   
-  if (temp.day <10) then
-    valueVueDay = "0"..tostring(valueVueDay)
-  end
-
-  if (temp.month <10) then
-    valueVueMonth = "0"..tostring(valueVueMonth)
-  end
-
-  if (temp.hour <10) then
-    valueVueHour ="0"..tostring(valueVueHour)
-  end
+  if info ~=nil then
+    local temp = os.date("*t", info.modtime)
   
-  allValueScript.valueDay = valueVueDay
-  allValueScript.valueMonth = valueVueMonth
-  allValueScript.valueHour = valueVueHour
-  allValueScript.valueYear = valueVueYear
+    local valueVueDay = tostring(temp.day)
+    local valueVueMonth = tostring(temp.month)
+    local valueVueHour = tostring(temp.hour)
+    local valueVueYear = tostring(temp.year)
+  
+    if (temp.day <10) then
+      valueVueDay = "0"..tostring(valueVueDay)
+    end
+
+    if (temp.month <10) then
+      valueVueMonth = "0"..tostring(valueVueMonth)
+    end
+
+    if (temp.hour <10) then
+      valueVueHour ="0"..tostring(valueVueHour)
+    end
+  
+    allValueScript.valueDay = valueVueDay
+    allValueScript.valueMonth = valueVueMonth
+    allValueScript.valueHour = valueVueHour
+    allValueScript.valueYear = valueVueYear
+  
+  else 
+    allValueScript = "Aucune informations"
+  end
   
   return allValueScript
   
@@ -142,8 +146,13 @@ function IkariamManager:Draw()
   love.graphics.rectangle("fill", 1210, 70, 186, 45)
   love.graphics.setColor(0.5, 1, 0) -- vert slime
   love.graphics.print("Dernière exécution : ", 1245, 75)
-  love.graphics.print(infoScript.valueDay.."/"..infoScript.valueMonth.."/"..infoScript.valueYear
-  .." à "..infoScript.valueHour.."h", 1245, 93)
+  
+  if infoScript ~= "Aucune informations" then
+    love.graphics.print(infoScript.valueDay.."/"..infoScript.valueMonth.."/"..infoScript.valueYear
+    .." à "..infoScript.valueHour.."h", 1245, 93)
+  else
+    love.graphics.print(infoScript, 1245, 93)
+  end
 
   love.graphics.setColor(r,g,b)
   

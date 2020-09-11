@@ -95,19 +95,19 @@ function vue:Ressources(pListeData)
   -- 50 le decalge entrepot
 
   local imageBois = FunctionPicture:Create("Bois", 330, 70,  "Images/Bois.png", 1,1)
- -- local imageEntrepotBois = FunctionPicture:Create("Entrepot", 363, 70,  "Images/Entrepot.png",1,1)
+  --local imageEntrepotBois = FunctionPicture:Create("Entrepot", 363, 70,  "Images/Entrepot.png",1,1)
   
   local imageVin = FunctionPicture:Create("Vin", 475, 70,  "Images/Vin.png",1,1)
  -- local imageEntrepotVin = FunctionPicture:Create("Entrepot", 525, 70,  "Images/Entrepot.png",1,1)
   
   local imageMarbre = FunctionPicture:Create("Marbre", 620, 70,  "Images/Marbre.png",1,1)
---  local imageEntrepotMarbre = FunctionPicture:Create("Entrepot", 692, 70,  "Images/Entrepot.png",1,1)
+  --local imageEntrepotMarbre = FunctionPicture:Create("Entrepot", 692, 70,  "Images/Entrepot.png",1,1)
   
   local imageCristal = FunctionPicture:Create("Cristal", 765, 70,  "Images/Cristal.png", 1,1)
---  local imageEntrepotCristal = FunctionPicture:Create("Entrepot", 859, 70,  "Images/Entrepot.png",1,1)
+  --local imageEntrepotCristal = FunctionPicture:Create("Entrepot", 859, 70,  "Images/Entrepot.png",1,1)
   
   local imageSouffre = FunctionPicture:Create("Souffre", 910, 70,  "Images/Souffre.png",1,1)
---  local imageEntrepotSouffre = FunctionPicture:Create("Entrepot", 1026, 70,  "Images/Entrepot.png",1,1)
+ -- local imageEntrepotSouffre = FunctionPicture:Create("Entrepot", 1026, 70,  "Images/Entrepot.png",1,1)
   
   local imageUpdate = FunctionPicture:Create("Update", 1055, 72,  "Images/Update.png",1,1)
   
@@ -123,13 +123,13 @@ function vue:Ressources(pListeData)
   --imageEntrepotBois:Draw()
   
   imageVin:Draw()
- -- imageEntrepotVin:Draw()
+  --imageEntrepotVin:Draw()
   
   imageMarbre:Draw()
- -- imageEntrepotMarbre:Draw()
+  --imageEntrepotMarbre:Draw()
   
   imageCristal:Draw()
- -- imageEntrepotCristal:Draw()
+  --imageEntrepotCristal:Draw()
   
   imageSouffre:Draw()
   --imageEntrepotSouffre:Draw()
@@ -816,7 +816,7 @@ function vue:Ressources(pListeData)
     love.graphics.print(tostring(TotalBois.millions) ..tostring(" ") ..tostring(TotalBois.milliers) ..tostring(" ") ..tostring(TotalBois.unites) , 310, decalage + 83)
   end
   
-  if TotalVin.unites <100 then
+  if TotalVin.unites < 100 then
     love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 455, decalage + 79)
   elseif TotalVin.milliers < 100 then
      love.graphics.print(tostring(TotalVin.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalVin.milliers) ..tostring(" ") ..tostring(TotalVin.unites) , 455, decalage + 79)
@@ -833,7 +833,7 @@ function vue:Ressources(pListeData)
    
    if (TotalMarbre.unites < 100) then
     love.graphics.print(tostring(TotalMarbre.millions) ..tostring(" ") ..tostring(TotalMarbre.milliers) ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.unites), 600, decalage + 79)
-  elseif TotalMarbre.milliers <100 then
+  elseif TotalMarbre.milliers < 100 then
     love.graphics.print(tostring(TotalMarbre.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalMarbre.milliers) ..tostring(" ") ..tostring(TotalMarbre.unites), 600, decalage + 79)
    else
    love.graphics.print(tostring(TotalMarbre.millions) ..tostring(" ") ..tostring(TotalMarbre.milliers) ..tostring(" ") ..tostring(TotalMarbre.unites), 600, decalage + 79)
@@ -841,15 +841,19 @@ function vue:Ressources(pListeData)
   
   
   if (TotalCristal.unites < 100) then
-    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 745, decalage + 79)
+    love.graphics.print(tostring(TotalCristal.millions) ..tostring(" ") ..tostring(TotalCristal.milliers) ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.unites), 745, decalage + 79)
+  elseif TotalCristal.milliers < 100 then
+    love.graphics.print(tostring(TotalCristal.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalCristal.milliers) ..tostring(" ") ..tostring(TotalCristal.unites), 745, decalage + 79)
   else
-    love.graphics.print(TotalCristal.milliers ..tostring(" ") ..tostring(TotalCristal.unites), 745, decalage + 79)
+    love.graphics.print(tostring(TotalCristal.millions) ..tostring(" ") ..tostring(TotalCristal.milliers) ..tostring(" ") ..tostring(TotalCristal.unites), 745, decalage + 79)
   end
   
   if (TotalSouffre.unites < 100) then
-    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 890, decalage + 79)
+    love.graphics.print(tostring(TotalSouffre.millions) ..tostring(" ") ..tostring(TotalSouffre.milliers) ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.unites), 890, decalage + 79)
+  elseif TotalSouffre.milliers < 100 then
+     love.graphics.print(tostring(TotalSouffre.millions) ..tostring(" ") ..tostring("0") ..tostring(TotalSouffre.milliers) ..tostring(" ") ..tostring(TotalSouffre.unites), 890, decalage + 79)
   else
-    love.graphics.print(TotalSouffre.milliers ..tostring(" ") ..tostring(TotalSouffre.unites), 890, decalage + 79)
+    love.graphics.print(tostring(TotalSouffre.millions) ..tostring(" ") ..tostring(TotalSouffre.milliers) ..tostring(" ") ..tostring(TotalSouffre.unites), 890, decalage + 79)
   end
 
    love.graphics.setColor(r,g,b)
@@ -877,13 +881,15 @@ function vue:Batiments(pListeData)
   local imageAcademie= FunctionPicture:Create("Academie", 720, 70,  "Images/Academie.png",1,1)
   local imagePort= FunctionPicture:Create("Port", 770, 70,  "Images/Port.png",1,1)
   local imageMur= FunctionPicture:Create("Mur", 820, 70,  "Images/Mur.png",1,1)
-  local imageEntrepot= FunctionPicture:Create("Entrepot", 870, 70,  "Images/Entrepot.png",1,1)
-  local imageCaserne= FunctionPicture:Create("Caserne", 920, 70,  "Images/Caserne.png",1,1)
-  local imageMusee= FunctionPicture:Create("Musee", 970, 70,  "Images/Musee.png",1,1)
-  local imageChantier= FunctionPicture:Create("Chantier", 1020, 70,  "Images/Chantier.png",1,1)
+  local imageEntrepot= FunctionPicture:Create("Entrepot", 870, 70, "Images/Entrepot.png",1,1)
+  local imageCaserne= FunctionPicture:Create("Caserne", 920, 70, "Images/Caserne.png",1,1)
+  local imageMusee= FunctionPicture:Create("Musee", 970, 70, "Images/Musee.png",1,1)
+  local imageChantier= FunctionPicture:Create("Chantier", 1020, 70, "Images/Chantier.png",1,1)
   --local imageComptoir= FunctionPicture:Create("Comptoir", 1070, 70,  "Images/Comptoir.png",1,1)
   --local imageAtelier= FunctionPicture:Create("Atelier", 1120, 70,  "Images/Atelier.png",1,1)
   local imageDepot= FunctionPicture:Create("Depot", 1070, 70, "Images/Depot.png", 1,1)
+  
+  local imageUpBatiment = FunctionPicture:Create("UpBatiment", 0, 0, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
 
   -- Affichage des images
   imageHDV:Draw()
@@ -961,7 +967,7 @@ function vue:Batiments(pListeData)
     end
   
     if i == 2 or i == 5 or i == 6 then 
-      love.graphics.draw(imageVilleMarbre, 30, 70 + decalage)
+     love.graphics.draw(imageVilleMarbre, 30, 70 + decalage)
     end
   
     if i == 3 or i == 8 or i == 9 then 
@@ -992,6 +998,20 @@ function vue:Batiments(pListeData)
       
       if listeData.Villes[i]._listeBatiments[j].name == 'Hôtel de ville' then
 
+         if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentHDV = FunctionPicture:Create("UpBatiment", 180, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentHDV:Draw()
+          
+        end
+        
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
+          love.graphics.setColor(0, 0.5, 0, 0.7) 
+          love.graphics.print("Max", 180, 65 + decalage)
+          
+        end
+        
         --love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 180, 79 + decalage)
         local valeurHdvTempo = {}
         valeurHdvTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
@@ -1002,7 +1022,15 @@ function vue:Batiments(pListeData)
              listeData.Villes[i]._listeBatiments[j].name == 'Palais' 
       then
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.residence.levelMax then
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+        imageUpBatimentPalais = FunctionPicture:Create("UpBatiment", 230, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+        imageUpBatimentPalais:Draw()
+          
+      end
+
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 225, 65 + decalage)
         end
@@ -1014,10 +1042,17 @@ function vue:Batiments(pListeData)
        -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 230, 79 + decalage)
         love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Menuisier' then
-
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.menuisier.levelMax then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Menuisier' then
+      
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
           
+        imageUpBatimentMenusiner = FunctionPicture:Create("UpBatiment", 280, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+        imageUpBatimentMenusiner:Draw()
+          
+      end
+      
+      if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+      
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 275, 65 + decalage)
         end
@@ -1029,9 +1064,16 @@ function vue:Batiments(pListeData)
          -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 280, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Bureau de l`architecte' then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Bureau de l`architecte' then
+      
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentBureau = FunctionPicture:Create("UpBatiment", 330, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentBureau:Draw()
+          
+      end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.architecte.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then 
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 325, 65 + decalage)
         end
@@ -1045,7 +1087,14 @@ function vue:Batiments(pListeData)
       
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Cave à vin' then
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.cave.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentCave = FunctionPicture:Create("UpBatiment", 380, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentCave:Draw()
+          
+        end
+        
+         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 375, 65 + decalage)
         end
@@ -1057,9 +1106,16 @@ function vue:Batiments(pListeData)
          -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 380, 79 + decalage) 
           love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Opticien' then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Opticien' then
+      
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentOpti = FunctionPicture:Create("UpBatiment", 430, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentOpti:Draw()
+          
+      end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.opticien.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 425, 65 + decalage)
         end
@@ -1073,7 +1129,14 @@ function vue:Batiments(pListeData)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Zone de test des artificiers' then
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.artificier.levelMax then
+          if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentZone = FunctionPicture:Create("UpBatiment", 480, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentZone:Draw()
+          
+        end
+        
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 475, 65 + decalage)
         end
@@ -1087,7 +1150,14 @@ function vue:Batiments(pListeData)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Cachette' then
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.cachette.levelMax then
+          if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+            imageUpBatimentCachette = FunctionPicture:Create("UpBatiment", 530, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+            imageUpBatimentCachette:Draw()
+          
+          end
+
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 525, 65 + decalage)
         end
@@ -1105,7 +1175,14 @@ function vue:Batiments(pListeData)
       listeData.Villes[i]._listeBatiments[j].name == 'Verrier'
       then
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.alchimiste.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentVerrier = FunctionPicture:Create("UpBatiment", 580, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentVerrier:Draw()
+          
+        end
+
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 575, 65 + decalage)
         end
@@ -1117,9 +1194,17 @@ function vue:Batiments(pListeData)
           --love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 580, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Maison forestière' then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Maison forestière' then
+      
+      
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentForet = FunctionPicture:Create("UpBatiment", 630, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentForet:Draw()
+          
+      end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.forestiere.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 625, 65 + decalage)
         end
@@ -1131,12 +1216,21 @@ function vue:Batiments(pListeData)
          -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 630, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Taverne' then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Taverne' then
+      
+      
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+        imageUpBatimentTaverne = FunctionPicture:Create("UpBatiment", 680, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+        imageUpBatimentTaverne:Draw()
+          
+      end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.taverne.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 675, 65 + decalage)
         end
+        
           local valeurTaverneTempo = {}
           valeurTaverneTempo.level = tonumber(listeData.Villes[i]._listeBatiments[j].level)
           valeurTaverneTempo.idVille = i
@@ -1144,9 +1238,17 @@ function vue:Batiments(pListeData)
          -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 680, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Académie' then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Académie' then
+      
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentAcademie = FunctionPicture:Create("UpBatiment", 730, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentAcademie:Draw()
+        
+      end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.academie.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 725, 65 + decalage)
         end
@@ -1158,9 +1260,18 @@ function vue:Batiments(pListeData)
          -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 730, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
-      elseif listeData.Villes[i]._listeBatiments[j].name == 'Port commercial' then
+    elseif listeData.Villes[i]._listeBatiments[j].name == 'Port commercial' then
+      
+      
+      if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+        imageUpBatimentPort = FunctionPicture:Create("UpBatiment", 880, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+        imageUpBatimentPort:Draw()
+          
+      end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.port.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+  
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 775, 65 + decalage)
         end
@@ -1174,7 +1285,15 @@ function vue:Batiments(pListeData)
 
       elseif listeData.Villes[i]._listeBatiments[j].name == 'mur d`enceinte' then
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.mur.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentMur = FunctionPicture:Create("UpBatiment", 830, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentMur:Draw()
+          
+        end
+
+      if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 825, 65 + decalage)
         end
@@ -1194,8 +1313,15 @@ function vue:Batiments(pListeData)
         nombreEntrepot.Level[pos] = listeData.Villes[i]._listeBatiments[j].level
         
       elseif listeData.Villes[i]._listeBatiments[j].name == 'Caserne' then
+        
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentCaserne = FunctionPicture:Create("UpBatiment", 930, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentCaserne:Draw()
+          
+        end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.caserne.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 925, 65 + decalage)
         end
@@ -1207,9 +1333,17 @@ function vue:Batiments(pListeData)
          -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 930, 79 + decalage)
           love.graphics.setColor(0,0,0)
 
-        elseif listeData.Villes[i]._listeBatiments[j].name == 'Musée' then
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Musée' then
+        
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentMusee = FunctionPicture:Create("UpBatiment", 980, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentMusee:Draw()
+          
+        end
 
-          if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.musee.levelMax then
+          if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
             love.graphics.setColor(0, 0.5, 0, 0.7)  
             love.graphics.print("Max", 975, 65 + decalage)
           end
@@ -1221,8 +1355,17 @@ function vue:Batiments(pListeData)
            -- love.graphics.print(listeData.Villes[i]._listeBatiments[j].level, 980, 79 + decalage)
             love.graphics.setColor(0,0,0)
 
-        elseif listeData.Villes[i]._listeBatiments[j].name == 'Chantier naval' then
-          if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.chantier.levelMax then
+      elseif listeData.Villes[i]._listeBatiments[j].name == 'Chantier naval' then
+        
+        if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentChantier = FunctionPicture:Create("UpBatiment", 1030, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentChantier:Draw()
+          
+        end
+
+          if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
             love.graphics.setColor(0, 0.5, 0, 0.7) 
             love.graphics.print("Max", 1025, 65 + decalage)
           end
@@ -1235,8 +1378,16 @@ function vue:Batiments(pListeData)
             love.graphics.setColor(0,0,0)
             
         elseif listeData.Villes[i]._listeBatiments[j].name == 'Dépôt' then
+          
+          if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
+          
+          imageUpBatimentDepot = FunctionPicture:Create("UpBatiment", 1080, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
+          imageUpBatimentDepot:Draw()
+          
+          end
 
-        if tonumber(listeData.Villes[i]._listeBatiments[j].level) == wiki.depot.levelMax then
+        if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
+
           love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 1075, 65 + decalage)
         end

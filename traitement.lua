@@ -16,9 +16,20 @@ local nombreIles = #listeJson.Iles
 
 -- Boucle qui crée les villes et qui ajoute les données de celle-ci dans un tableau villes
 for i = 1, nombreVilles do
-
-    local fichierVilleTempo = assert(io.open(listeJson.Villes[i],"r"))
-    local fichierLireVilleJsonTempo = fichierVilleTempo:read("*all")
+  
+    --local fichierVilleTempo = assert(io.open(listeJson.Villes[i],"r"))
+    
+    local fichier = love.filesystem.newFile("Creation.js")
+    fichier:open("w")
+    fichier:write("hello")
+    fichier:close()
+    
+    local fichierVilleTempo = love.filesystem.newFile(listeJson.Villes[i])
+    fichierVilleTempo:open("r")
+   -- local fichierLireVilleJsonTempo = fichierVilleTempo:read("*all")
+    local fichierLireVilleJsonTempo = fichierVilleTempo:read()
+    
+    fichierVilleTempo:close()
     local villeDecodeTempo = json.decode(fichierLireVilleJsonTempo)
     local villeTempo = FunctionVille:Create()
 
@@ -50,24 +61,28 @@ for i = 1, nombreVilles do
 
         batimentTempo.name = villeDecodeTempo[1][2]['backgroundData']['position'][j].name
         batimentTempo.level = villeDecodeTempo[1][2]['backgroundData']['position'][j].level
+        batimentTempo.canUpdate = villeDecodeTempo[1][2]['backgroundData']['position'][j].canUpgrade
+        batimentTempo.isMaxLevel = villeDecodeTempo[1][2]['backgroundData']['position'][j].isMaxLevel
+        
         villeTempo._listeBatiments[j] = batimentTempo
       
       end
 
     traitementTempo.Villes[i] = villeTempo
     
-    --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position']['Entrep\\u00f4t']['level']
-    --local entrepotLvl = villeDecodeTempo[1][2]['backgroundData']['position'][1].level
-    --local LvlHotel = villeDecodeTempo[1][2]['backgroundData']['position'][1]['level'] 
-
 end
 
 -- ######### ILES #########
 
 for i = 1, nombreIles do
 
-    local fichierIleTempo = assert(io.open(listeJson.Iles[i],"r"))
-    local fichierLireIleJsonTempo = fichierIleTempo:read("*all")
+    local fichierIleTempo = love.filesystem.newFile(listeJson.Iles[i])
+    fichierIleTempo:open("r")
+    --local fichierIleTempo = assert(io.open(listeJson.Iles[i],"r"))
+    --local fichierLireIleJsonTempo = fichierIleTempo:read("*all")
+    local fichierLireIleJsonTempo = fichierIleTempo:read()
+    
+    fichierIleTempo:close()
     local IleDecodeTempo = json.decode(fichierLireIleJsonTempo)
     local IleTempo = FunctionIle:Create()
 
@@ -81,15 +96,7 @@ for i = 1, nombreIles do
 
 end
 
---print(lvlScierie)
---print(lvlResourceLuxe)
---print(numeroResourceLuxe)
 
---[[
-if entrepotLvl == 'Hôtel de ville' then
-    print(entrepotLvl)
-end
-]]--
 
 return traitementTempo
 

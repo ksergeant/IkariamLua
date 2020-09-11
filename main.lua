@@ -1,7 +1,7 @@
 io.stdout:setvbuf('no')
 
 myIkariamManager = require("IkariamManager")
-myBackground = love.graphics.newImage("backgroung2.jpg")
+myBackground = love.graphics.newImage("background.jpg")
 
 function love.load()
   
