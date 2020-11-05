@@ -1,0 +1,37 @@
+Connexion.py 
+
+fichierVille10 = "C:/Users/Kevin/AppData/Roaming/LOVE/IkariamManager/Villes/Ville10.json"
+fichierIsland10= "C:/Users/Kevin/AppData/Roaming/LOVE/IkariamManager/Island/Island10.json"
+urlVille10 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=city&currentCityId=30374&ajax=1'    #Cristal4
+urlIsland10 = 'https://s34-fr.ikariam.gameforge.com/?view=updateGlobalData&backgroundView=island&currentCityId=30374&ajax=1'
+Traitement(urlVille10, fichierVille10)
+Traitement(urlIsland10, fichierIsland10)
+FiltreFichier(fichierVille10, rechercheSupprimer, rechercheVille, baliseFin)
+FiltreFichier(fichierIsland10, rechercheSupprimer, rechercheIsland, baliseFin)
+
+Tableau.lua
+
+local listeRepereVille = {1,2,3,4,5,6,7,8,9,10}
+
+Vue.lua
+
+if i == 1 then 
+      love.graphics.draw(imageVilleSouffre, 30, 70 + decalage)
+    end
+  
+    if i == 2 or i == 5 or i == 6 then 
+     love.graphics.draw(imageVilleMarbre, 30, 70 + decalage)
+    end
+  
+    if i == 3 or i == 8 or i == 9 or i == 10 then 
+      love.graphics.draw(imageVilleCristal, 30, 70 + decalage)
+    end
+  
+    if i == 4 or i == 7 then 
+      love.graphics.draw(imageVilleVin, 30, 70 + decalage)
+    end
+
+IkariamManager.lua
+
+listeJson.Iles[10] = "Island/Island10.json"
+listeJson.Villes[10] = "Villes/Ville10.json"

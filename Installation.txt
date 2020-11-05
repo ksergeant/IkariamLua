@@ -1,0 +1,5 @@
+Installer love2D
+
+Dans le fichier %appdata%/LOVE/IkariamManager
+
+Copier les Dossiers Images, Island, Villes et l'image Ikariam_Logo

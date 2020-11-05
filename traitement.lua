@@ -63,6 +63,7 @@ for i = 1, nombreVilles do
         batimentTempo.level = villeDecodeTempo[1][2]['backgroundData']['position'][j].level
         batimentTempo.canUpdate = villeDecodeTempo[1][2]['backgroundData']['position'][j].canUpgrade
         batimentTempo.isMaxLevel = villeDecodeTempo[1][2]['backgroundData']['position'][j].isMaxLevel
+        batimentTempo.completed = villeDecodeTempo[1][2]['backgroundData']['position'][j].completed
         
         villeTempo._listeBatiments[j] = batimentTempo
       

@@ -166,7 +166,7 @@ function vue:Ressources(pListeData)
       love.graphics.draw(imageVilleMarbre, 80, 70 + decalage)
     end
 
-    if i == 3 or i == 8 or i == 9 then 
+    if i == 3 or i == 8 or i == 9 or i == 10 then 
       love.graphics.draw(imageVilleCristal, 80, 70 + decalage)
     end
 
@@ -970,7 +970,7 @@ function vue:Batiments(pListeData)
      love.graphics.draw(imageVilleMarbre, 30, 70 + decalage)
     end
   
-    if i == 3 or i == 8 or i == 9 then 
+    if i == 3 or i == 8 or i == 9 or i == 10 then 
       love.graphics.draw(imageVilleCristal, 30, 70 + decalage)
     end
   
@@ -1005,6 +1005,11 @@ function vue:Batiments(pListeData)
           
         end
         
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressBatimentHDV = FunctionPicture:Create("InProgressBatiment", 180, 65 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressBatimentHDV:Draw()
+        end
+        
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
 
           love.graphics.setColor(0, 0.5, 0, 0.7) 
@@ -1028,6 +1033,11 @@ function vue:Batiments(pListeData)
         imageUpBatimentPalais:Draw()
           
       end
+      
+      if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressPalais = FunctionPicture:Create("InProgressBatiment", 227, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressPalais:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
 
@@ -1051,6 +1061,11 @@ function vue:Batiments(pListeData)
           
       end
       
+      if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressMenusiner = FunctionPicture:Create("InProgressBatiment", 277, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressMenusiner:Draw()
+        end
+        
       if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
       
           love.graphics.setColor(0, 0.5, 0, 0.7) 
@@ -1073,6 +1088,11 @@ function vue:Batiments(pListeData)
           
       end
 
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressBureau = FunctionPicture:Create("InProgressBatiment", 327, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressBureau:Draw()
+        end
+        
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then 
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 325, 65 + decalage)
@@ -1092,6 +1112,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentCave = FunctionPicture:Create("UpBatiment", 380, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
           imageUpBatimentCave:Draw()
           
+        end
+        
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressCave = FunctionPicture:Create("InProgressBatiment", 377, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressCave:Draw()
         end
         
          if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
@@ -1115,6 +1140,12 @@ function vue:Batiments(pListeData)
           
       end
 
+
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressOpti = FunctionPicture:Create("InProgressBatiment", 427, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressOpti:Draw()
+        end
+        
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
           love.graphics.print("Max", 425, 65 + decalage)
@@ -1136,6 +1167,11 @@ function vue:Batiments(pListeData)
           
         end
         
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressBatimentZone = FunctionPicture:Create("InProgressBatiment", 477, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressBatimentZone:Draw()
+        end
+        
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
           love.graphics.print("Max", 475, 65 + decalage)
@@ -1155,7 +1191,12 @@ function vue:Batiments(pListeData)
             imageUpBatimentCachette = FunctionPicture:Create("UpBatiment", 530, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
             imageUpBatimentCachette:Draw()
           
-          end
+        end
+        
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressCachette = FunctionPicture:Create("InProgressBatiment", 527, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressCachette:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
@@ -1181,6 +1222,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentVerrier:Draw()
           
         end
+        
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressVerrier = FunctionPicture:Create("InProgressBatiment", 577, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressVerrier:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7) 
@@ -1203,6 +1249,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentForet:Draw()
           
       end
+      
+      if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressForet = FunctionPicture:Create("InProgressBatiment", 627, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressForet:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
@@ -1218,13 +1269,17 @@ function vue:Batiments(pListeData)
 
     elseif listeData.Villes[i]._listeBatiments[j].name == 'Taverne' then
       
-      
       if listeData.Villes[i]._listeBatiments[j].canUpdate == true then
           
         imageUpBatimentTaverne = FunctionPicture:Create("UpBatiment", 680, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
         imageUpBatimentTaverne:Draw()
           
       end
+
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressTaverne = FunctionPicture:Create("InProgressBatiment", 677, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressTaverne:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
@@ -1246,6 +1301,12 @@ function vue:Batiments(pListeData)
           imageUpBatimentAcademie:Draw()
         
       end
+
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressBatimentAcademie= FunctionPicture:Create("InProgressBatiment", 727, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressBatimentAcademie:Draw()
+        end
+
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
 
@@ -1270,6 +1331,11 @@ function vue:Batiments(pListeData)
           
       end
 
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressPort = FunctionPicture:Create("InProgressBatiment", 877, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressPort:Draw()
+        end
+
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
   
           love.graphics.setColor(0, 0.5, 0, 0.7) 
@@ -1290,6 +1356,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentMur = FunctionPicture:Create("UpBatiment", 830, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
           imageUpBatimentMur:Draw()
           
+        end
+
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressBatimentMur = FunctionPicture:Create("InProgressBatiment", 827, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressBatimentMur:Draw()
         end
 
       if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
@@ -1320,6 +1391,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentCaserne:Draw()
           
         end
+        
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressCaserne = FunctionPicture:Create("InProgressBatiment", 927, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressCaserne:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
           love.graphics.setColor(0, 0.5, 0, 0.7)  
@@ -1342,6 +1418,12 @@ function vue:Batiments(pListeData)
           
         end
 
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressMusee = FunctionPicture:Create("InProgressBatiment", 977, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressMusee:Draw()
+        end
+
+
           if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
 
             love.graphics.setColor(0, 0.5, 0, 0.7)  
@@ -1362,6 +1444,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentChantier = FunctionPicture:Create("UpBatiment", 1030, 65 + decalage, "adventure_pack/PNG/iconCheck_blue.png", 1, 1)
           imageUpBatimentChantier:Draw()
           
+        end
+        
+        if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressChantier = FunctionPicture:Create("InProgressBatiment", 1027, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressChantier:Draw()
         end
 
           if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
@@ -1385,6 +1472,11 @@ function vue:Batiments(pListeData)
           imageUpBatimentDepot:Draw()
           
           end
+
+          if listeData.Villes[i]._listeBatiments[j].completed ~=nil then
+          imageInProgressDepot = FunctionPicture:Create("InProgressBatiment", 1077, 60 + decalage, "adventure_pack/PNG/iconCircle_blue.png", 1, 1)
+          imageInProgressDepot:Draw()
+        end
 
         if listeData.Villes[i]._listeBatiments[j].isMaxLevel == true then
 

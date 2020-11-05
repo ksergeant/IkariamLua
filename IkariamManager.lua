@@ -69,6 +69,7 @@ listeJson.Villes[6] = "Villes/Ville6.json"
 listeJson.Villes[7] = "Villes/Ville7.json"
 listeJson.Villes[8] = "Villes/Ville8.json"
 listeJson.Villes[9] = "Villes/Ville9.json"
+listeJson.Villes[10] = "Villes/Ville10.json"
 
 listeJson.Iles[1] = "Island/Island1.json"
 listeJson.Iles[2] = "Island/Island2.json"
@@ -79,6 +80,7 @@ listeJson.Iles[6] = "Island/Island6.json"
 listeJson.Iles[7] = "Island/Island7.json"
 listeJson.Iles[8] = "Island/Island8.json"
 listeJson.Iles[9] = "Island/Island9.json"
+listeJson.Iles[10] = "Island/Island10.json"
 
 IkariamManager.myVueCourante = ""
 

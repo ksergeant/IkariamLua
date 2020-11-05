@@ -175,7 +175,7 @@ function tableau:OrdonnerListe(plisteDesordonne)
   local listeValideFinal = {}
   local listeInvalide = {}
   local listeIdVilleManque = {}
-  local listeRepereVille = {1,2,3,4,5,6,7,8,9}
+  local listeRepereVille = {1,2,3,4,5,6,7,8,9,10}
   
   for i = 1, #listeTempo do
     
@@ -232,16 +232,26 @@ function tableau:fusionListe(pTabListe)
   
   local nbListe = #pTabListe
   local nbVille = #pTabListe[1]
+ 
+ 
+
   local listeDataFusionFinal = {}
   
   for i = 1, nbVille  do
     
+    print("NBville:",i)
     for i2 = 1, nbListe do
+      print("NBliste:",i2)
       local listeTempo = {}
       listeTempo = pTabListe[i2]
       local valeurTempo = {}
       valeurTempo = listeTempo[i]
       table.insert(listeDataFusionFinal, valeurTempo.level)
+      --[[
+      if valeurTempo ~= nil then
+        table.insert(listeDataFusionFinal, valeurTempo.level)
+      end
+      ]]--
     end
   
   end
